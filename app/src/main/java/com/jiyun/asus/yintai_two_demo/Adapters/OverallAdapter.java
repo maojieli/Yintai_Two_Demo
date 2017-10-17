@@ -1,4 +1,4 @@
-package com.jiyun.asus.yintai_two_demo.http.Adapters;
+package com.jiyun.asus.yintai_two_demo.Adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

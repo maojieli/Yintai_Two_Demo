@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.jiyun.asus.yintai_two_demo.http.Adapters.OverallAdapter;
+import com.jiyun.asus.yintai_two_demo.Adapters.OverallAdapter;
 import com.jiyun.asus.yintai_two_demo.Fragments.BeatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.CatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.ClassificationFragment;
