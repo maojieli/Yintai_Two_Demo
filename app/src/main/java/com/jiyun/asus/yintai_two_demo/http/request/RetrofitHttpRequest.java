@@ -3,9 +3,9 @@ package com.jiyun.asus.yintai_two_demo.http.request;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.jiyun.asus.yintai_two_demo.apis.ApisService;
+import com.jiyun.asus.yintai_two_demo.http.apis.ApisService;
 import com.jiyun.asus.yintai_two_demo.http.RetrofitSettings;
-import com.jiyun.asus.yintai_two_demo.interfaces.HttpCallback;
+import com.jiyun.asus.yintai_two_demo.http.interfaces.HttpCallback;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

@@ -2,7 +2,7 @@
  * Alipay.com Inc.
  * Copyright (c) 2005-2006 All Rights Reserved.
  */
-package com.jiyun.asus.yintai_two_demo.tools.tools;
+package com.jiyun.asus.yintai_two_demo.http.tools;
 
 import java.net.URLEncoder;
 import java.util.regex.Matcher;

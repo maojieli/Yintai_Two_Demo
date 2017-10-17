@@ -9,7 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.jiyun.asus.yintai_two_demo.http.VolleySettings;
-import com.jiyun.asus.yintai_two_demo.interfaces.HttpCallback;
+import com.jiyun.asus.yintai_two_demo.http.interfaces.HttpCallback;
 
 import java.lang.reflect.Type;
 import java.util.Map;

@@ -2,19 +2,14 @@ package com.jiyun.asus.yintai_two_demo.ui.startpager;
 
 import android.content.Context;
 
-import com.google.gson.reflect.TypeToken;
-import com.jiyun.asus.yintai_two_demo.concat.Concat;
-import com.jiyun.asus.yintai_two_demo.entity.BaseEntity;
-import com.jiyun.asus.yintai_two_demo.entity.NewsEntity;
+import com.jiyun.asus.yintai_two_demo.http.concat.Concat;
 import com.jiyun.asus.yintai_two_demo.http.factor.HttpRequestFactor;
 import com.jiyun.asus.yintai_two_demo.http.factor.HttpRequestFactorImpl;
 import com.jiyun.asus.yintai_two_demo.http.request.HttpRequest;
 import com.jiyun.asus.yintai_two_demo.http.request.RetrofitHttpRequest;
-import com.jiyun.asus.yintai_two_demo.interfaces.HttpCallback;
+import com.jiyun.asus.yintai_two_demo.http.interfaces.HttpCallback;
 
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.Map;
 
 

@@ -1,4 +1,4 @@
-package com.jiyun.asus.yintai_two_demo.ui.startpager;
+package com.jiyun.asus.yintai_two_demo.http.ui.startpager;
 
 
 import com.jiyun.asus.yintai_two_demo.http.interfaces.HttpCallback;

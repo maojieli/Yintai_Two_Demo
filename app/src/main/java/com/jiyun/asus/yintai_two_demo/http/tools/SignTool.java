@@ -1,4 +1,4 @@
-package com.jiyun.asus.yintai_two_demo.tools.tools;
+package com.jiyun.asus.yintai_two_demo.http.tools;
 
 import android.content.Context;
 import android.content.SharedPreferences;

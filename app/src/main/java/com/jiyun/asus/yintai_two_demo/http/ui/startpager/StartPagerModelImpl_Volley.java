@@ -1,4 +1,4 @@
-package com.jiyun.asus.yintai_two_demo.ui.startpager;
+package com.jiyun.asus.yintai_two_demo.http.ui.startpager;
 
 import android.content.Context;
 
@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/9/21.
  */
-public class StartPagerModelImpl_Volley extends StartPagerModel {
+public class StartPagerModelImpl_Volley extends com.jiyun.asus.yintai_two_demo.ui.startpager.StartPagerModel {
 
     @Override
     public void requestNews(Context context, Type type, Map<String, String> map, HttpCallback callback) {

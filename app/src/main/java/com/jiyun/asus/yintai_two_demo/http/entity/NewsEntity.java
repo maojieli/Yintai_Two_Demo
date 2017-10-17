@@ -1,4 +1,4 @@
-package com.jiyun.asus.yintai_two_demo.entity;
+package com.jiyun.asus.yintai_two_demo.http.entity;
 
 import java.util.List;
 

@@ -1,5 +1,5 @@
 
-package com.jiyun.asus.yintai_two_demo.tools.tools;
+package com.jiyun.asus.yintai_two_demo.http.tools;
 
 import java.io.CharArrayWriter;
 import java.io.UnsupportedEncodingException;

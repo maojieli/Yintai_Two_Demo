@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.jiyun.asus.yintai_two_demo.R;
-import com.jiyun.asus.yintai_two_demo.entity.NewsEntity;
-import com.jiyun.asus.yintai_two_demo.tools.tools.Tools;
+import com.jiyun.asus.yintai_two_demo.http.entity.NewsEntity;
+import com.jiyun.asus.yintai_two_demo.http.tools.Tools;
 import com.jiyun.asus.yintai_two_demo.ui.startpager.IView;
 import com.jiyun.asus.yintai_two_demo.ui.startpager.StartPagerPresenter;
 

@@ -1,7 +1,6 @@
 package com.jiyun.asus.yintai_two_demo.http;
 
 import com.google.gson.Gson;
-import com.jiyun.asus.yintai_two_demo.concat.Concat;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
