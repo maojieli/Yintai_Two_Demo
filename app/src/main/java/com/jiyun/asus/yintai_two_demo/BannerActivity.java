@@ -38,7 +38,6 @@ public class BannerActivity extends AppCompatActivity  implements ViewPager.OnPa
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_banner);
-
         ib_start = (Button) findViewById(R.id.guide_ib_start);
         ib_start.setOnClickListener(new View.OnClickListener() {
             @Override
