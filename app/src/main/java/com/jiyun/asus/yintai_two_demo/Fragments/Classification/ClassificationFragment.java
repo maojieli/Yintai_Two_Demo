@@ -55,32 +55,29 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.classfragment, container, false);
+      //找ID
         tb_classification = view.findViewById(R.id.tb_classification);
         lv_classification = view.findViewById(R.id.lv_classification);
         fl_classification = view.findViewById(R.id.fl_classification);
+       //设置Toolbar
         activity = (OverallActivity) getActivity();
+        activity.setSupportActionBar(tb_classification);
+        tb_classification.setNavigationIcon(R.drawable.icon);
+        //设置左侧的Listview
         been = new ArrayList<>();
         MyPresenter presenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(context);
         BaseParams.getParams(httpParams, context);
         httpParams.put("ver", "3.0");
-        //分类左侧
-        //"method" -> "products.category.getcategory"
-        //分类右侧
-        //  httpParams.put("method", "products.category.getchildcategory");
-
         httpParams.put("method", "products.category.getcategory");
         httpParams.put("pageid", "104001");
         httpParams.put("pageindex", "1");
-        // add("categoryid","88")
-        //httpParams.put("categoryid","88");
-        //"sign" -> "caee86bb6fabdcfc7a1da855f9932800"
         httpParams.put("sign", "caee86bb6fabdcfc7a1da855f9932800");
         Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
-        //   pagerPresenter.requestNews(stringStringHashMap,ClassLeftBean.class);
         presenter.quest(Concat.NETURL, ClassLeftBean.class, stringStringHashMap);
         adapter = new LvAdapter(been, context);
         lv_classification.setAdapter(adapter);
+        //设置左侧Listview的点击时间
         lv_classification.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -90,7 +87,7 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
 
                 FragmentManager manager = activity.getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                classificationrightfragment fragment=new classificationrightfragment(context);
+                classificationrightfragment fragment = new classificationrightfragment(context);
                 transaction.replace(R.id.fl_classification, fragment);
                 transaction.show(fragment);
                 transaction.commit();
