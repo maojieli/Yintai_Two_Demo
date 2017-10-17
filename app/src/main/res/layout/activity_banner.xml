@@ -7,33 +7,28 @@
     android:layout_height="match_parent"
     tools:context="com.jiyun.asus.yintai_two_demo.BannerActivity">
     <android.support.v4.view.ViewPager
-        android:id="@+id/guide_vp"
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"/>
 
-    <LinearLayout
-        android:id="@+id/guide_ll_point"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.jiyun.asus.yintai_two_demo.Indicator.MaterialIndicator
+        android:id="@+id/indicator"
+        style="@style/MaterialIndicator.Demo"
+        android:layout_width="wrap_content" android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingBottom="50dp">
-    </LinearLayout>
-
-    <Button
-        android:textColor="#ffffff"
-        android:layout_marginBottom="50dp"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/guide_ib_start"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/guide_ll_point"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/shapeone"
-        android:text="立即体验"
-        android:textSize="20sp"
-        android:visibility="gone"
-        />
+        android:layout_marginBottom="38dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"/>
+    <Button android:visibility="gone"
+        android:layout_marginBottom="38dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/bt_start" android:text="开启旅程"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

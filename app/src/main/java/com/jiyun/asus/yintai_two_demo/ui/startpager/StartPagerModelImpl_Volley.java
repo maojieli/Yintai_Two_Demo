@@ -21,19 +21,9 @@ import java.util.Map;
 public class StartPagerModelImpl_Volley extends StartPagerModel {
 
     @Override
-    public void requestNews(Context context, Map<String,String > map, HttpCallback callback) {
-
+    public void requestNews(Context context, Type type, Map<String, String> map, HttpCallback callback) {
         HttpRequestFactor factor = new HttpRequestFactorImpl();
         HttpRequest httpRequest = factor.create(context, VolleyHttpRequest.class);
-        Type[] genericInterfaces = callback.getClass().getGenericInterfaces();
-        Type[] actualTypeArguments=null;
-        for (int i = 0; i < genericInterfaces.length; i++) {
-            if (genericInterfaces[i] instanceof ParameterizedType){
-            actualTypeArguments = ((ParameterizedType) genericInterfaces[i]).getActualTypeArguments();
-            }
-        }
-
-        Type types =  actualTypeArguments[0];
-        httpRequest.post(Concat.BASE_URL+Concat.URL_NEWS,types,map,callback);
+        httpRequest.post(Concat.BASE_URL+Concat.URL_NEWS,type,map,callback);
     }
 }

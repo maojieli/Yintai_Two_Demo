@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MaterialIndicator">
+        <attr name="mi_indicatorRadius" format="dimension|reference"/>
+        <!-- 半径 -->
+        <attr name="mi_indicatorPadding" format="dimension|reference"/>
+        <!-- 间距 -->
+        <attr name="mi_indicatorColor" format="color|reference"/>
+        <!-- 颜色 -->
+    </declare-styleable>
+</resources>

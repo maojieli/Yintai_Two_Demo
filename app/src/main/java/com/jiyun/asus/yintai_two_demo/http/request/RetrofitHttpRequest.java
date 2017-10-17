@@ -1,5 +1,7 @@
 package com.jiyun.asus.yintai_two_demo.http.request;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.jiyun.asus.yintai_two_demo.apis.ApisService;
 import com.jiyun.asus.yintai_two_demo.http.RetrofitSettings;
@@ -43,8 +45,9 @@ public class RetrofitHttpRequest<T> extends HttpRequest<T> {
                     public void onNext(@NonNull ResponseBody responseBody) {
                         try {
                             String string = responseBody.string();
+                            Log.e("TAG",string);
                             Gson gson = new Gson();
-                            T o = gson.fromJson(string, type);
+                            Object o = gson.fromJson(string, type);
                             callback.onSuccess(o);
                         } catch (IOException e) {
                             e.printStackTrace();

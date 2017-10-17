@@ -5,6 +5,6 @@ package com.jiyun.asus.yintai_two_demo.interfaces;
  */
 
 public interface HttpCallback<T> {
-    void onSuccess(T t);
+    void onSuccess(Object t);
     void onFailure(Throwable e);
 }

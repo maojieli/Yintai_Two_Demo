@@ -7,5 +7,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="MaterialIndicator.Demo">
+        <item name="mi_indicatorColor">#99ffff</item>
+        <item name="mi_indicatorPadding">32dp</item> <!--指示点间距-->
+        <item name="mi_indicatorRadius">4dp</item><!--半径-->
+    </style>
+
+    <style name="MaterialIndicator">
+        <item name="mi_indicatorRadius">4dp</item><!--半径-->
+        <item name="mi_indicatorColor">#009688</item>  <!--指示点被选中的颜色-->
+    </style>
 
 </resources>

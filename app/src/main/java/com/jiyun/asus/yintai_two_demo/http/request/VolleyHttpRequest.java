@@ -39,8 +39,8 @@ public class VolleyHttpRequest<T> extends HttpRequest<T> {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
-                T t = gson.fromJson(response, type);
-                callback.onSuccess(t);
+                Object t = gson.fromJson(response, type);
+                callback.onSuccess( t);
             }
         }, new Response.ErrorListener() {
             @Override

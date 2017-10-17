@@ -23,22 +23,12 @@ import java.util.Map;
  * Created by Administrator on 2017/9/21.
  */
 public  class StartPagerModelImpl extends StartPagerModel{
-    public  void requestNews(Context context, Map<String,String> map, HttpCallback callback){
+
+
+    @Override
+    public void requestNews(Context context, Type type, Map<String, String> map, HttpCallback callback) {
         HttpRequestFactor factor = new HttpRequestFactorImpl();
         HttpRequest httpRequest = factor.create(RetrofitHttpRequest.class);
-        //TODO 不用理解，了解即可
-        //获取一个类的父类泛型类型或接口的泛型类型，得到的Type对象，用以解决Gson的泛型擦除问题
-//        context.getClass().getGenericSuperclass() 获取一个类的父类
-//        context.getClass().getGenericInterfaces() 获取一个类的所以接口
-        Type[] genericInterfaces = callback.getClass().getGenericInterfaces();
-        Type[] actualTypeArguments=null;
-        for (int i = 0; i < genericInterfaces.length; i++) {
-            if (genericInterfaces[i] instanceof ParameterizedType){
-             actualTypeArguments = ((ParameterizedType) genericInterfaces[i]).getActualTypeArguments();
-            }
-        }
-
-        Type types =  actualTypeArguments[0];
-        httpRequest.post(Concat.URL_NEWS,types,map,callback);
+        httpRequest.post(Concat.BASE_URL,type,map,callback);
     }
 }

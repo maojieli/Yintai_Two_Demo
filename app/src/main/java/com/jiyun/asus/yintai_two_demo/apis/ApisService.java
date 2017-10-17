@@ -7,6 +7,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
 
 
 /**
@@ -15,6 +16,6 @@ import retrofit2.http.Path;
 
 public interface ApisService {
     @FormUrlEncoded
-    @POST("{path}")
-    Observable<ResponseBody> post(@Path("path") String path, @FieldMap Map<String, String> mParams);
+    @POST
+    Observable<ResponseBody> post(@Url String path, @FieldMap Map<String, String> mParams);
 }
