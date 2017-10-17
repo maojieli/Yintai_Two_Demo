@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by Administrator on 2017/9/21.
  */
 public  class StartPagerModelImpl extends StartPagerModel{
-    public  void requestNews(Context context, String type, HttpCallback callback){
+    public  void requestNews(Context context, Map<String,String> map, HttpCallback callback){
         HttpRequestFactor factor = new HttpRequestFactorImpl();
         HttpRequest httpRequest = factor.create(RetrofitHttpRequest.class);
         //TODO 不用理解，了解即可
@@ -31,16 +31,14 @@ public  class StartPagerModelImpl extends StartPagerModel{
 //        context.getClass().getGenericSuperclass() 获取一个类的父类
 //        context.getClass().getGenericInterfaces() 获取一个类的所以接口
         Type[] genericInterfaces = callback.getClass().getGenericInterfaces();
-        Type[] actualTypeArguments = ((ParameterizedType) genericInterfaces[1]).getActualTypeArguments();
+        Type[] actualTypeArguments=null;
+        for (int i = 0; i < genericInterfaces.length; i++) {
+            if (genericInterfaces[i] instanceof ParameterizedType){
+             actualTypeArguments = ((ParameterizedType) genericInterfaces[i]).getActualTypeArguments();
+            }
+        }
+
         Type types =  actualTypeArguments[0];
-
-        //简单版
-        Type type1 = new TypeToken<BaseEntity<NewsEntity>>(){}.getType();
-
-
-        Map<String,String> mParams = new HashMap<>();
-        mParams.put("type",type);
-        mParams.put("key","097060266650f67b2cebd2a06aded587");
-        httpRequest.post(Concat.URL_NEWS,type1,mParams,callback);
+        httpRequest.post(Concat.URL_NEWS,types,map,callback);
     }
 }
