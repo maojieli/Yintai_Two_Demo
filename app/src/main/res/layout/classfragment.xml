@@ -35,6 +35,8 @@
         android:orientation="horizontal">
 
         <ListView
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
             android:id="@+id/lv_classification"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

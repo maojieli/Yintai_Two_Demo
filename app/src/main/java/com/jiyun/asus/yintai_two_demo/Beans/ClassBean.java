@@ -117,7 +117,7 @@ public class ClassBean {
             this.brand = brand;
         }
 
-        public static class AdvertisingBean {
+        public static class AdvertisingBean  {
             /**
              * name : 分类广告管理
              * categoryadvertising : []
@@ -143,7 +143,7 @@ public class ClassBean {
             }
         }
 
-        public static class RecommendBean {
+        public static class RecommendBean  {
             /**
              * name : 推荐类目
              * categoryrecommend : [{"categoryid":135,"name":"男装T恤","imageurl":"https://yrs.yintai.com/rs/img/AppCMS/images/35b8dd47-7a41-444e-944b-a796758b583d.jpg","jumpurl":"yintaimobile://AutoProductList?title=%E7%94%B7%E8%A3%85T%E6%81%A4&searchCondition=N%3D10001896&showtype=double"},{"categoryid":136,"name":"女包","imageurl":"https://yrs.yintai.com/rs/img/AppCMS/images/43919901-d9db-4461-a722-b99e5e18fddb.jpg","jumpurl":"yintaimobile://AutoProductList?title=%E5%A5%B3%E5%8C%85&searchCondition=N%3D10001891&showtype=double"},{"categoryid":137,"name":"男装衬衫","imageurl":"https://yrs.yintai.com/rs/img/AppCMS/images/f0ef662c-005d-43fa-ab56-739c58e4641d.jpg","jumpurl":"yintaimobile://AutoProductList?title=%E7%94%B7%E8%A3%85%E8%A1%AC%E8%A1%AB&searchCondition=N%3D10001898&showtype=double"},{"categoryid":143,"name":"男包","imageurl":"https://yrs.yintai.com/rs/img/AppCMS/images/a6c33bad-c675-4736-9513-1ae47d6db6bc.jpg","jumpurl":"yintaimobile://AutoProductList?title=%E7%94%B7%E5%8C%85&searchCondition=N%3D10001890&showtype=double"},{"categoryid":144,"name":"女裙","imageurl":"https://yrs.yintai.com/rs/img/AppCMS/images/eab8e69e-e048-44ed-95ec-13c2e5c47250.jpg","jumpurl":"yintaimobile://AutoProductList?title=%E5%A5%B3%E8%A3%99&searchCondition=N%3D10001907&showtype=double"},{"categoryid":147,"name":"女鞋","imageurl":"https://yrs.yintai.com/rs/img/AppCMS/images/a13eb30f-bb48-4652-8eb3-2a1bd0528f75.jpg","jumpurl":"yintaimobile://AutoProductList?title=%E5%A5%B3%E9%9E%8B&searchCondition=N%3D10001889&showtype=double"},{"categoryid":146,"name":"男鞋","imageurl":"https://yrs.yintai.com/rs/img/AppCMS/images/91c33cc7-c37b-4988-bd70-286cc0c79ccb.jpg","jumpurl":"yintaimobile://AutoProductList?title=%E7%94%B7%E9%9E%8B&searchCondition=N%3D10001888&showtype=double"},{"categoryid":145,"name":"POLO衫","imageurl":"https://yrs.yintai.com/rs/img/AppCMS/images/fd8812e6-cce9-4479-a33c-869312286b65.jpg","jumpurl":"yintaimobile://AutoProductList?title=POLO%E8%A1%AB&searchCondition=N%3D10001897&showtype=double"},{"categoryid":149,"name":"女装T恤","imageurl":"https://yrs.yintai.com/rs/img/AppCMS/images/85571aa2-1c1f-476a-a53c-efea7383b9a2.jpg","jumpurl":"yintaimobile://AutoProductList?title=%E5%A5%B3%E8%A3%85T%E6%81%A4&searchCondition=N%3D10001902&showtype=double"}]
@@ -215,7 +215,7 @@ public class ClassBean {
             }
         }
 
-        public static class BrandBean {
+        public static class BrandBean  {
             /**
              * name : 推荐品牌
              * brandrecommend : [{"categoryid":224,"brandid":270,"name":"BURBERRY","imageurl":"https://p10.ytrss.com/brand/brandstore/brand-270.jpg","jumpurl":"yintaimobile://AutoProductList?title=BURBERRY&showtype=double&searchCondition=N%3d50000270"},{"categoryid":226,"brandid":265,"name":"SALVATORE FERRAGAMO","imageurl":"https://p10.ytrss.com/brand/brandstore/brand-265.jpg","jumpurl":"yintaimobile://AutoProductList?title=%e8%8f%b2%e6%8b%89%e6%a0%bc%e6%85%95&showtype=double&searchCondition=N%3d50000265"},{"categoryid":227,"brandid":455,"name":"GUCCI","imageurl":"https://p10.ytrss.com/brand/brandstore/brand-455.jpg","jumpurl":"yintaimobile://AutoProductList?title=GUCCI&showtype=double&searchCondition=N%3d50000455"},{"categoryid":228,"brandid":887,"name":"ARMANI JEANS","imageurl":"https://p10.ytrss.com/brand/brandstore/brand-887.jpg","jumpurl":"yintaimobile://AutoProductList?title=ARMANI+JEANS&showtype=double&searchCondition=N%3d50000887"},{"categoryid":414,"brandid":1052,"name":"MAX MARA","imageurl":"https://p10.ytrss.com/brand/brandstore/brand-1052.jpg","jumpurl":"yintaimobile://AutoProductList?title=Max+Mara&showtype=double&searchCondition=N%3d50001052"},{"categoryid":229,"brandid":369,"name":"VALENTINO","imageurl":"https://p10.ytrss.com/brand/brandstore/brand-369.jpg","jumpurl":"yintaimobile://AutoProductList?title=VALENTINO&showtype=double&searchCondition=N%3d50000369"}]

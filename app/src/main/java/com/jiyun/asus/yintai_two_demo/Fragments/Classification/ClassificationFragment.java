@@ -1,18 +1,23 @@
 package com.jiyun.asus.yintai_two_demo.Fragments.Classification;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.jiyun.asus.yintai_two_demo.Beans.ClassLeftBean;
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.Adapters.LvAdapter;
+import com.jiyun.asus.yintai_two_demo.Fragments.Classification.Bean.EventBean;
 import com.jiyun.asus.yintai_two_demo.Http.Presenter.MyPresenter;
 import com.jiyun.asus.yintai_two_demo.Http.View.MyView;
 import com.jiyun.asus.yintai_two_demo.Http.tools.BaseParams;
@@ -21,6 +26,8 @@ import com.jiyun.asus.yintai_two_demo.Http.tools.Tools;
 import com.jiyun.asus.yintai_two_demo.OverallActivity;
 import com.jiyun.asus.yintai_two_demo.R;
 
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,9 +45,10 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
     private List<ClassLeftBean.DataBeanX.DataBean> been;
     private LvAdapter adapter;
     private Context context;
+    private OverallActivity activity;
 
     public ClassificationFragment(OverallActivity overallActivity) {
-       this.context=overallActivity;
+        this.context = overallActivity;
     }
 
     @Nullable
@@ -50,6 +58,7 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
         tb_classification = view.findViewById(R.id.tb_classification);
         lv_classification = view.findViewById(R.id.lv_classification);
         fl_classification = view.findViewById(R.id.fl_classification);
+        activity = (OverallActivity) getActivity();
         been = new ArrayList<>();
         MyPresenter presenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(context);
@@ -72,6 +81,21 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
         presenter.quest(Concat.NETURL, ClassLeftBean.class, stringStringHashMap);
         adapter = new LvAdapter(been, context);
         lv_classification.setAdapter(adapter);
+        lv_classification.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int categoryid = been.get(position).getId();
+                EventBus.getDefault().post(new EventBean(categoryid));
+
+
+                FragmentManager manager = activity.getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                classificationrightfragment fragment=new classificationrightfragment(context);
+                transaction.replace(R.id.fl_classification, fragment);
+                transaction.show(fragment);
+                transaction.commit();
+            }
+        });
         return view;
     }
 
