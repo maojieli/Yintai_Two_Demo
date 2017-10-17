@@ -32,7 +32,7 @@ public class VolleyHttpRequest<T> extends HttpRequest<T> {
 
     @Override
     public void post(String url, Type type, Map<String, String> map, HttpCallback<T> callback) {
-        post_Entity(url,type,map,callback);
+       post_String(url,type,map,callback);
     }
     public void post_String(String url, final Type type, final Map mMap, final HttpCallback<T> callback) {
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
