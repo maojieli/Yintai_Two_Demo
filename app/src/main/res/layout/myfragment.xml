@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#ff2"
+        android:orientation="vertical">
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="欢迎来到银泰" />
+
+    <Button
+
+        android:id="@+id/dengluzhuce"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:text="登陆/注册" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:layout_below="@+id/toolbar"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true">
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <RadioButton
+            android:id="@+id/quanbudingdan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/a1"
+            android:gravity="center_horizontal"
+            android:text="全部订单"
+            android:textColor="#fe34" />
+
+        <RadioButton
+            android:id="@+id/daizhifu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/a2"
+            android:gravity="center_horizontal"
+            android:text="待支付"
+            android:textColor="#fe34" />
+
+        <RadioButton
+            android:id="@+id/daishouhuo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+           android:drawableTop="@mipmap/a4"
+            android:gravity="center_horizontal"
+            android:text="待收货"
+            android:layout_weight="1"
+            android:textColor="#fe34" />
+
+        <RadioButton
+            android:id="@+id/gouwuche"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+           android:drawableTop="@mipmap/a2"
+            android:gravity="center_horizontal"
+            android:text="购物车"
+            android:textColor="#fe34" />
+    </RadioGroup>
+
+</LinearLayout>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_marginTop="100dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/yintaihuiyuanzhuanmaidian"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="银泰会员专卖店"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="账号与安全"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/youhuijuan"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="优惠卷"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/bangdingshoujihao"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="绑定手机号"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/shezhizhifumima"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="设置支付密码"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/地址管理"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="地址管理" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wodedianzixiaopiao"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="我的电子小票"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="帮助中心"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/yijianfankui"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="意见反馈"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/guanyuyintai"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="关于银泰"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</RelativeLayout>
