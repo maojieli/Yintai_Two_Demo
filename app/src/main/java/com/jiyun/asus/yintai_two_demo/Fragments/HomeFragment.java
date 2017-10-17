@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.jiyun.asus.yintai_two_demo.R;
-import com.jiyun.asus.yintai_two_demo.http.entity.NewsEntity;
-import com.jiyun.asus.yintai_two_demo.http.tools.Tools;
 
 
 import java.util.HashMap;
@@ -22,7 +20,7 @@ import java.util.Map;
  */
 
 public class HomeFragment extends Fragment{
-    private Button bt_btn;
+
 
 
     @Nullable

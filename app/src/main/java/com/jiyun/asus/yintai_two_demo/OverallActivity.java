@@ -46,7 +46,7 @@ public class OverallActivity extends AppCompatActivity {
         List<Fragment> fragmentList = new ArrayList<>();
         HomeFragment homeFragment = new HomeFragment();
         BeatFragment beatFragment = new BeatFragment();
-        ClassificationFragment classificationFragment = new ClassificationFragment();
+        ClassificationFragment classificationFragment = new ClassificationFragment(OverallActivity.this);
         final CatFragment catFragment = new CatFragment();
         MyFragment myFragment = new MyFragment();
         fragmentList.add(homeFragment);

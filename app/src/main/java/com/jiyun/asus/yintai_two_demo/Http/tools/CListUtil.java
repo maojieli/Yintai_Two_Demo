@@ -8,7 +8,7 @@
  *
  * Revision History at the end of file.
  ******************************************************************************/
-package com.jiyun.asus.yintai_two_demo.http.tools;
+package com.jiyun.asus.yintai_two_demo.Http.tools;
 
 import java.util.ArrayList;
 import java.util.HashSet;

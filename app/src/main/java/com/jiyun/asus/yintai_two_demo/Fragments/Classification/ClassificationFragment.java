@@ -13,11 +13,14 @@ import android.widget.ListView;
 
 import com.jiyun.asus.yintai_two_demo.Beans.ClassLeftBean;
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.Adapters.LvAdapter;
+import com.jiyun.asus.yintai_two_demo.Http.Presenter.MyPresenter;
+import com.jiyun.asus.yintai_two_demo.Http.View.MyView;
+import com.jiyun.asus.yintai_two_demo.Http.tools.BaseParams;
+import com.jiyun.asus.yintai_two_demo.Http.tools.Concat;
+import com.jiyun.asus.yintai_two_demo.Http.tools.Tools;
+import com.jiyun.asus.yintai_two_demo.OverallActivity;
 import com.jiyun.asus.yintai_two_demo.R;
-import com.jiyun.asus.yintai_two_demo.http.tools.BaseParams;
-import com.jiyun.asus.yintai_two_demo.http.tools.Tools;
-import com.jiyun.asus.yintai_two_demo.http.ui.startpager.IView;
-import com.jiyun.asus.yintai_two_demo.http.ui.startpager.StartPagerPresenter;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,13 +31,18 @@ import java.util.Map;
  * 当你的才华满足不了你的野心的时候，那么你应该静下心来学习.
  */
 
-public class ClassificationFragment extends Fragment implements IView<ClassLeftBean> {
+public class ClassificationFragment extends Fragment implements MyView<ClassLeftBean> {
     private Toolbar tb_classification;
     private ListView lv_classification;
     private FrameLayout fl_classification;
     private List<ClassLeftBean.DataBeanX.DataBean> been;
     private LvAdapter adapter;
     private Context context;
+
+    public ClassificationFragment(OverallActivity overallActivity) {
+       this.context=overallActivity;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,9 +51,9 @@ public class ClassificationFragment extends Fragment implements IView<ClassLeftB
         lv_classification = view.findViewById(R.id.lv_classification);
         fl_classification = view.findViewById(R.id.fl_classification);
         been = new ArrayList<>();
-        StartPagerPresenter pagerPresenter=new StartPagerPresenter(this,context);
+        MyPresenter presenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(context);
-        BaseParams.getParams(httpParams,context);
+        BaseParams.getParams(httpParams, context);
         httpParams.put("ver", "3.0");
         //分类左侧
         //"method" -> "products.category.getcategory"
@@ -58,25 +66,25 @@ public class ClassificationFragment extends Fragment implements IView<ClassLeftB
         // add("categoryid","88")
         //httpParams.put("categoryid","88");
         //"sign" -> "caee86bb6fabdcfc7a1da855f9932800"
-        httpParams.put("sign","caee86bb6fabdcfc7a1da855f9932800");
-        HashMap<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
-        pagerPresenter.requestNews(stringStringHashMap,ClassLeftBean.class);
-
-        adapter = new LvAdapter(been,context);
+        httpParams.put("sign", "caee86bb6fabdcfc7a1da855f9932800");
+        Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
+        //   pagerPresenter.requestNews(stringStringHashMap,ClassLeftBean.class);
+        presenter.quest(Concat.NETURL, ClassLeftBean.class, stringStringHashMap);
+        adapter = new LvAdapter(been, context);
         lv_classification.setAdapter(adapter);
         return view;
     }
 
 
     @Override
-    public void onSuccess(ClassLeftBean classLeftBean) {
+    public void success(ClassLeftBean classLeftBean) {
         List<ClassLeftBean.DataBeanX.DataBean> data = classLeftBean.getData().getData();
         been.addAll(data);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onFailure(Throwable e) {
+    public void defeat(String s) {
 
     }
 }
