@@ -13,7 +13,8 @@ public class StartPagerPresenter {
 
     public StartPagerPresenter(IView iView) {
         this.iView = iView;
-        model = new StartPagerModelImpl_Volley();
+//        model = new StartPagerModelImpl_Volley();
+         model = new StartPagerModelImpl();
     }
 
     public void requestNews(String type){
