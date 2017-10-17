@@ -48,7 +48,7 @@ public class RetrofitHttpRequest<T> extends HttpRequest<T> {
                             Log.e("TAG",string);
                             Gson gson = new Gson();
                             Object o = gson.fromJson(string, type);
-                            callback.onSuccess(o);
+                            callback.onSuccess((T) o);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

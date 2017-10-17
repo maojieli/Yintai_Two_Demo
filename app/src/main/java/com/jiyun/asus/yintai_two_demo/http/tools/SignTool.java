@@ -9,12 +9,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * 你的指尖--有改变世界的力量！
+ * Created by 牛艺衡 on 2017/10/6.
+ */
 
-public class SignTool {
-
-
+class SignTool {
     public static String getSign(Map<String, String> paramOther, Map<String, String> parameter, Context context) {
-        SharedPreferences mSharedPreferences = context.getSharedPreferences(Constant.PUBLIC_FILE, context.MODE_PRIVATE);
+        SharedPreferences mSharedPreferences = context.getSharedPreferences(Concat.PUBLIC_FILE, context.MODE_PRIVATE);
         String appkey = mSharedPreferences.getString("appkey", "");
         String secretkey = mSharedPreferences.getString("secretkey", "");
         YTLog.debugInfo("getSign", appkey + "----" + secretkey);
@@ -144,5 +146,6 @@ public class SignTool {
         String signString = buffer.toString().toUpperCase();
         return signString;
     }
+
 
 }

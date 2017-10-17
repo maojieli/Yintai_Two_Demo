@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 
-import com.jiyun.asus.yintai_two_demo.ui.startpager.*;
-import com.jiyun.asus.yintai_two_demo.ui.startpager.IView;
-import com.jiyun.asus.yintai_two_demo.ui.startpager.StartPagerModelImpl;
+
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -16,8 +14,8 @@ import java.util.Map;
  */
 public class StartPagerPresenter {
     private Context context;
-    private com.jiyun.asus.yintai_two_demo.ui.startpager.IView iView;
-    private com.jiyun.asus.yintai_two_demo.ui.startpager.StartPagerModel model;
+    private IView iView;
+    private StartPagerModel model;
 
     public StartPagerPresenter(IView iView, Context context) {
         this.iView = iView;

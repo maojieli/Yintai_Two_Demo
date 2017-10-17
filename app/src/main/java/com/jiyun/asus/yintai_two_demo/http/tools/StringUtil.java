@@ -1,7 +1,3 @@
-/**
- * Alipay.com Inc.
- * Copyright (c) 2005-2006 All Rights Reserved.
- */
 package com.jiyun.asus.yintai_two_demo.http.tools;
 
 import java.net.URLEncoder;
@@ -9,15 +5,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 字符串处理的工具类 
- * @author stone.zhangjl
- * @version $Id: StringUtil.java, v 0.1 2008-8-21 上午10:47:41 stone.zhangjl Exp $
+ * 你的指尖--有改变世界的力量！
+ * Created by 牛艺衡 on 2017/10/6.
  */
-public class StringUtil {
 
-    /** 空字符串。 */
+public class StringUtil {
+    /**
+     * 空字符串。
+     */
     public static final String EMPTY_STRING = "";
-    /**忽略*/
+    /**
+     * 忽略
+     */
     public static final String TAG_IGNORE = "ignore";
 
     /**
@@ -32,7 +31,6 @@ public class StringUtil {
      *
      * @param str1 要比较的字符串1
      * @param str2 要比较的字符串2
-     *
      * @return 如果两个字符串相同，或者都是<code>null</code>，则返回<code>true</code>
      */
     public static boolean equals(String str1, String str2) {
@@ -42,18 +40,19 @@ public class StringUtil {
 
         return str1.equals(str2);
     }
-    
+
     /**
-	 * Filter string.
-	 * @param str
-	 * @return
-	 */
-	public static String f(String str){
-		if( isEmpty(str)){
-			return "" ;
-		}
-		return str.trim();
-	}
+     * Filter string.
+     *
+     * @param str
+     * @return
+     */
+    public static String f(String str) {
+        if (isEmpty(str)) {
+            return "";
+        }
+        return str.trim();
+    }
 
     /**
      * 比较两个字符串（大小写不敏感）。
@@ -67,7 +66,6 @@ public class StringUtil {
      *
      * @param str1 要比较的字符串1
      * @param str2 要比较的字符串2
-     *
      * @return 如果两个字符串相同，或者都是<code>null</code>，则返回<code>true</code>
      */
     public static boolean equalsIgnoreCase(String str1, String str2) {
@@ -89,19 +87,16 @@ public class StringUtil {
      * </pre>
      *
      * @param str 要检查的字符串
-     *
      * @return 如果为空白, 则返回<code>true</code>
      */
     public static boolean isBlank(String str) {
-    	if(null==str)
-    	{
-    		return true;
-    	}
-    	str=str.trim();
-    	if(0==str.length())
-    	{
-    		return true;
-    	}
+        if (null == str) {
+            return true;
+        }
+        str = str.trim();
+        if (0 == str.length()) {
+            return true;
+        }
         return false;
     }
 
@@ -116,7 +111,6 @@ public class StringUtil {
      * </pre>
      *
      * @param str 要检查的字符串
-     *
      * @return 如果为空白, 则返回<code>true</code>
      */
     public static boolean isNotBlank(String str) {
@@ -146,7 +140,6 @@ public class StringUtil {
      * </pre>
      *
      * @param str 要检查的字符串
-     *
      * @return 如果为空, 则返回<code>true</code>
      */
     public static boolean isEmpty(String str) {
@@ -164,7 +157,6 @@ public class StringUtil {
      * </pre>
      *
      * @param str 要检查的字符串
-     *
      * @return 如果不为空, 则返回<code>true</code>
      */
     public static boolean isNotEmpty(String str) {
@@ -183,9 +175,8 @@ public class StringUtil {
      * StringUtil.indexOf("aabaabaa", "")   = 0
      * </pre>
      *
-     * @param str 要扫描的字符串
+     * @param str       要扫描的字符串
      * @param searchStr 要查找的字符串
-     *
      * @return 第一个匹配的索引值。如果字符串为<code>null</code>或未找到，则返回<code>-1</code>
      */
     public static int indexOf(String str, String searchStr) {
@@ -212,10 +203,9 @@ public class StringUtil {
      * StringUtil.indexOf("abc", "", 9)        = 3
      * </pre>
      *
-     * @param str 要扫描的字符串
+     * @param str       要扫描的字符串
      * @param searchStr 要查找的字符串
-     * @param startPos 开始搜索的索引值，如果小于0，则看作0
-     *
+     * @param startPos  开始搜索的索引值，如果小于0，则看作0
      * @return 第一个匹配的索引值。如果字符串为<code>null</code>或未找到，则返回<code>-1</code>
      */
     public static int indexOf(String str, String searchStr, int startPos) {
@@ -231,9 +221,10 @@ public class StringUtil {
         return str.indexOf(searchStr, startPos);
     }
 
+
     /**
      * 取指定字符串的子串。
-     * 
+     * <p>
      * <p>
      * 负的索引代表从尾部开始计算。如果字符串为<code>null</code>，则返回<code>null</code>。
      * <pre>
@@ -249,10 +240,9 @@ public class StringUtil {
      * </pre>
      * </p>
      *
-     * @param str 字符串
+     * @param str   字符串
      * @param start 起始索引，如果为负数，表示从尾部计算
-     * @param end 结束索引（不含），如果为负数，表示从尾部计算
-     *
+     * @param end   结束索引（不含），如果为负数，表示从尾部计算
      * @return 子串，如果原始串为<code>null</code>，则返回<code>null</code>
      */
     public static String substring(String str, int start, int end) {
@@ -298,9 +288,8 @@ public class StringUtil {
      * StringUtil.contains("abc", "z")  = false
      * </pre>
      *
-     * @param str 要扫描的字符串
+     * @param str       要扫描的字符串
      * @param searchStr 要查找的字符串
-     *
      * @return 如果找到，则返回<code>true</code>
      */
     public static boolean contains(String str, String searchStr) {
@@ -314,10 +303,10 @@ public class StringUtil {
     /**
      * <p>Checks if the String contains only unicode digits.
      * A decimal point is not a unicode digit and returns false.</p>
-     *
+     * <p>
      * <p><code>null</code> will return <code>false</code>.
      * An empty String ("") will return <code>true</code>.</p>
-     *
+     * <p>
      * <pre>
      * StringUtils.isNumeric(null)   = false
      * StringUtils.isNumeric("")     = true
@@ -329,7 +318,7 @@ public class StringUtil {
      * StringUtils.isNumeric("12.3") = false
      * </pre>
      *
-     * @param str  the String to check, may be null
+     * @param str the String to check, may be null
      * @return <code>true</code> if only contains digits, and is non-null
      */
     public static boolean isNumeric(String str) {
@@ -344,120 +333,128 @@ public class StringUtil {
         }
         return true;
     }
-    
+
     /**
      * 判断给定的字符串是否为小数
+     *
      * @param str
      * @return
      */
-    public static boolean isDecimal(String str)
-    {
-    	if(isBlank(str))
-    	{
-    		return false;
-    	}
-    	return Pattern.compile("([1-9]+[0-9]*|0)(\\.[\\d]+)?").matcher(str).matches();
+    public static boolean isDecimal(String str) {
+        if (isBlank(str)) {
+            return false;
+        }
+        return Pattern.compile("([1-9]+[0-9]*|0)(\\.[\\d]+)?").matcher(str).matches();
     }
-    
 
-	/**
-	 * 如果传入的字符串是null/""  返回""
-	 * 否则返回传入的字符串
-	 * @param str
-	 * @return
-	 */
-	public static String stringFilter(String str){
-		return isBlank(str)?"":str;
-	}
+
+    /**
+     * 如果传入的字符串是null/""  返回""
+     * 否则返回传入的字符串
+     *
+     * @param str
+     * @return
+     */
+    public static String stringFilter(String str) {
+        return isBlank(str) ? "" : str;
+    }
 
     /**
      * 将字符串按照url的方式转义
+     *
      * @param target
      * @return
      */
-    public static String urlEncode(String target){
-        if( isEmpty(target)){
-            return null ;
+    public static String urlEncode(String target) {
+        if (isEmpty(target)) {
+            return null;
         }
         target = URLEncoder.encode(target);
-        return target ;
+        return target;
     }
-    
+
     /**
      * 将字符串中所有字符转成ascii
+     *
      * @param value
      * @return
      */
-    public static String parse2Ascii(String value){
-    	value = StringUtil.f(value);
-    	StringBuffer sb = new StringBuffer();
-    	int length = value.length() ;
-    	String asciiValue = null ;
-    	for(int i = 0; i < length; i++ ){
-    		asciiValue = (int)value.charAt(i) +"";
-    		sb.append(asciiValue);
-    	}
-    	return sb.toString();
+    public static String parse2Ascii(String value) {
+        value = StringUtil.f(value);
+        StringBuffer sb = new StringBuffer();
+        int length = value.length();
+        String asciiValue = null;
+        for (int i = 0; i < length; i++) {
+            asciiValue = (int) value.charAt(i) + "";
+            sb.append(asciiValue);
+        }
+        return sb.toString();
     }
 
-    
+
     /**
      * 将原字符串中的非(中文，数字，字母)去掉
+     *
      * @param orginal
      * @return
      */
-    public static String removeSpecifyString(String orginal){
-    	String newString = StringUtil.f(orginal) ;
-		if (!isEmpty(orginal)) {
-			Pattern p = Pattern.compile("[^\u4e00-\u9fa5 a-z A-Z 0-9]");
-			Matcher matcher = p.matcher(orginal);
-			newString = matcher.replaceAll("");
-		}
-    	return newString ;
+    public static String removeSpecifyString(String orginal) {
+        String newString = StringUtil.f(orginal);
+        if (!isEmpty(orginal)) {
+            Pattern p = Pattern.compile("[^\u4e00-\u9fa5 a-z A-Z 0-9]");
+            Matcher matcher = p.matcher(orginal);
+            newString = matcher.replaceAll("");
+        }
+        return newString;
     }
-	
-	/**
+
+    /**
      * 将value转成整数，当无法转时，返回-1
+     *
      * @param value
      * @return
      */
-    public static int parseInt(String value){
-    	try{
-    		return Integer.parseInt(value);
-    	}catch (Exception e){
-    		
-    	}
-    	return -1 ;
+    public static int parseInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (Exception e) {
+
+        }
+        return -1;
     }
-    
+
     /**
      * 将value转成long，当无法转时，返回-1
+     *
      * @param value
      * @return
      */
-    public static long parseLong(String value){
-    	try{
-    		return Long.parseLong(value);
-    	}catch (Exception e){
-    		
-    	}
-    	return -1 ;
+    public static long parseLong(String value) {
+        try {
+            return Long.parseLong(value);
+        } catch (Exception e) {
+
+        }
+        return -1;
     }
+
     /**
      * 识别字符串长度来计算宽度，汉字为1，其他字符为0.5
+     *
      * @param str
      * @return
      */
-    public static int countString(String str){
-    	int length=0;
-    	for (int i = 0; i < str.length(); i++) {
-			char c = str.charAt(i);
-			if ((int) c >= 0x4E00 && (int) c <= 0x9FFF) {
-				length+=2;
-			} else {
-				length++;
-			}
-		}
-    	return length/2;
+    public static int countString(String str) {
+        int length = 0;
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if ((int) c >= 0x4E00 && (int) c <= 0x9FFF) {
+                length += 2;
+            } else {
+                length++;
+            }
+        }
+        return length / 2;
     }
 }
+

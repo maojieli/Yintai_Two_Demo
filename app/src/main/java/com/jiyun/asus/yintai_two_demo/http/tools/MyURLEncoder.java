@@ -1,4 +1,3 @@
-
 package com.jiyun.asus.yintai_two_demo.http.tools;
 
 import java.io.CharArrayWriter;
@@ -9,7 +8,12 @@ import java.nio.charset.IllegalCharsetNameException;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.BitSet;
 
-public class MyURLEncoder {
+/**
+ * 你的指尖--有改变世界的力量！
+ * Created by 牛艺衡 on 2017/10/6.
+ */
+
+class MyURLEncoder {
     static BitSet dontNeedEncoding;
     static final int caseDiff = ('a' - 'A');
 
@@ -23,7 +27,7 @@ public class MyURLEncoder {
      * Data characters that are allowed in a URI but do not have a
      * reserved purpose are called unreserved.  These include upper
      * and lower case letters, decimal digits, and a limited set of
-     * punctuation marks and symbols. 
+     * punctuation marks and symbols.
      *
      * unreserved  = alphanum | mark
      *
@@ -51,23 +55,23 @@ public class MyURLEncoder {
      *
      */
 
-    dontNeedEncoding = new BitSet(256);
-    int i;
-    for (i = 'a'; i <= 'z'; i++) {
-        dontNeedEncoding.set(i);
-    }
-    for (i = 'A'; i <= 'Z'; i++) {
-        dontNeedEncoding.set(i);
-    }
-    for (i = '0'; i <= '9'; i++) {
-        dontNeedEncoding.set(i);
-    }
-    dontNeedEncoding.set(' '); /* encoding a space to a + is done
+        dontNeedEncoding = new BitSet(256);
+        int i;
+        for (i = 'a'; i <= 'z'; i++) {
+            dontNeedEncoding.set(i);
+        }
+        for (i = 'A'; i <= 'Z'; i++) {
+            dontNeedEncoding.set(i);
+        }
+        for (i = '0'; i <= '9'; i++) {
+            dontNeedEncoding.set(i);
+        }
+        dontNeedEncoding.set(' '); /* encoding a space to a + is done
                     * in the encode() method */
-    dontNeedEncoding.set('-');
-    dontNeedEncoding.set('_');
-    dontNeedEncoding.set('.');
-    dontNeedEncoding.set('*');
+        dontNeedEncoding.set('-');
+        dontNeedEncoding.set('_');
+        dontNeedEncoding.set('.');
+        dontNeedEncoding.set('*');
 
     }
 
@@ -98,7 +102,7 @@ public class MyURLEncoder {
      * incompatibilites.</em>
      *
      * @param   s   <code>String</code> to be translated.
-     * @param   enc   The name of a supported 
+     * @param   enc   The name of a supported
      *    <a href="../lang/package-summary.html#charenc">character
      *    encoding</a>.
      * @return  the translated <code>String</code>.
@@ -108,97 +112,100 @@ public class MyURLEncoder {
      * @since 1.4
      */
     public static String encode(String s, String enc)
-    throws UnsupportedEncodingException {
+            throws UnsupportedEncodingException {
 
-    boolean needToChange = false;
+        boolean needToChange = false;
         StringBuffer out = new StringBuffer(s.length());
-    Charset charset;
-    CharArrayWriter charArrayWriter = new CharArrayWriter();
+        Charset charset;
+        CharArrayWriter charArrayWriter = new CharArrayWriter();
 
-    if (enc == null)
-        throw new NullPointerException("charsetName");
+        if (enc == null)
+            throw new NullPointerException("charsetName");
 
-    try {
-        charset = Charset.forName(enc);
-    } catch (IllegalCharsetNameException e) {
+        try {
+            charset = Charset.forName(enc);
+        } catch (IllegalCharsetNameException e) {
             throw new UnsupportedEncodingException(enc);
         } catch (UnsupportedCharsetException e) {
-        throw new UnsupportedEncodingException(enc);
-    }
-
-    for (int i = 0; i < s.length();) {
-        int c = (int) s.charAt(i);
-        //YTLog.i("System.out","Examining character: " + c);
-        if (dontNeedEncoding.get(c)) {
-        if (c == ' ') {
-            c = '+';
-            needToChange = true;
+            throw new UnsupportedEncodingException(enc);
         }
-        //YTLog.i("System.out","Storing: " + c);
-        out.append((char)c);
-        i++;
-        } else {
-        // convert to external encoding before hex conversion
-        do {
-            charArrayWriter.write(c);
+
+        for (int i = 0; i < s.length();) {
+            int c = (int) s.charAt(i);
+            //YTLog.i("System.out","Examining character: " + c);
+            if (dontNeedEncoding.get(c)) {
+                if (c == ' ') {
+                    c = '+';
+                    needToChange = true;
+                }
+                //YTLog.i("System.out","Storing: " + c);
+                out.append((char)c);
+                i++;
+            } else {
+                // convert to external encoding before hex conversion
+                do {
+                    charArrayWriter.write(c);
             /*
              * If this character represents the start of a Unicode
              * surrogate pair, then pass in two characters. It's not
-             * clear what should be done if a bytes reserved in the 
+             * clear what should be done if a bytes reserved in the
              * surrogate pairs range occurs outside of a legal
-             * surrogate pair. For now, just treat it as if it were 
+             * surrogate pair. For now, just treat it as if it were
              * any other character.
              */
-            if (c >= 0xD800 && c <= 0xDBFF) {
+                    if (c >= 0xD800 && c <= 0xDBFF) {
             /*
-              YTLog.i("System.out",Integer.toHexString(c) 
+              YTLog.i("System.out",Integer.toHexString(c)
               + " is high surrogate");
             */
-            if ( (i+1) < s.length()) {
-                int d = (int) s.charAt(i+1);
+                        if ( (i+1) < s.length()) {
+                            int d = (int) s.charAt(i+1);
                 /*
-                  YTLog.i("System.out","\tExamining " 
+                  YTLog.i("System.out","\tExamining "
                   + Integer.toHexString(d));
                 */
-                if (d >= 0xDC00 && d <= 0xDFFF) {
+                            if (d >= 0xDC00 && d <= 0xDFFF) {
                 /*
-                  YTLog.i("System.out","\t" 
-                  + Integer.toHexString(d) 
+                  YTLog.i("System.out","\t"
+                  + Integer.toHexString(d)
                   + " is low surrogate");
                 */
-                    charArrayWriter.write(d);
-                i++;
+                                charArrayWriter.write(d);
+                                i++;
+                            }
+                        }
+                    }
+                    i++;
+                } while (i < s.length() && !dontNeedEncoding.get((c = (int) s.charAt(i))));
+
+                charArrayWriter.flush();
+                String str = new String(charArrayWriter.toCharArray());
+                byte[] ba = str.getBytes(enc);
+                for (int j = 0; j < ba.length; j++) {
+                    out.append('%');
+                    char ch = Character.forDigit((ba[j] >> 4) & 0xF, 16);
+                    // converting to use uppercase letter as part of
+                    // the hex value if ch is a letter.
+//            if (Character.isLetter(ch)) {
+//            ch -= caseDiff;
+//            }
+                    out.append(ch);
+                    ch = Character.forDigit(ba[j] & 0xF, 16);
+//            if (Character.isLetter(ch)) {
+//            ch -= caseDiff;
+//            }
+                    out.append(ch);
                 }
+                charArrayWriter.reset();
+                needToChange = true;
             }
-            } 
-            i++;
-        } while (i < s.length() && !dontNeedEncoding.get((c = (int) s.charAt(i))));
-
-        charArrayWriter.flush();
-        String str = new String(charArrayWriter.toCharArray());
-        byte[] ba = str.getBytes(enc);
-        for (int j = 0; j < ba.length; j++) {
-            out.append('%');
-            char ch = Character.forDigit((ba[j] >> 4) & 0xF, 16);
-            // converting to use uppercase letter as part of
-            // the hex value if ch is a letter.
-//            if (Character.isLetter(ch)) {
-//            ch -= caseDiff;
-//            }
-            out.append(ch);
-            ch = Character.forDigit(ba[j] & 0xF, 16);
-//            if (Character.isLetter(ch)) {
-//            ch -= caseDiff;
-//            }
-            out.append(ch);
         }
-        charArrayWriter.reset();
-        needToChange = true;
-        }
-    }
 
-    return (needToChange? out.toString() : s);
+        return (needToChange? out.toString() : s);
     }
-    // ~ 内部接口（类）区块
-    // =========================================================================
+// ~ 内部接口（类）区块
+// =========================================================================
+
+
+
 }

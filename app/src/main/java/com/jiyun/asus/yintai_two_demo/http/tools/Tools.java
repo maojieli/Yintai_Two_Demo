@@ -16,14 +16,14 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created by shuaiJie on 2017/10/3.
+ * 你的指尖--有改变世界的力量！
+ * Created by 牛艺衡 on 2017/10/6.
  */
 
 public class Tools {
-    private static Map<String, String> mParams;
+    private static HashMap<String, String> mParams;
     private static DisplayMetrics dm;
     private static String macAddress;
     private static String carrier="";
@@ -34,7 +34,7 @@ public class Tools {
      *
      * @return
      */
-    public static Map<String, String> getmParams(Context context) {
+    public static HashMap<String, String> getmParams(Context context) {
         if (mParams == null) synchronized (Tools.class) {
             if (mParams == null) {
                 mParams = new HashMap<>();
@@ -66,8 +66,8 @@ public class Tools {
      *
      * @return
      */
-    public static Map<String, String> getHttpParams(Context context) {
-        Map<String, String> mMap = new HashMap<>();
+    public static HashMap<String, String> getHttpParams(Context context) {
+        HashMap<String, String> mMap = new HashMap<>();
         mMap.putAll(getmParams(context));
         return mMap;
     }
@@ -233,4 +233,5 @@ public class Tools {
         }
         return args;
     }
+
 }
