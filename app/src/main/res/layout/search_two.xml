@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:src="@mipmap/catogory_group_left_bg"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="29dp"
+        android:id="@+id/imageView5"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/bt_two"
+        android:layout_toStartOf="@+id/bt_two" />
+    <ImageView
+        android:src="@mipmap/catogory_group_right_bg"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:id="@+id/imageView6"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_toRightOf="@+id/bt_two"
+        android:layout_toEndOf="@+id/bt_two" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搜索热词"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="保温杯"
+        android:layout_below="@+id/imageView5"
+        android:layout_toLeftOf="@+id/bt_two"
+        android:layout_toStartOf="@+id/bt_two"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="名品衬衫"
+        android:layout_alignBaseline="@+id/bt_one"
+        android:layout_alignBottom="@+id/bt_one"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="保湿面膜"
+        android:layout_alignBaseline="@+id/bt_two"
+        android:layout_alignBottom="@+id/bt_two"
+        android:layout_toRightOf="@+id/bt_two"
+        android:layout_toEndOf="@+id/bt_two"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="Button"
+        android:layout_below="@+id/bt_one"
+        android:layout_alignLeft="@+id/bt_one"
+        android:layout_alignStart="@+id/bt_one" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bt_two"
+        android:layout_alignStart="@+id/bt_two"
+        android:layout_alignTop="@+id/bt_four"
+        android:text="Button" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_six"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bt_five"
+        android:layout_alignBottom="@+id/bt_five"
+        android:layout_alignLeft="@+id/bt_three"
+        android:layout_alignStart="@+id/bt_three"
+        android:text="Button" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_seven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bt_four"
+        android:layout_alignStart="@+id/bt_four"
+        android:layout_below="@+id/bt_four"
+        android:layout_marginTop="17dp"
+        android:text="Button" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_eight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bt_five"
+        android:layout_alignStart="@+id/bt_five"
+        android:layout_alignTop="@+id/bt_seven"
+        android:text="Button" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_nine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bt_six"
+        android:layout_alignStart="@+id/bt_six"
+        android:layout_alignTop="@+id/bt_eight"
+        android:text="Button" />
+
+    <Button
+        android:background="@drawable/bt_btn"
+        android:id="@+id/bt_ten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/bt_seven"
+        android:layout_alignRight="@+id/bt_seven"
+        android:layout_below="@+id/bt_seven"
+        android:layout_marginTop="14dp"
+        android:text="Button" />
+
+
+</RelativeLayout>

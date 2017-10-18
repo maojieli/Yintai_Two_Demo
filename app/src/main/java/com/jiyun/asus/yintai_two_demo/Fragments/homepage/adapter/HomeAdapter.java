@@ -112,7 +112,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof FuncAreaFiveImg){
+        if (holder instanceof FuncAreaFiveImg) {
             Glide.with(context).load(BeanArrayList.get(0).getItems().get(0).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_one);
             Glide.with(context).load(BeanArrayList.get(0).getItems().get(1).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_two);
             Glide.with(context).load(BeanArrayList.get(0).getItems().get(2).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_three);
@@ -244,6 +244,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private  ImageView iv_items_four;
         private  ImageView iv_items_five;
 
+
         public FuncAreaFiveImg(View itemView) {
             super(itemView);
             tv_items_one = itemView.findViewById(R.id.tv_items_one);
@@ -256,6 +257,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             iv_items_three = itemView.findViewById(R.id.iv_items_three);
             iv_items_four = itemView.findViewById(R.id.iv_items_four);
             iv_items_five = itemView.findViewById(R.id.iv_items_five);
+
 
         }
     }

@@ -37,6 +37,7 @@ public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 public void onBindViewHolder(ViewHolder holder, int position) {
         holder.tv_item.setText(items.get(position).getExtra().getProductdetail().getName());
         Glide.with(context).load(items.get(position).getImgurl()).into(holder.iv_item);
+    holder.tv_price.setText(items.get(position).getExtra().getProductdetail().getPrice()+"￥");
         }
 
 @Override
@@ -48,11 +49,13 @@ class ViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView iv_item;
     private TextView tv_item;
+    private  TextView tv_price;
 
     public ViewHolder(View itemView) {
         super(itemView);
         iv_item = itemView.findViewById(R.id.iv_item);
         tv_item = itemView.findViewById(R.id.tv_item);
+        tv_price = itemView.findViewById(R.id.tv_price);
     }
 }
 }

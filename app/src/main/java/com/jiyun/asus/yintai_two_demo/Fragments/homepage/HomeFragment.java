@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.bean.HomeBean;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.adapter.HomeAdapter;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.searchforgoods.SearchActivity;
 import com.jiyun.asus.yintai_two_demo.Http.Presenter.MyPresenter;
 import com.jiyun.asus.yintai_two_demo.Http.View.MyView;
 import com.jiyun.asus.yintai_two_demo.Http.tools.BaseParams;
@@ -108,6 +109,7 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
         iv_scan = (ImageView) inflate.findViewById(R.id.iv_scan);
         rv_title = (RecyclerView) inflate.findViewById(R.id.rv_title);
         iv_scan.setOnClickListener(this);
+        rl.setOnClickListener(this);
     }
 
     @Override
@@ -116,6 +118,9 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
             case R.id.iv_scan:
                 Intent intent = new Intent(getActivity(), CaptureActivity.class);
                 startActivityForResult(intent, 0);
+                break;
+            case R.id.rl:
+                startActivity(new Intent(getActivity(), SearchActivity.class));
                 break;
         }
     }
