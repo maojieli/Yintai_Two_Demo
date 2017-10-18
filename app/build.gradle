@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
-  /*  aaptOptions.cruncherEnabled = false
+    /*  aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false*/
     defaultConfig {
         applicationId "com.jiyun.asus.yintai_two_demo"
@@ -28,7 +28,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
@@ -43,4 +42,5 @@ dependencies {
     compile 'com.recker.flybanner:flybanner:1.3'
     compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
     compile 'cn.yipianfengye.android:zxing-library:1.8'
+    testCompile 'junit:junit:4.12'
 }
