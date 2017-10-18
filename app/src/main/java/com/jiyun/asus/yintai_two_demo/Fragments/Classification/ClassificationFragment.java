@@ -55,11 +55,12 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.classfragment, container, false);
-      //找ID
+        //找ID
         tb_classification = view.findViewById(R.id.tb_classification);
         lv_classification = view.findViewById(R.id.lv_classification);
         fl_classification = view.findViewById(R.id.fl_classification);
-       //设置Toolbar
+        //设置Toolbar
+        tb_classification.setTitle("");
         activity = (OverallActivity) getActivity();
         activity.setSupportActionBar(tb_classification);
         tb_classification.setNavigationIcon(R.drawable.icon);
@@ -84,13 +85,15 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
                 int categoryid = been.get(position).getId();
                 EventBus.getDefault().post(new EventBean(categoryid));
 
+
                 FragmentManager manager = activity.getFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                classificationrightfragment fragment = new classificationrightfragment(context);
-                transaction.replace(R.id.fl_classification, fragment);
-               transaction.show(fragment);
-                transaction.commit();
+                FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                classificationrightfragment classificationrightfragment = new classificationrightfragment(context);
+                fragmentTransaction.add(R.id.fl_classification, classificationrightfragment);
+                fragmentTransaction.show(classificationrightfragment);
+                fragmentTransaction.commit();
             }
+
         });
         return view;
     }
