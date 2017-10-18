@@ -5,13 +5,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.jiyun.asus.yintai_two_demo.Beans.ClassBean;
@@ -38,9 +35,8 @@ import java.util.Map;
 public class classificationrightfragment extends Fragment implements MyView<ClassBean> {
     private Context context;
     private MyPresenter presenter;
-    private TextView tv_name_top;
-    private TextView tv_name_center;
-    private TextView tv_name_buttom;
+    private ListView lv_classificationright;
+    private List<String> stringList;
 
 
     public classificationrightfragment(Context context) {
@@ -53,31 +49,24 @@ public class classificationrightfragment extends Fragment implements MyView<Clas
         View view = inflater.inflate(R.layout.classificationrightfragment, container, false);
         EventBus.getDefault().register(this);
         presenter = new MyPresenter(this);
-        tv_name_top = view.findViewById(R.id.tv_name_top);
-        tv_name_center = view.findViewById(R.id.tv_name_center);
-        tv_name_buttom = view.findViewById(R.id.tv_name_buttom);
-
+        lv_classificationright = view.findViewById(R.id.lv_classificationright);
+        stringList = new ArrayList<>();
 
         return view;
     }
 
     @Subscribe
     public void getEvent(EventBean bean) {
+
         int id = bean.getId();
         Map<String, String> httpParams = Tools.getHttpParams(context);
         BaseParams.getParams(httpParams, context);
         httpParams.put("ver", "3.0");
-
         httpParams.put("method", "products.category.getchildcategory");
-
-
         httpParams.put("pageid", "104001");
         httpParams.put("pageindex", "1");
-
         httpParams.put("categoryid", "" + id);
-
         Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
-        //   pagerPresenter.requestNews(stringStringHashMap,ClassLeftBean.class);
         presenter.quest(Concat.NETURL, ClassBean.class, stringStringHashMap);
 
     }
@@ -91,15 +80,6 @@ public class classificationrightfragment extends Fragment implements MyView<Clas
     @Override
     public void success(ClassBean classBean) {
         ClassBean.DataBean data = classBean.getData();
-        String name = data.getRecommend().getName();
-        Log.e("classificationrightfrag", name);
-        tv_name_top.setText(name);
-        String name1 = data.getBrand().getName();
-        Log.e("classificationrightfrag", name1);
-        tv_name_center.setText(name1);
-        String name2 = data.getAdvertising().getName();
-        Log.e("classificationrightfrag", name2);
-        tv_name_buttom.setText(name2);
 
 
     }

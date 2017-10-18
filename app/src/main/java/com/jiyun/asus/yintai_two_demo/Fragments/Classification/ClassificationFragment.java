@@ -84,12 +84,11 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
                 int categoryid = been.get(position).getId();
                 EventBus.getDefault().post(new EventBean(categoryid));
 
-
                 FragmentManager manager = activity.getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 classificationrightfragment fragment = new classificationrightfragment(context);
                 transaction.replace(R.id.fl_classification, fragment);
-                transaction.show(fragment);
+               transaction.show(fragment);
                 transaction.commit();
             }
         });
