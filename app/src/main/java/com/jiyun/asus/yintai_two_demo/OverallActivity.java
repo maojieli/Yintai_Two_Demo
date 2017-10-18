@@ -10,7 +10,7 @@ import com.jiyun.asus.yintai_two_demo.Adapters.OverallAdapter;
 import com.jiyun.asus.yintai_two_demo.Fragments.BeatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.CatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.ClassificationFragment;
-import com.jiyun.asus.yintai_two_demo.Fragments.HomeFragment;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.HomeFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.MyFragment;
 import com.jiyun.asus.yintai_two_demo.Utils.CustomViewPager;
 

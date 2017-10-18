@@ -49,7 +49,7 @@ public class classificationrightfragment extends Fragment implements MyView<Clas
         View view = inflater.inflate(R.layout.classificationrightfragment, container, false);
         EventBus.getDefault().register(this);
         presenter = new MyPresenter(this);
-        lv_classificationright = view.findViewById(R.id.lv_classificationright);
+//        lv_classificationright = view.findViewById(R.id.lv_classificationright);
         stringList = new ArrayList<>();
 
         return view;
