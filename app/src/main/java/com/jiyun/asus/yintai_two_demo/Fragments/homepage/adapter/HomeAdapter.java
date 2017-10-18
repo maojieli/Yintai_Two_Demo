@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import com.jiyun.asus.yintai_two_demo.Beans.HomeBean;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.bean.HomeBean;
 import com.jiyun.asus.yintai_two_demo.R;
 import com.recker.flybanner.FlyBanner;
 
@@ -86,7 +86,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case 5:
                 holder= new FloorFoot(foot);
                 break;
-            case 6:
+            case 12:
                 Log.e("TAG--",viewType+"");
                 holder= new TwoImgAverage_One(one);
                 break;
@@ -143,14 +143,16 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (holder instanceof TwoImgAverage_One) {
             Log.e("HOLDER","TwoImgAverage_One");
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((TwoImgAverage_One) holder).iv_one);
+            Log.e("HOLDER_0",BeanArrayList.get(position).getItems().get(0).getImgurl());
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(1).getImgurl()).into(((TwoImgAverage_One) holder).iv_two);
-
+            Log.e("HOLDER_1",BeanArrayList.get(position).getItems().get(1).getImgurl());
         }
 
         if (holder instanceof OneImg) {
             Log.e("HOLDER","OneImg");
 
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((OneImg) holder).iv_five);
+            Log.e("HOLDER_ONE",BeanArrayList.get(position).getItems().get(0).getImgurl());
         }
         if (holder instanceof ThreeImgLeftOne){
             Log.e("HOLDER","ThreeImgLeftOne");
@@ -201,7 +203,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 viewType = 5;
                 return viewType;
             case TwoImgAverage:
-                viewType = 6;
+                viewType =12 ;
                 Log.e("TAG===", viewType + "");
                 return viewType;
             case OneImg:

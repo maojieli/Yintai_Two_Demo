@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Yintai_Two.iml" filepath="$PROJECT_DIR$/Yintai_Two.iml" />
       <module fileurl="file://$PROJECT_DIR$/Yintai_Two_Demo.iml" filepath="$PROJECT_DIR$/Yintai_Two_Demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Yintai_Two_Demo.iml" filepath="$PROJECT_DIR$/Yintai_Two_Demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

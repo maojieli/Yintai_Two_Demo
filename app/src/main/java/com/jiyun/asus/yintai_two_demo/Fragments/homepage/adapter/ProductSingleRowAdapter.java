@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.jiyun.asus.yintai_two_demo.Beans.HomeBean;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.bean.HomeBean;
 import com.jiyun.asus.yintai_two_demo.R;
 
 import java.util.List;

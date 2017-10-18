@@ -1,4 +1,4 @@
-package com.jiyun.asus.yintai_two_demo.Beans;
+package com.jiyun.asus.yintai_two_demo.Fragments.homepage.bean;
 
 import java.util.List;
 
@@ -7,6 +7,16 @@ import java.util.List;
  */
 //主页bean
 public class HomeBean {
+    @Override
+    public String toString() {
+        return "HomeBean{" +
+                "isSuccessful=" + isSuccessful +
+                ", statusCode=" + statusCode +
+                ", description='" + description + '\'' +
+                ", userId='" + userId + '\'' +
+                ", data=" + data +
+                '}';
+    }
 
     /**
      * isSuccessful : true
@@ -63,6 +73,20 @@ public class HomeBean {
     }
 
     public static class DataBean {
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "pageid='" + pageid + '\'' +
+                    ", pageindex=" + pageindex +
+                    ", pagecount=" + pagecount +
+                    ", bannerlistid=" + bannerlistid +
+                    ", bgcolor='" + bgcolor + '\'' +
+                    ", pagetitle='" + pagetitle + '\'' +
+                    ", bannerlist=" + bannerlist +
+                    ", templatelist=" + templatelist +
+                    '}';
+        }
+
         /**
          * pageid : 30000000
          * pageindex : 1
@@ -148,6 +172,20 @@ public class HomeBean {
         }
 
         public static class BannerlistBean {
+            @Override
+            public String toString() {
+                return "BannerlistBean{" +
+                        "id=" + id +
+                        ", imgname='" + imgname + '\'' +
+                        ", imgurl='" + imgurl + '\'' +
+                        ", jumpurl='" + jumpurl + '\'' +
+                        ", sort=" + sort +
+                        ", updatetime='" + updatetime + '\'' +
+                        ", width=" + width +
+                        ", height=" + height +
+                        '}';
+            }
+
             /**
              * id : 11013054
              * imgname : 名品
@@ -234,6 +272,26 @@ public class HomeBean {
         }
 
         public static class TemplatelistBean {
+            @Override
+            public String toString() {
+                return "TemplatelistBean{" +
+                        "templateid=" + templateid +
+                        ", templatename='" + templatename + '\'' +
+                        ", templatetype='" + templatetype + '\'' +
+                        ", horizontalmargin=" + horizontalmargin +
+                        ", padding=" + padding +
+                        ", bottommargin=" + bottommargin +
+                        ", sort=" + sort +
+                        ", requestdate=" + requestdate +
+                        ", bgcolor=" + bgcolor +
+                        ", textcolor=" + textcolor +
+                        ", textselectedcolor=" + textselectedcolor +
+                        ", textselectedstyle=" + textselectedstyle +
+                        ", floorinfo=" + floorinfo +
+                        ", items=" + items +
+                        '}';
+            }
+
             /**
              * templateid : 20015347
              * templatename : 功能区-5图-搭
@@ -379,6 +437,15 @@ public class HomeBean {
             }
 
             public static class FloorinfoBean {
+                @Override
+                public String toString() {
+                    return "FloorinfoBean{" +
+                            "floorbgcolor='" + floorbgcolor + '\'' +
+                            ", floorid=" + floorid +
+                            ", floorname='" + floorname + '\'' +
+                            '}';
+                }
+
                 /**
                  * floorbgcolor :
                  * floorid : 0
@@ -415,6 +482,22 @@ public class HomeBean {
             }
 
             public static class ItemsBean {
+                @Override
+                public String toString() {
+                    return "ItemsBean{" +
+                            "itemid='" + itemid + '\'' +
+                            ", extra=" + extra +
+                            ", height=" + height +
+                            ", width=" + width +
+                            ", imgname='" + imgname + '\'' +
+                            ", imgurl='" + imgurl + '\'' +
+                            ", itemposition='" + itemposition + '\'' +
+                            ", jumpurl='" + jumpurl + '\'' +
+                            ", sort=" + sort +
+                            ", jumpid='" + jumpid + '\'' +
+                            '}';
+                }
+
                 /**
                  * itemid : 21023303
                  * extra : {"seckillcountdowndate":0,"productdetail":{"marketprice":0,"name":"","price":0,"prmotionlist":[],"brandid":0,"categoryid":0,"operatemode":0,"providercode":0,"groupno":null,"ismiaowgoods":false,"savingamountdesc":null,"exclusivemobile":null,"isexclusivemobile":false,"imagewidth":0,"imageheight":0,"iconurl":null,"desc":null},"navigationname":null}
@@ -520,6 +603,15 @@ public class HomeBean {
                 }
 
                 public static class ExtraBean {
+                    @Override
+                    public String toString() {
+                        return "ExtraBean{" +
+                                "seckillcountdowndate=" + seckillcountdowndate +
+                                ", productdetail=" + productdetail +
+                                ", navigationname=" + navigationname +
+                                '}';
+                    }
+
                     /**
                      * seckillcountdowndate : 0
                      * productdetail : {"marketprice":0,"name":"","price":0,"prmotionlist":[],"brandid":0,"categoryid":0,"operatemode":0,"providercode":0,"groupno":null,"ismiaowgoods":false,"savingamountdesc":null,"exclusivemobile":null,"isexclusivemobile":false,"imagewidth":0,"imageheight":0,"iconurl":null,"desc":null}
@@ -555,6 +647,29 @@ public class HomeBean {
                     }
 
                     public static class ProductdetailBean {
+                        @Override
+                        public String toString() {
+                            return "ProductdetailBean{" +
+                                    "marketprice=" + marketprice +
+                                    ", name='" + name + '\'' +
+                                    ", price=" + price +
+                                    ", brandid=" + brandid +
+                                    ", categoryid=" + categoryid +
+                                    ", operatemode=" + operatemode +
+                                    ", providercode=" + providercode +
+                                    ", groupno=" + groupno +
+                                    ", ismiaowgoods=" + ismiaowgoods +
+                                    ", savingamountdesc=" + savingamountdesc +
+                                    ", exclusivemobile=" + exclusivemobile +
+                                    ", isexclusivemobile=" + isexclusivemobile +
+                                    ", imagewidth=" + imagewidth +
+                                    ", imageheight=" + imageheight +
+                                    ", iconurl=" + iconurl +
+                                    ", desc=" + desc +
+                                    ", prmotionlist=" + prmotionlist +
+                                    '}';
+                        }
+
                         /**
                          * marketprice : 0.0
                          * name :
