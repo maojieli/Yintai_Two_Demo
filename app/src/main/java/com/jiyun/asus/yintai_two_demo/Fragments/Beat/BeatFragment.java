@@ -67,7 +67,7 @@ public class BeatFragment extends Fragment {
         //最后疯抢
         NewFragment newFragment = new NewFragment(context);
          //即将开始(20)
-        SaleFragment saleFragment = new SaleFragment();
+        SaleFragment saleFragment = new SaleFragment(context);
         fragmentList.add(fragment);
 
         fragmentList.add(newFragment);
