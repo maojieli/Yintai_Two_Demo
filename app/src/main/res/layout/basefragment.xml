@@ -3,10 +3,11 @@
                                               android:id="@+id/srl_beat_base"
                                               android:layout_width="match_parent"
                                               android:layout_height="match_parent"
-
+                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                               android:orientation="vertical">
 
     <ListView
+
         android:divider="#00000000"
         android:dividerHeight="10dp"
         android:id="@+id/lv_beat_base"

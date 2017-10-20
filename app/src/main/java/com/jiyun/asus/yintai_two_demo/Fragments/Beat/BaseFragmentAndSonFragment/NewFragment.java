@@ -91,11 +91,12 @@ public class NewFragment extends BaseFragment implements MyView<BeatBean> {
 
 
         Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
-        presenter.quest(Concat.NETURL,BeatBean.class, stringStringHashMap);
+        presenter.quest(Concat.NETURL, BeatBean.class, stringStringHashMap);
     }
 
     @Override
     public void success(BeatBean beatBean) {
+        activitylistBeen.clear();
         List<BeatBean.DataBean.ActivityinfoBean.ActivitylistBean> activitylist = beatBean.getData().getActivityinfo().get(0).getActivitylist();
         for (int x = 0; x < activitylist.size(); x++) {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
