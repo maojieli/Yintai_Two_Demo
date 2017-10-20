@@ -8,7 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.jiyun.asus.yintai_two_demo.Adapters.OverallAdapter;
-import com.jiyun.asus.yintai_two_demo.Fragments.BeatFragment;
+import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BaseFragmentAndSonFragment.BaseFragment;
+import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BeatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.CatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.ClassificationFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.HomeFragment;
@@ -48,7 +49,7 @@ public class OverallActivity extends AppCompatActivity {
 
         List<Fragment> fragmentList = new ArrayList<>();
         HomeFragment homeFragment = new HomeFragment();
-        BeatFragment beatFragment = new BeatFragment();
+        BeatFragment beatFragment = new BeatFragment(OverallActivity.this);
         ClassificationFragment classificationFragment = new ClassificationFragment(OverallActivity.this);
         final CatFragment catFragment = new CatFragment();
         MyFragment myFragment = new MyFragment();
@@ -117,7 +118,7 @@ public class OverallActivity extends AppCompatActivity {
         });
         Intent intent = getIntent();
         int num = intent.getIntExtra("num", 0);
-        if (1==num){
+        if (1 == num) {
             cvpOverall.setCurrentItem(1);
         }
 
