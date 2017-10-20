@@ -2,17 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:gravity="center_horizontal"
               android:orientation="vertical">
 
     <TextView
+        android:textSize="30sp"
         android:id="@+id/tv_name_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
 
-    <GridView
+    <com.jiyun.asus.yintai_two_demo.Fragments.Classification.NonScrollGridView
+        android:numColumns="3"
         android:id="@+id/gv_top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ></GridView>
+        ></com.jiyun.asus.yintai_two_demo.Fragments.Classification.NonScrollGridView>
 </LinearLayout>

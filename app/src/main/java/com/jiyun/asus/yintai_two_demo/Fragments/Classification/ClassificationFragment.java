@@ -41,7 +41,7 @@ import java.util.Map;
 public class ClassificationFragment extends Fragment implements MyView<ClassLeftBean> {
     private Toolbar tb_classification;
     private ListView lv_classification;
-    private FrameLayout fl_classification;
+
     private List<ClassLeftBean.DataBeanX.DataBean> been;
     private LvAdapter adapter;
     private Context context;
@@ -58,7 +58,7 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
         //找ID
         tb_classification = view.findViewById(R.id.tb_classification);
         lv_classification = view.findViewById(R.id.lv_classification);
-        fl_classification = view.findViewById(R.id.fl_classification);
+
         //设置Toolbar
         tb_classification.setTitle("");
         activity = (OverallActivity) getActivity();

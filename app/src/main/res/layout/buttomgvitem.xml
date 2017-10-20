@@ -5,17 +5,11 @@
               android:gravity="center_horizontal"
               android:orientation="vertical">
 
+
     <TextView
-        android:textSize="30sp"
-        android:id="@+id/tv_name_buttom"
+
+        android:id="@+id/tv_buttom_gv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
-
-    <com.jiyun.asus.yintai_two_demo.Fragments.Classification.NonScrollGridView
-        android:numColumns="3"
-        android:id="@+id/gv_buttom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        ></com.jiyun.asus.yintai_two_demo.Fragments.Classification.NonScrollGridView>
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.jiyun.asus.yintai_two_demo.Fragments.Classification;
 
 import android.app.Fragment;
+import android.content.ComponentCallbacks;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiyun.asus.yintai_two_demo.Beans.ClassBean;
+
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.Adapters.RvRightAdapter;
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.Bean.EventBean;
 import com.jiyun.asus.yintai_two_demo.Http.Presenter.MyPresenter;
@@ -41,7 +43,12 @@ public class classificationrightfragment extends Fragment implements MyView<Clas
     private Context context;
     private MyPresenter presenter;
     private RecyclerView rv_classificationright;
-    private List<ClassBean.DataBean> been;
+
+    private List<String> BigstringList;
+    private List<ClassBean.DataBean.RecommendBean.CategoryrecommendBean> categoryrecommendBeanList;
+    private List<ClassBean.DataBean.BrandBean.BrandrecommendBean> brandrecommendBeanList;
+    private List<ClassBean.DataBean.MoreBean.MorerecommendBean> morerecommendBeanList;
+    private RvRightAdapter adapter;
 
 
     public classificationrightfragment(Context context) {
@@ -55,15 +62,19 @@ public class classificationrightfragment extends Fragment implements MyView<Clas
         View view = inflater.inflate(R.layout.classificationrightfragment, container, false);
         presenter = new MyPresenter(this);
         rv_classificationright = view.findViewById(R.id.rv_classificationright);
-        LinearLayoutManager manager=new LinearLayoutManager(context);
+        LinearLayoutManager manager = new LinearLayoutManager(context);
         rv_classificationright.setLayoutManager(manager);
-        been = new ArrayList<>();
-        RvRightAdapter adapter=new RvRightAdapter(been,context);
+
+        BigstringList = new ArrayList<>();
+        categoryrecommendBeanList = new ArrayList<>();
+        brandrecommendBeanList = new ArrayList<>();
+        morerecommendBeanList = new ArrayList<>();
+        adapter = new RvRightAdapter(BigstringList, brandrecommendBeanList, categoryrecommendBeanList, morerecommendBeanList, context);
         rv_classificationright.setAdapter(adapter);
         return view;
     }
 
-    @Subscribe(threadMode=ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void getEvent(EventBean bean) {
 
         int id = bean.getId();
@@ -78,15 +89,28 @@ public class classificationrightfragment extends Fragment implements MyView<Clas
         presenter.quest(Concat.NETURL, ClassBean.class, stringStringHashMap);
 
     }
+
     @Override
     public void success(ClassBean classBean) {
         ClassBean.DataBean.BrandBean brand = classBean.getData().getBrand();
+        String name = brand.getName();
+        List<ClassBean.DataBean.BrandBean.BrandrecommendBean> brandrecommend = brand.getBrandrecommend();
         ClassBean.DataBean.RecommendBean recommend = classBean.getData().getRecommend();
+        String name1 = recommend.getName();
+        List<ClassBean.DataBean.RecommendBean.CategoryrecommendBean> categoryrecommend = recommend.getCategoryrecommend();
         ClassBean.DataBean.MoreBean more = classBean.getData().getMore();
-          been.add(brand);
-          been.add(recommend);
-          been.add(more);
+        String name2 = more.getName();
+        List<ClassBean.DataBean.MoreBean.MorerecommendBean> morerecommend = more.getMorerecommend();
+        List<String> stringList = new ArrayList<>();
+        stringList.add(name1);
+        stringList.add(name);
+        stringList.add(name2);
 
+        BigstringList.addAll(stringList);
+        categoryrecommendBeanList.addAll(categoryrecommend);
+        morerecommendBeanList.addAll(morerecommend);
+        brandrecommendBeanList.addAll(brandrecommend);
+        adapter.notifyDataSetChanged();
 
     }
 
