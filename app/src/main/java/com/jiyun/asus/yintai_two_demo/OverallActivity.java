@@ -1,5 +1,6 @@
 package com.jiyun.asus.yintai_two_demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,8 @@ public class OverallActivity extends AppCompatActivity {
         stringList.add("分类");
         stringList.add("购物车");
         stringList.add("我的银泰");
+
+
         int[] ints = {
                 R.drawable.hometab_home_pressed, R.drawable.hometab_sale_normal, R.drawable.hometab_category_normal, R.drawable.hometab_shopcar_normal3, R.drawable.hometab_self_normal3};
 
@@ -112,6 +115,11 @@ public class OverallActivity extends AppCompatActivity {
 
             }
         });
+        Intent intent = getIntent();
+        int num = intent.getIntExtra("num", 0);
+        if (1==num){
+            cvpOverall.setCurrentItem(1);
+        }
 
     }
 }
