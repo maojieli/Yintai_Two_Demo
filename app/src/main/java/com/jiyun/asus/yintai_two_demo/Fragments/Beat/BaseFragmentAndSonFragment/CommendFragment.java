@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -48,6 +49,12 @@ public class CommendFragment extends BaseFragment implements MyView<BeatBean> {
         activitylistBeen = new ArrayList<>();
         adapters = new CommendLvAdapters(activitylistBeen, context);
         lv_beat_base.setAdapter(adapters);
+        lv_beat_base.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
         srl_beat_base = view.findViewById(R.id.srl_beat_base);
         srl_beat_base.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         srl_beat_base.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
