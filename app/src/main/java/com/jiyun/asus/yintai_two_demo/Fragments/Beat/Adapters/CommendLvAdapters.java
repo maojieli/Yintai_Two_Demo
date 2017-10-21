@@ -1,6 +1,7 @@
 package com.jiyun.asus.yintai_two_demo.Fragments.Beat.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,10 @@ import com.bumptech.glide.Glide;
 import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BeatBean.BeatBean;
 import com.jiyun.asus.yintai_two_demo.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,7 +57,8 @@ public class CommendLvAdapters extends BaseAdapter {
             holder.iv_commendlvitem = (ImageView) convertView.findViewById(R.id.iv_commendlvitem);
             holder.tv_top_commendlv = (TextView) convertView.findViewById(R.id.tv_top_commendlv);
             holder.tv_center_commendlv = (TextView) convertView.findViewById(R.id.tv_center_commendlv);
-           // holder.tv_buttom_commend = (TextView) convertView.findViewById(R.id.tv_buttom_commend);
+            // holder.tv_buttom_commend = (TextView) convertView.findViewById(R.id.tv_buttom_commend);
+
             convertView.setTag(holder);
 
         } else {
@@ -62,7 +68,6 @@ public class CommendLvAdapters extends BaseAdapter {
         holder.tv_top_commendlv.setText(activitylist.get(position).getTitle());
         holder.tv_center_commendlv.setText(activitylist.get(position).getDiscount());
 
-
         return convertView;
     }
 
@@ -71,8 +76,6 @@ public class CommendLvAdapters extends BaseAdapter {
         public ImageView iv_commendlvitem;
         public TextView tv_top_commendlv;
         public TextView tv_center_commendlv;
-
-
 
 
 
