@@ -1,51 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tb_classification"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-        <EditText
-            android:id="@+id/et_find"
-            android:layout_width="200dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#ffffff"></RelativeLayout>
 
-            android:hint="搜索商品or品牌"
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
 
-            />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/textView"
+                android:layout_toStartOf="@+id/textView"
+                app:srcCompat="@drawable/g"/>
+
+            <TextView
+                android:id="@+id/tv_search_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="11dp"
+                android:layout_marginRight="11dp"
+                android:text="搜索商品or品牌"
+                android:textColor="#dddddd"/>
+
+        </RelativeLayout>
 
         <ImageView
-            android:id="@+id/iv_sao"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:scaleType="fitXY"
-            android:src="@drawable/home_scan" />
+            android:id="@+id/iv_sao_top"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            app:srcCompat="@drawable/logo_new2"/>
 
-    </android.support.v7.widget.Toolbar>
+        <ImageView
+            android:id="@+id/iv_scan"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/home_scan"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tb_classification"
+        android:layout_weight="9"
         android:orientation="horizontal">
 
         <ListView
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0dp"
             android:id="@+id/lv_classification"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="3"></ListView>
+            android:layout_weight="3"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"></ListView>
 
         <FrameLayout
-            android:layout_weight="1"
             android:id="@+id/fl_classification"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_weight="1"></FrameLayout>
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

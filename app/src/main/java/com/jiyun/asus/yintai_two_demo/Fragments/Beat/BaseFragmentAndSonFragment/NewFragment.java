@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,10 +100,13 @@ public class NewFragment extends BaseFragment implements MyView<BeatBean> {
         activitylistBeen.clear();
         List<BeatBean.DataBean.ActivityinfoBean.ActivitylistBean> activitylist = beatBean.getData().getActivityinfo().get(0).getActivitylist();
         for (int x = 0; x < activitylist.size(); x++) {
+            //获取当前时间
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String format1 = df.format(new Date());
+            //结束时间
             String endtime = activitylist.get(x).getEndtime();
             String[] ts = endtime.split("T");
+
             String t = ts[0];
             String t1 = ts[1];
             String t2 = " ";
@@ -117,6 +121,7 @@ public class NewFragment extends BaseFragment implements MyView<BeatBean> {
                 int totalSeconds = (int) (subDateMilliSeconds / 1000);
 
                 int days_remains = totalSeconds / (3600 * 24);
+                Log.e("NewFragment", days_remains + "");
                 if (days_remains < 1) {
                     BeatBean.DataBean.ActivityinfoBean.ActivitylistBean activitylistBean = activitylist.get(x);
                     activitylistBeen.add(activitylistBean);
