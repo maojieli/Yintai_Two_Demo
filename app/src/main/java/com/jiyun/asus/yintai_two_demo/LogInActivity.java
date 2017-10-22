@@ -44,7 +44,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     private boolean gettingFriends;
     private Dialog pd;
     private TextView tvNum;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -240,7 +239,5 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         String avatar = AVATARS[id % 12];
         SMSSDK.submitUserInfo(uid, nickName, avatar, country, phone);
     }
-
-
-
 }
+

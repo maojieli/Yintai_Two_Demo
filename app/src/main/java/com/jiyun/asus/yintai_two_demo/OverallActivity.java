@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jiyun.asus.yintai_two_demo.Adapters.OverallAdapter;
 import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BaseFragmentAndSonFragment.BaseFragment;
@@ -14,6 +15,7 @@ import com.jiyun.asus.yintai_two_demo.Fragments.CatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.ClassificationFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.HomeFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.MyFragment;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.SysApplication;
 import com.jiyun.asus.yintai_two_demo.Utils.CustomViewPager;
 
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class OverallActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SysApplication.getInstance().addActivity(this);
         setContentView(R.layout.activity_overall);
         ButterKnife.bind(this);
 
@@ -119,8 +122,24 @@ public class OverallActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int num = intent.getIntExtra("num", 0);
         if (1 == num) {
-            cvpOverall.setCurrentItem(1);
+            cvpOverall.setCurrentItem(0);
         }
 
     }
+    private static long back_pressed = 0;
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()){
+            SysApplication.getInstance().exit();
+            super.onBackPressed();
+//        System.exit(0);
+
+    }
+        else {
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            back_pressed = System.currentTimeMillis();
+
+        }
+    }
+
 }

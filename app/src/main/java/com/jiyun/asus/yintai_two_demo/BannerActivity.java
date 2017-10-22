@@ -12,6 +12,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.SysApplication;
 import com.jiyun.asus.yintai_two_demo.Indicator.MaterialIndicator;
 
 
@@ -25,6 +26,7 @@ public class BannerActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SysApplication.getInstance().addActivity(this);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_banner);
         initView();
@@ -124,5 +126,11 @@ public class BannerActivity extends AppCompatActivity implements View.OnClickLis
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView(((View) object));
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        SysApplication.getInstance().exit();
+        super.onBackPressed();
     }
 }
