@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,19 +84,17 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
             @Override
             public void onRefresh() {
                 swr.setRefreshing(true);
-                Map<String, String> httpParams = Tools.getHttpParams(getContext());
-                BaseParams.getParams(httpParams, getContext());
-                httpParams.put("ver", "3.0");
-                httpParams.put("method", "products.template.getpage");
-                httpParams.put("pageid", "104001");
-                httpParams.put("pageindex", "2");
 
-                HashMap<String, String> stringStringHashMap = Tools.signBusinessParameter(getContext(), (HashMap<String, String>) httpParams);
-                myPresenter.quest(Concat.NETURL, HomeBean.class, stringStringHashMap);
                 swr.setRefreshing(false);
             }
         });
-
+        homeAdapter.setClick(new HomeAdapter.Click() {
+            @Override
+            public void click(int position, int num) {
+                String jumpurl = BeanArrayList.get(position).getItems().get(num).getJumpurl();
+                JumpActivityUtils.jump(getContext(),jumpurl);
+            }
+        });
 
         return inflate;
     }
@@ -107,11 +104,11 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
     public void success(HomeBean homeBean) {
         image = new ArrayList<>();
         List<HomeBean.DataBean.BannerlistBean> list = homeBean.getData().getBannerlist();
-        Log.e("TAGBEANS", homeBean.toString());
+
         for (int i = 0; i < list.size(); i++) {
             String s = list.get(i).getImgurl();
             image.add(s);
-            Log.e("TAG", list.get(i) + "");
+
         }
         fb_title.setImagesUrl(image);
         List<HomeBean.DataBean.TemplatelistBean> template = homeBean.getData().getTemplatelist();

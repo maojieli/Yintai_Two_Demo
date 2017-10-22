@@ -73,7 +73,7 @@
         <activity android:name=".LogInActivity" />
         <activity android:name=".Fragments.homepage.searchforgoods.SearchActivity" />
         <activity android:name=".Fragments.homepage.detailsshow.DetailsActivity" />
-        <activity android:name=".Fragments.homepage.sameshop.SameActivity" />
+        <activity android:name=".Fragments.homepage.webview.WebActivity" />
         <activity android:name=".Fragments.homepage.moldbabymore.MoldbabymoreActivity"></activity>
         <activity
             android:name="com.mob.tools.MobUIShell"

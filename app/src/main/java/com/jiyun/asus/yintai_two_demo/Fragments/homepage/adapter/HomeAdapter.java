@@ -11,17 +11,39 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import com.jiyun.asus.yintai_two_demo.BannerActivity;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.bean.HomeBean;
 import com.jiyun.asus.yintai_two_demo.R;
 import com.recker.flybanner.FlyBanner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by asus on 2017/10/17.
  */
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private View productdoublecolumn;
+
+    public interface Click{
+        void click(int position,int num);
+    }
+
+    public Click click;
+    public void setClick(Click click){
+        this.click=click;
+    }
+
+    public interface Click_One{
+        void click(int position);
+    }
+
+    public Click_One click_one;
+    public void setClick(Click_One click_one){
+        this.click_one=click_one;
+    }
     private ArrayList<HomeBean.DataBean.TemplatelistBean> BeanArrayList;
     private Context context;
 
@@ -48,6 +70,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final String ThreeImgAbreast="ThreeImgAbreast";
     private final String ThreeImgLeftTwo="ThreeImgLeftTwo";
     private final String CarouselFigure="CarouselFigure";
+    private static final String PRODUCTDOUUBLECOLUMN = "ProductDoubleColumn";
 
 
     public HomeAdapter(ArrayList<HomeBean.DataBean.TemplatelistBean> BeanArrayList) {
@@ -69,7 +92,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         breast = View.inflate(context, R.layout.threeimgabreast, null);
         a = View.inflate(context, R.layout.threeiglefttwo, null);
         bi = View.inflate(context, R.layout.carouselfigure, null);
-        Log.e("TAG------------------",viewType+"");
+        productdoublecolumn = View.inflate(context, R.layout.productdoublecolumn, null);
+
         switch (viewType){
             case 1:
                 holder= new FuncAreaFiveImg(fiveImg_main);
@@ -87,11 +111,11 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 holder= new FloorFoot(foot);
                 break;
             case 12:
-                Log.e("TAG--",viewType+"");
+
                 holder= new TwoImgAverage_One(one);
                 break;
             case 7:
-                Log.e("TAG--",viewType+"");
+
                 holder=new OneImg(img);
                 break;
             case 8:
@@ -106,13 +130,17 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case 11:
                 holder=new CarouselFigure(bi);
                 break;
+            case 13:
+                holder=new ProductDoubleViewHolder(productdoublecolumn);
+                break;
         }
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof FuncAreaFiveImg) {
+
             Glide.with(context).load(BeanArrayList.get(0).getItems().get(0).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_one);
             Glide.with(context).load(BeanArrayList.get(0).getItems().get(1).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_two);
             Glide.with(context).load(BeanArrayList.get(0).getItems().get(2).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_three);
@@ -123,39 +151,83 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((FuncAreaFiveImg) holder).tv_items_three.setText(BeanArrayList.get(position).getItems().get(2).getImgname());
             ((FuncAreaFiveImg) holder).tv_items_four.setText(BeanArrayList.get(position).getItems().get(3).getImgname());
             ((FuncAreaFiveImg) holder).tv_items_five.setText(BeanArrayList.get(position).getItems().get(4).getImgname());
+            ((FuncAreaFiveImg) holder).iv_items_one.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    click.click(position,0);
+                }
+            });
+            ((FuncAreaFiveImg) holder).iv_items_two.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    click.click(position,1);
+                }
+            });((FuncAreaFiveImg) holder).iv_items_three.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    click.click(position,2);
+                }
+            });
+            ((FuncAreaFiveImg) holder).iv_items_three.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    click.click(position,3);
+                }
+            });
+            ((FuncAreaFiveImg) holder).iv_items_five.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    click.click(position,4);
+                }
+            });
+
         }
         if (holder instanceof FloorSpace){
             ((FloorSpace) holder).iv_floorspace.setImageResource(R.drawable.line_list_short);
+
         }
         if (holder instanceof FloorHead){
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((FloorHead) holder).iv_head);
+            ((FloorHead) holder).iv_head.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    click.click(position,0);
+                }
+            });
         }
         if (holder instanceof ProductSingleRow){
             StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL);
             ((ProductSingleRow) holder).rl_pro_title.setLayoutManager(staggeredGridLayoutManager);
             ProductSingleRowAdapter productSingleRowAdapter = new ProductSingleRowAdapter(BeanArrayList.get(position).getItems());
             ((ProductSingleRow) holder).rl_pro_title.setAdapter(productSingleRowAdapter);
+            productSingleRowAdapter.setOnClick(new ProductSingleRowAdapter.OnClick() {
+                @Override
+                public void onclick(int position) {
+                    click_one.click(position);
+                }
+            });
+
         }
         if (holder instanceof FloorFoot){
             ((FloorFoot) holder).iv_foot.setImageResource(R.drawable.line_list_short);
 
         }
         if (holder instanceof TwoImgAverage_One) {
-            Log.e("HOLDER","TwoImgAverage_One");
+
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((TwoImgAverage_One) holder).iv_one);
-            Log.e("HOLDER_0",BeanArrayList.get(position).getItems().get(0).getImgurl());
+
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(1).getImgurl()).into(((TwoImgAverage_One) holder).iv_two);
-            Log.e("HOLDER_1",BeanArrayList.get(position).getItems().get(1).getImgurl());
+
         }
 
         if (holder instanceof OneImg) {
-            Log.e("HOLDER","OneImg");
+
 
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((OneImg) holder).iv_five);
-            Log.e("HOLDER_ONE",BeanArrayList.get(position).getItems().get(0).getImgurl());
+
         }
         if (holder instanceof ThreeImgLeftOne){
-            Log.e("HOLDER","ThreeImgLeftOne");
+
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((ThreeImgLeftOne) holder).iv_one_left);
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(1).getImgurl()).into(((ThreeImgLeftOne) holder).iv_two_left);
             Glide.with(context).load(BeanArrayList.get(position).getItems().get(2).getImgurl()).into(((ThreeImgLeftOne) holder).iv_three_left);
@@ -180,8 +252,23 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
             ((CarouselFigure) holder).fb.setImagesUrl(strings);
         }
+        if (holder instanceof ProductDoubleViewHolder) {
+            ProductDoubleViewHolder productDoubleViewHolder = (ProductDoubleViewHolder) holder;
+            HomeBean.DataBean.TemplatelistBean.ItemsBean itemsBean;
+            List<HomeBean.DataBean.TemplatelistBean.ItemsBean> items = BeanArrayList.get(0).getItems();
+            if ((itemsBean = items.get(0)) != null) {
+                productDoubleViewHolder.mTextView1.setText(itemsBean.getExtra().getProductdetail().getName());
+                productDoubleViewHolder.mTextView2.setText(itemsBean.getExtra().getProductdetail().getPrice() + "");
+                Glide.with(context).load(itemsBean.getImgurl()).into(((ProductDoubleViewHolder) holder).mImageView1);
+            }
+            if ((itemsBean = items.get(1)) != null) {
+                productDoubleViewHolder.mTextView3.setText(itemsBean.getExtra().getProductdetail().getName());
+                productDoubleViewHolder.mTextView4.setText(itemsBean.getExtra().getProductdetail().getPrice() + "");
+                Glide.with(context).load(itemsBean.getImgurl()).into(((ProductDoubleViewHolder) holder).mImageView2);
+            }
+        }
 
-    }
+        }
     @Override
     public int getItemViewType(int position) {
         int viewType = 1;
@@ -204,10 +291,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 return viewType;
             case TwoImgAverage:
                 viewType =12 ;
-                Log.e("TAG===", viewType + "");
+
                 return viewType;
             case OneImg:
-                Log.e("TAG===", viewType + "");
+
                 viewType = 7;
                 return viewType;
             case ThreeImgLeftOne:
@@ -222,10 +309,11 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case CarouselFigure:
                 viewType = 11;
                 return viewType;
-
+            case PRODUCTDOUUBLECOLUMN:
+                viewType=13;
 
         }
-        return super.getItemViewType(position);
+        return viewType;
     }
     @Override
     public int getItemCount() {
@@ -371,5 +459,25 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
+    public class ProductDoubleViewHolder extends RecyclerView.ViewHolder {
+
+        public ImageView mImageView1;
+        public ImageView mImageView2;
+        public TextView mTextView1;
+        public TextView mTextView3;
+        public TextView mTextView2;
+        public TextView mTextView4;
+
+        public ProductDoubleViewHolder(View itemView) {
+            super(itemView);
+            mImageView1 = itemView.findViewById(R.id.mImageView1);
+            mImageView2 = itemView.findViewById(R.id.mImageView2);
+            mTextView1 = itemView.findViewById(R.id.mTextView1);
+            mTextView3 = itemView.findViewById(R.id.mTextView3);
+            mTextView2 = itemView.findViewById(R.id.mTextView2);
+            mTextView4 = itemView.findViewById(R.id.mTextView4);
+
+        }
+    }
 
 }
