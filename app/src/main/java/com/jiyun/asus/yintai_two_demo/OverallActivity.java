@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiyun.asus.yintai_two_demo.Adapters.OverallAdapter;
-import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BaseFragmentAndSonFragment.BaseFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BeatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.CatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.ClassificationFragment;
@@ -34,10 +33,10 @@ public class OverallActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SysApplication.getInstance().addActivity(this);
+
         setContentView(R.layout.activity_overall);
         ButterKnife.bind(this);
-
+        SysApplication.getInstance().addActivity(this);
         cvpOverall.setScanScroll(false);
         List<String> stringList = new ArrayList<>();
         stringList.add("首页");

@@ -30,7 +30,7 @@ public class MyMoDelImp implements MyModel {
     public void post(String path, final Type type, Map<String, String> map, final CallBack callBack) {
 
         Apiservice apiservice = MyRetrofit.getInstance().create(Apiservice.class);
-
+        //创建的这个对象就是RxJava的被观察者
         Observable<ResponseBody> post = apiservice.post(Concat.NETURL, map);
         post
                 .subscribeOn(Schedulers.io())

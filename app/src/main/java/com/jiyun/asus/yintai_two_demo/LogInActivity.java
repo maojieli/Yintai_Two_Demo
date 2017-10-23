@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.SysApplication;
 import com.mob.MobSDK;
 
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        SysApplication.getInstance().addActivity(this);
         Button btnRegist = (Button) findViewById(R.id.btn_bind_phone);
 //	View btnContact = findViewById(R.id.rl_contact);
 //		tvNum = (TextView) findViewById(R.id.tv_num);
@@ -96,6 +98,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         registerSDK();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        SysApplication.getInstance().exit();
     }
 
     private void registerSDK() {
