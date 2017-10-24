@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +36,8 @@ import java.util.Map;
  * 我只与你
  * 惺惺相惜.
  */
-//价格
-public class PriceFragment extends Fragment implements MyView<MeiZhuangBean>, AbsListView.OnScrollListener {
+//折扣
+public class ReductionFragment extends Fragment implements MyView<MeiZhuangBean>, AbsListView.OnScrollListener {
     private Context context;
     private ListView lv_jump_fragment;
 
@@ -46,18 +47,15 @@ public class PriceFragment extends Fragment implements MyView<MeiZhuangBean>, Ab
     private int last_index;
     private int PAGENUM = 1;
 
-    public PriceFragment(JumpBeatActivity jumpBeatActivity) {
+    public ReductionFragment(JumpBeatActivity jumpBeatActivity) {
         this.context = jumpBeatActivity;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.jumpfragment, container, false);
-
         initView(view);
-
         jiazai(PAGENUM);
 
         beanList = new ArrayList<>();
@@ -68,7 +66,7 @@ public class PriceFragment extends Fragment implements MyView<MeiZhuangBean>, Ab
     }
 
     private void jiazai(int page) {
-        int index = (int) getArguments().get("id");
+        int id = getArguments().getInt("id");
         MyPresenter presenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(context);
         BaseParams.getParams(httpParams, context);
@@ -79,7 +77,7 @@ public class PriceFragment extends Fragment implements MyView<MeiZhuangBean>, Ab
         httpParams.put("order_type", "5");
         httpParams.put("query_string", "");
 
-        httpParams.put("bargainid", index + "");
+        httpParams.put("bargainid", id + "");
         Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
         presenter.quest(stringStringHashMap);
     }
@@ -89,19 +87,21 @@ public class PriceFragment extends Fragment implements MyView<MeiZhuangBean>, Ab
         List<MeiZhuangBean.DataBean.ProductListBean> product_list = meiZhuangBean.getData().getProduct_list();
 
         beanList.addAll(product_list);
-
         Comparator c = new Comparator<MeiZhuangBean.DataBean.ProductListBean>() {
-
             @Override
             public int compare(MeiZhuangBean.DataBean.ProductListBean o1, MeiZhuangBean.DataBean.ProductListBean o2) {
-                if (o1.getYt_price() > o2.getYt_price()) {
-                    return 1;
+                String discount = o1.getDiscount();
+                String discount1 = o2.getDiscount();
+                Double i = Double.parseDouble(discount);
+                Double i1 = Double.parseDouble(discount1);
+                if (i > i1) {
+                    return -1;
                 }
-                if (o1.getYt_price() == o2.getYt_price()) {
+                if (i == i1) {
                     return 0;
                 }
 
-                return -1;
+                return 1;
 
 
             }
@@ -112,7 +112,7 @@ public class PriceFragment extends Fragment implements MyView<MeiZhuangBean>, Ab
 
     @Override
     public void deteat(String s) {
-
+        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
 
     private void initView(View view) {

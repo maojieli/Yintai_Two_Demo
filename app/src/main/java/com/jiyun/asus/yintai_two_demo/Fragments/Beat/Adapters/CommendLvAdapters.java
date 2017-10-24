@@ -26,10 +26,11 @@ import java.util.List;
 public class CommendLvAdapters extends BaseAdapter {
     private List<BeatBean.DataBean.ActivityinfoBean.ActivitylistBean> activitylist;
     private Context context;
-
+    private int mScreeWidth;
     public CommendLvAdapters(List<BeatBean.DataBean.ActivityinfoBean.ActivitylistBean> activitylist, Context context) {
         this.activitylist = activitylist;
         this.context = context;
+        mScreeWidth = context.getResources().getDisplayMetrics().widthPixels;
     }
 
     @Override
@@ -64,7 +65,7 @@ public class CommendLvAdapters extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Glide.with(context).load(activitylist.get(position).getImgurl()).into(holder.iv_commendlvitem);
+        Glide.with(context).load(activitylist.get(position).getImgurl()).override(mScreeWidth / 3, mScreeWidth / 3).into(holder.iv_commendlvitem);
         holder.tv_top_commendlv.setText(activitylist.get(position).getTitle());
         holder.tv_center_commendlv.setText(activitylist.get(position).getDiscount());
 

@@ -4,9 +4,15 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/lv_jump_fragment"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_footer_commodity"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        ></android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_footer_commodity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ></ListView>
+        ></android.support.v4.view.ViewPager>
 </LinearLayout>

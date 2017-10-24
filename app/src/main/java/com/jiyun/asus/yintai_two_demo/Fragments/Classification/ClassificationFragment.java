@@ -79,7 +79,7 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
         httpParams.put("pageindex", "1");
         httpParams.put("sign", "caee86bb6fabdcfc7a1da855f9932800");
         Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
-        presenter.quest(Concat.NETURL, ClassLeftBean.class, stringStringHashMap);
+        presenter.quest(stringStringHashMap);
         adapter = new LvAdapter(been, context);
         lv_classification.setAdapter(adapter);
         //设置左侧Listview的点击时间
@@ -112,9 +112,10 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
     }
 
     @Override
-    public void defeat(String s) {
-
+    public void deteat(String s) {
+        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
+
 
     private void initView(View view) {
 

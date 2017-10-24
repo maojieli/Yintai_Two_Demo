@@ -1,5 +1,7 @@
 package com.jiyun.asus.yintai_two_demo.Http.Model;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.jiyun.asus.yintai_two_demo.Http.Apiservice;
 import com.jiyun.asus.yintai_two_demo.Http.MyRetrofit;
@@ -27,7 +29,7 @@ import static android.R.attr.type;
 
 public class MyMoDelImp implements MyModel {
     @Override
-    public void post(String path, final Type type, Map<String, String> map, final CallBack callBack) {
+    public void post( Map<String, String> map, final CallBack callBack) {
 
         Apiservice apiservice = MyRetrofit.getInstance().create(Apiservice.class);
 
@@ -50,10 +52,12 @@ public class MyMoDelImp implements MyModel {
                     public void onNext(ResponseBody responseBody) {
                         try {
                             String string = responseBody.string();
-
+                            Log.d("MyMoDelImp", string);
                             Gson gson = new Gson();
-
-                            Object o = gson.fromJson(string, type);
+                            Type[] genericInterfaces = callBack.getClass().getGenericInterfaces();
+                            Type[] actualTypeArguments = ((ParameterizedType) genericInterfaces[0]).getActualTypeArguments();
+                            Type types =  actualTypeArguments[0];
+                            Object o = gson.fromJson(string, types);
                             callBack.success(o);
                         } catch (IOException e) {
                             e.printStackTrace();

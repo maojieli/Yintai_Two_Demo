@@ -86,7 +86,7 @@ public class classificationrightfragment extends Fragment implements MyView<Clas
         httpParams.put("pageindex", "1");
         httpParams.put("categoryid", "" + id);
         Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
-        presenter.quest(Concat.NETURL, ClassBean.class, stringStringHashMap);
+        presenter.quest(stringStringHashMap);
 
     }
 
@@ -115,9 +115,11 @@ public class classificationrightfragment extends Fragment implements MyView<Clas
     }
 
     @Override
-    public void defeat(String s) {
+    public void deteat(String s) {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
+
+
 
     @Override
     public void onDestroy() {

@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +16,11 @@ import android.widget.Toast;
 
 import com.jiyun.asus.yintai_two_demo.Fragments.Beat.Adapters.CommendLvAdapters;
 import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BeatBean.BeatBean;
-import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BeatBean.JumpBean;
-import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BeatJumpActivity;
-import com.jiyun.asus.yintai_two_demo.Fragments.Classification.Bean.EventBean;
+import com.jiyun.asus.yintai_two_demo.Fragments.Beat.Jump.Beans.JumpEventBean;
+import com.jiyun.asus.yintai_two_demo.Fragments.Beat.Jump.JumpBeatActivity;
 import com.jiyun.asus.yintai_two_demo.Http.Presenter.MyPresenter;
 import com.jiyun.asus.yintai_two_demo.Http.View.MyView;
 import com.jiyun.asus.yintai_two_demo.Http.tools.BaseParams;
-import com.jiyun.asus.yintai_two_demo.Http.tools.Concat;
 import com.jiyun.asus.yintai_two_demo.Http.tools.Tools;
 import com.jiyun.asus.yintai_two_demo.OverallActivity;
 import com.jiyun.asus.yintai_two_demo.R;
@@ -62,8 +60,16 @@ public class CommendFragment extends BaseFragment implements MyView<BeatBean> {
         lv_beat_base.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                EventBus.getDefault().post(new JumpBean(position, activitylistBeen));
-                context.startActivity(new Intent(activity, BeatJumpActivity.class));
+                // 传值
+
+                Intent intent = new Intent(activity, JumpBeatActivity.class);
+                int id1 = activitylistBeen.get(position).getId();
+                EventBus.getDefault().post(new JumpEventBean(id1));
+                String name = activitylistBeen.get(position).getName();
+                intent.putExtra("name", name);
+                intent.putExtra("index", id1);
+
+                context.startActivity(intent);
             }
         });
         srl_beat_base = view.findViewById(R.id.srl_beat_base);
@@ -105,7 +111,7 @@ public class CommendFragment extends BaseFragment implements MyView<BeatBean> {
 
 
         Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
-        presenter.quest(Concat.NETURL, BeatBean.class, stringStringHashMap);
+        presenter.quest(stringStringHashMap);
     }
 
     @Override
@@ -118,7 +124,9 @@ public class CommendFragment extends BaseFragment implements MyView<BeatBean> {
     }
 
     @Override
-    public void defeat(String s) {
+    public void deteat(String s) {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
+
+
 }

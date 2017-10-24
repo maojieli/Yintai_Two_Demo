@@ -92,7 +92,7 @@ public class NewFragment extends BaseFragment implements MyView<BeatBean> {
 
 
         Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
-        presenter.quest(Concat.NETURL, BeatBean.class, stringStringHashMap);
+        presenter.quest(stringStringHashMap);
     }
 
     @Override
@@ -136,9 +136,8 @@ public class NewFragment extends BaseFragment implements MyView<BeatBean> {
         }
 
     }
-
     @Override
-    public void defeat(String s) {
+    public void deteat(String s) {
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
 }

@@ -126,20 +126,23 @@ public class OverallActivity extends AppCompatActivity {
         }
 
     }
+
     private static long back_pressed = 0;
+
     @Override
     public void onBackPressed() {
-        if (back_pressed + 2000 > System.currentTimeMillis()){
+        if (back_pressed + 2000 > System.currentTimeMillis()) {
             SysApplication.getInstance().exit();
             super.onBackPressed();
 //        System.exit(0);
 
-    }
-        else {
+        } else {
             Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
             back_pressed = System.currentTimeMillis();
 
         }
     }
+
+
 
 }

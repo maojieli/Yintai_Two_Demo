@@ -8,7 +8,7 @@ import java.util.Map;
  */
 
 public interface MyModel {
-    void post(String url, Type type, Map<String, String> map, CallBack callBack);
+    void post(Map<String, String> map, CallBack callBack);
 
     interface CallBack<T> {
         void success(T t);

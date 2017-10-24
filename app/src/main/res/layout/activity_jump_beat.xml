@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.jiyun.asus.yintai_two_demo.Fragments.Beat.BeatJumpActivity">
+    tools:context="com.jiyun.asus.yintai_two_demo.Fragments.Beat.Jump.JumpBeatActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_back_jump"
+            android:id="@+id/iv_jump_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/all_back"
@@ -21,11 +21,14 @@
 
         <TextView
             android:singleLine="true"
+            android:scrollHorizontally="true"
             android:ellipsize="marquee"
-            android:id="@+id/tv_name_top_jump"
-            android:layout_width="wrap_content"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:id="@+id/tv_jump_top_name"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:textSize="30sp"
             />
 
         <ImageView
@@ -37,77 +40,37 @@
             />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/iv_time"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@mipmap/img_productlist_time"
-            />
-
-        <TextView
-            android:id="@+id/tv_time_jump"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iv_time"
-            android:textColor="@color/colorAccent"
-            />
-
-
-        <TextView
-
-            android:id="@+id/tv_brand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="品牌故事"
-            />
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_toLeftOf="@id/tv_brand"
-            android:src="@mipmap/v1_img_productlist_brand"
-            />
-
-    </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/bu_count_jump"
+            android:id="@+id/bu_sale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#ffffff"
+
             android:text="销量"/>
 
         <Button
-            android:id="@+id/bu_price_jump"
+            android:id="@+id/bu_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#ffffff"
-            android:drawableRight="@mipmap/arrow3_2"
             android:text="价格"/>
 
         <Button
-            android:id="@+id/bu_discount_jump"
+            android:id="@+id/bu_reduction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#ffffff"
-            android:drawableRight="@mipmap/arrow3_1"
             android:text="折扣"/>
     </LinearLayout>
 
-    <com.jiyun.asus.yintai_two_demo.Utils.CustomViewPager
-        android:id="@+id/cvp_jump"
+    <FrameLayout
+        android:id="@+id/cvp_jump_beat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        ></com.jiyun.asus.yintai_two_demo.Utils.CustomViewPager>
+        android:layout_height="match_parent"/>
+
+
 </LinearLayout>

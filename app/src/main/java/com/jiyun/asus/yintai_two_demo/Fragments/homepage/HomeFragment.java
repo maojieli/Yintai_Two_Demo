@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
         httpParams.put("pageindex", "1");
 
         HashMap<String, String> stringStringHashMap = Tools.signBusinessParameter(getContext(), (HashMap<String, String>) httpParams);
-        myPresenter.quest(Concat.NETURL, HomeBean.class, stringStringHashMap);
+        myPresenter.quest(stringStringHashMap);
         BeanArrayList = new ArrayList<>();
 
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
@@ -117,9 +117,11 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
     }
 
     @Override
-    public void defeat(String s) {
+    public void deteat(String s) {
         Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
     }
+
+
 
     private void initView(View inflate) {
         imageView = (ImageView) inflate.findViewById(R.id.imageView);

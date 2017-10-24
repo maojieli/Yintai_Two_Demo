@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+
+    <TextView
+        android:background="@color/colorAccent"
+        android:id="@+id/child_title_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="这是子item"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/child_title_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="这是子item"
+        android:textColor="#999999"
+        android:textSize="18sp"
+        />
+    <ImageView
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/child_title_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:src="@mipmap/item_right"
+        />
+</RelativeLayout>

@@ -56,7 +56,7 @@ public class SearchActivity extends AppCompatActivity implements MyView<SearchBe
         httpParams.put("pageid", "104001");
         httpParams.put("pageindex", "1");
         HashMap<String, String> stringStringHashMap = Tools.signBusinessParameter(this, (HashMap<String, String>) httpParams);
-        myPresenter.quest(Concat.NETURL, SearchBean.class, stringStringHashMap);
+        myPresenter.quest(stringStringHashMap);
         dataBeen = new ArrayList<>();
         StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         rv_search.setLayoutManager(staggeredGridLayoutManager);
@@ -82,9 +82,11 @@ public class SearchActivity extends AppCompatActivity implements MyView<SearchBe
     }
 
     @Override
-    public void defeat(String s) {
+    public void deteat(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
+
+
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
