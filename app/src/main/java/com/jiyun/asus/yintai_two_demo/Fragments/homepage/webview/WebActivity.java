@@ -19,14 +19,11 @@ import android.widget.Toast;
 import com.jiyun.asus.yintai_two_demo.OverallActivity;
 import com.jiyun.asus.yintai_two_demo.R;
 
-public class WebActivity extends AppCompatActivity implements View.OnClickListener {
+public class WebActivity extends AppCompatActivity{
 
     private WebView rv_same;
     private SwipeRefreshLayout swr_same;
-    private TextView textView7;
-    private ImageView iv_same_break;
-    private ImageView iv_fenxiang;
-    private RelativeLayout rv;
+
     private ProgressBar progressbar;
 
     @Override
@@ -36,6 +33,7 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
         initView();
         Intent intent = getIntent();
         final String url = intent.getStringExtra("url");
+
         Log.e("URL", url);
         geturl(url);
 
@@ -98,29 +96,10 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
     private void initView() {
         rv_same = (WebView) findViewById(R.id.rv_same);
         swr_same = (SwipeRefreshLayout) findViewById(R.id.swr_same);
-        textView7 = (TextView) findViewById(R.id.textView7);
 
-        iv_same_break = (ImageView) findViewById(R.id.iv_same_break);
-        iv_same_break.setOnClickListener(this);
-        iv_fenxiang = (ImageView) findViewById(R.id.iv_fenxiang);
-        iv_fenxiang.setOnClickListener(this);
-        rv = (RelativeLayout) findViewById(R.id.rv);
-        rv.setOnClickListener(this);
+
         progressbar = (ProgressBar) findViewById(R.id.progressbar);
-        progressbar.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_same_break:
-                Intent intent = new Intent(WebActivity.this, OverallActivity.class);
-                intent.putExtra("num", 1);
-                startActivity(intent);
-                break;
-            case R.id.iv_fenxiang:
-                Toast.makeText(this, "友盟", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
+
 }

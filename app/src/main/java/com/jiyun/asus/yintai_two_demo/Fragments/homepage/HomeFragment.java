@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +17,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.adapter.HomeAdapter;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.bean.HomeBean;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.searchforgoods.SearchActivity;
 import com.jiyun.asus.yintai_two_demo.Http.Presenter.MyPresenter;
 import com.jiyun.asus.yintai_two_demo.Http.View.MyView;
 import com.jiyun.asus.yintai_two_demo.Http.tools.BaseParams;
-import com.jiyun.asus.yintai_two_demo.Http.tools.Concat;
 import com.jiyun.asus.yintai_two_demo.Http.tools.Tools;
 import com.jiyun.asus.yintai_two_demo.R;
 import com.recker.flybanner.FlyBanner;
@@ -53,6 +53,8 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
     private MyPresenter myPresenter;
     private RelativeLayout relativeLayout1;
     private SwipeRefreshLayout swr;
+    private List<HomeBean.DataBean.BannerlistBean> list;
+
 
 
     @Nullable
@@ -61,6 +63,7 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
         View inflate = inflater.inflate(R.layout.home, container, false);
         initView(inflate);
         myPresenter = new MyPresenter(this);
+
         Map<String, String> httpParams = Tools.getHttpParams(getContext());
         BaseParams.getParams(httpParams, getContext());
         httpParams.put("ver", "3.0");
@@ -69,16 +72,14 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
         httpParams.put("pageindex", "1");
 
         HashMap<String, String> stringStringHashMap = Tools.signBusinessParameter(getContext(), (HashMap<String, String>) httpParams);
-        myPresenter.quest(Concat.NETURL, HomeBean.class, stringStringHashMap);
+        myPresenter.quest(stringStringHashMap);
         BeanArrayList = new ArrayList<>();
-
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        image = new ArrayList<>();
+        final StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         rv_title.setLayoutManager(staggeredGridLayoutManager);
-        homeAdapter = new HomeAdapter(BeanArrayList);
+        homeAdapter = new HomeAdapter(BeanArrayList,image);
         rv_title.setAdapter(homeAdapter);
-        RecyclerViewHeader recyclerViewHeader = RecyclerViewHeader.fromXml(getActivity(), R.layout.header_main);
-        fb_title = recyclerViewHeader.findViewById(R.id.fb_title);
-        recyclerViewHeader.attachTo(rv_title);
+
         swr.setColorSchemeResources(R.color.colorAccent,R.color.colorPrimary,R.color.colorPrimaryDark);
         swr.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -88,11 +89,28 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
                 swr.setRefreshing(false);
             }
         });
+
+
+
+
         homeAdapter.setClick(new HomeAdapter.Click() {
             @Override
             public void click(int position, int num) {
-                String jumpurl = BeanArrayList.get(position).getItems().get(num).getJumpurl();
-                JumpActivityUtils.jump(getContext(),jumpurl);
+//                Log.e("TAG",BeanArrayList.get(position).getItems().get(num).getJumpurl());
+               if (num==100){
+                   String jumpurl = list.get(position).getJumpurl();
+                   JumpActivityUtils.jump(getContext(),jumpurl);
+               }else {
+                   String jumpurl = BeanArrayList.get(position).getItems().get(num).getJumpurl();
+                   JumpActivityUtils.jump(getContext(),jumpurl);
+               }
+
+            }
+        });
+        homeAdapter.setClick(new HomeAdapter.Click_One() {
+            @Override
+            public void click(int position) {
+                Toast.makeText(getContext(), "点击了"+position, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -102,24 +120,25 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
 
     @Override
     public void success(HomeBean homeBean) {
-        image = new ArrayList<>();
-        List<HomeBean.DataBean.BannerlistBean> list = homeBean.getData().getBannerlist();
 
+        list = homeBean.getData().getBannerlist();
         for (int i = 0; i < list.size(); i++) {
-            String s = list.get(i).getImgurl();
-            image.add(s);
-
+            String imgurl = list.get(i).getImgurl();
+            image.add(imgurl);
         }
-        fb_title.setImagesUrl(image);
+
         List<HomeBean.DataBean.TemplatelistBean> template = homeBean.getData().getTemplatelist();
         BeanArrayList.addAll(template);
         homeAdapter.notifyDataSetChanged();
     }
 
+
     @Override
-    public void defeat(String s) {
+    public void deteat(String s) {
         Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
     }
+
+
 
     private void initView(View inflate) {
         imageView = (ImageView) inflate.findViewById(R.id.imageView);

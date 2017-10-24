@@ -23,6 +23,7 @@ public class JumpActivityUtils {
                 String[] split = query.split("url=");
                 Intent intent = new Intent(context, WebActivity.class);
                 intent.putExtra("url", split[1]);
+
                 Log.e("URL++++",split[1]);
                 context.startActivity(intent);
             }else {

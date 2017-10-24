@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/ll_search_one_left"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+     <TextView
+         android:gravity="center"
+         android:layout_weight="3"
+         android:layout_marginLeft="10dp"
+         android:background="@drawable/tv_search_one"
+         android:text="123"
+         android:id="@+id/tv_search_left_one"
+         android:layout_width="0dp"
+         android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center"
+            android:layout_weight="2"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/tv_search_two"
+            android:text="123"
+            android:id="@+id/tv_search_left_two"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center"
+            android:layout_weight="2"
+            android:background="@drawable/tv_search_one"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_search_left_three"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center"
+            android:layout_weight="2"
+            android:background="@drawable/tv_search_two"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_search_left_four"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center"
+            android:layout_weight="3"
+            android:background="@drawable/tv_search_one"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_search_left_five"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/ll_search_one_right"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+        <TextView
+            android:gravity="center"
+            android:layout_weight="2"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/tv_search_one"
+            android:text="123"
+            android:id="@+id/tv_search_right_one"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center"
+            android:layout_weight="2"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/tv_search_two"
+            android:text="123"
+            android:id="@+id/tv_search_right_two"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center"
+            android:layout_weight="3"
+            android:background="@drawable/tv_search_one"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_search_right_three"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center"
+            android:layout_weight="2"
+            android:background="@drawable/tv_search_two"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_search_right_four"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="50dp"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -38,9 +38,26 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="26dp"
         android:layout_marginEnd="26dp" />
- <android.support.v7.widget.RecyclerView
-     android:id="@+id/rv_search"
-     android:layout_below="@id/relativeLayout"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_below="@id/relativeLayout"
+        android:id="@+id/tb_tab_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/bt_one"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt_two"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+ <FrameLayout
+     android:id="@+id/fl"
+    android:layout_below="@id/tb_tab_search"
      android:layout_width="match_parent"
-     android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+     android:layout_height="match_parent"></FrameLayout>
 </RelativeLayout>

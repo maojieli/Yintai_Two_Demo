@@ -1,9 +1,9 @@
 package com.jiyun.asus.yintai_two_demo.Fragments.homepage.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,7 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import com.jiyun.asus.yintai_two_demo.BannerActivity;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.bigonclick.BigOnClickActivity;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.JumpActivityUtils;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.bean.HomeBean;
 import com.jiyun.asus.yintai_two_demo.R;
 import com.recker.flybanner.FlyBanner;
@@ -26,6 +27,7 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private View productdoublecolumn;
+    private ProductSingleRowAdapter productSingleRowAdapter;
 
     public interface Click{
         void click(int position,int num);
@@ -45,6 +47,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.click_one=click_one;
     }
     private ArrayList<HomeBean.DataBean.TemplatelistBean> BeanArrayList;
+    ArrayList<String> image;
     private Context context;
 
     private View fiveImg_main;
@@ -58,6 +61,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private View breast;
     private View a;
     private View bi;
+    private View header_main;
 
     private final String FuncAreaFiveImg="FuncAreaFiveImg";
     private final String FloorSpace="FloorSpace";
@@ -72,9 +76,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final String CarouselFigure="CarouselFigure";
     private static final String PRODUCTDOUUBLECOLUMN = "ProductDoubleColumn";
 
-
-    public HomeAdapter(ArrayList<HomeBean.DataBean.TemplatelistBean> BeanArrayList) {
+    public HomeAdapter(ArrayList<HomeBean.DataBean.TemplatelistBean> BeanArrayList, ArrayList<String> image) {
         this.BeanArrayList=BeanArrayList;
+        this.image=image;
     }
 
     @Override
@@ -93,6 +97,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         a = View.inflate(context, R.layout.threeiglefttwo, null);
         bi = View.inflate(context, R.layout.carouselfigure, null);
         productdoublecolumn = View.inflate(context, R.layout.productdoublecolumn, null);
+        header_main = View.inflate(context, R.layout.header_main, null);
 
         switch (viewType){
             case 1:
@@ -133,53 +138,40 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case 13:
                 holder=new ProductDoubleViewHolder(productdoublecolumn);
                 break;
+            case 0:
+                holder=new Header(header_main);
+                break;
         }
         return holder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        if (holder instanceof FuncAreaFiveImg) {
 
-            Glide.with(context).load(BeanArrayList.get(0).getItems().get(0).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_one);
-            Glide.with(context).load(BeanArrayList.get(0).getItems().get(1).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_two);
-            Glide.with(context).load(BeanArrayList.get(0).getItems().get(2).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_three);
-            Glide.with(context).load(BeanArrayList.get(0).getItems().get(3).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_four);
-            Glide.with(context).load(BeanArrayList.get(0).getItems().get(4).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_five);
-            ((FuncAreaFiveImg) holder).tv_items_one.setText(BeanArrayList.get(position).getItems().get(0).getImgname());
-            ((FuncAreaFiveImg) holder).tv_items_two.setText(BeanArrayList.get(position).getItems().get(1).getImgname());
-            ((FuncAreaFiveImg) holder).tv_items_three.setText(BeanArrayList.get(position).getItems().get(2).getImgname());
-            ((FuncAreaFiveImg) holder).tv_items_four.setText(BeanArrayList.get(position).getItems().get(3).getImgname());
-            ((FuncAreaFiveImg) holder).tv_items_five.setText(BeanArrayList.get(position).getItems().get(4).getImgname());
-            ((FuncAreaFiveImg) holder).iv_items_one.setOnClickListener(new View.OnClickListener() {
+        if (holder instanceof Header){
+            ((Header) holder).fb_title.setImagesUrl(image);
+            ((Header) holder).fb_title.setOnItemClickListener(new FlyBanner.OnItemClickListener() {
                 @Override
-                public void onClick(View v) {
-                    click.click(position,0);
+                public void onItemClick(int position) {
+                    click.click(position,100);
                 }
             });
-            ((FuncAreaFiveImg) holder).iv_items_two.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    click.click(position,1);
-                }
-            });((FuncAreaFiveImg) holder).iv_items_three.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    click.click(position,2);
-                }
-            });
-            ((FuncAreaFiveImg) holder).iv_items_three.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    click.click(position,3);
-                }
-            });
-            ((FuncAreaFiveImg) holder).iv_items_five.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    click.click(position,4);
-                }
-            });
+        }
+
+
+        if (holder instanceof FuncAreaFiveImg) {
+            HomeAdapter.FuncAreaFiveImg funcAreaFiveImg = (FuncAreaFiveImg) holder;
+            funcAreaFiveImg.itemView.setTag(BeanArrayList.get(position-1).getItems());
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_one);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(1).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_two);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(2).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_three);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(3).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_four);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(4).getImgurl()).into(((FuncAreaFiveImg) holder).iv_items_five);
+            funcAreaFiveImg.tv_items_one.setText(BeanArrayList.get(position-1).getItems().get(0).getImgname());
+            funcAreaFiveImg.tv_items_two.setText(BeanArrayList.get(position-1).getItems().get(1).getImgname());
+            funcAreaFiveImg.tv_items_three.setText(BeanArrayList.get(position-1).getItems().get(2).getImgname());
+            funcAreaFiveImg.tv_items_four.setText(BeanArrayList.get(position-1).getItems().get(3).getImgname());
+            funcAreaFiveImg.tv_items_five.setText(BeanArrayList.get(position-1).getItems().get(4).getImgname());
 
         }
         if (holder instanceof FloorSpace){
@@ -187,23 +179,26 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
         if (holder instanceof FloorHead){
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((FloorHead) holder).iv_head);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(((FloorHead) holder).iv_head);
             ((FloorHead) holder).iv_head.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    click.click(position,0);
+                    click.click(position-1,0);
                 }
             });
         }
         if (holder instanceof ProductSingleRow){
+            HomeAdapter.ProductSingleRow holder1 = (ProductSingleRow) holder;
+            holder1.itemView.setTag(BeanArrayList.get(position-1).getItems());
             StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL);
-            ((ProductSingleRow) holder).rl_pro_title.setLayoutManager(staggeredGridLayoutManager);
-            ProductSingleRowAdapter productSingleRowAdapter = new ProductSingleRowAdapter(BeanArrayList.get(position).getItems());
-            ((ProductSingleRow) holder).rl_pro_title.setAdapter(productSingleRowAdapter);
+            holder1.rl_pro_title.setLayoutManager(staggeredGridLayoutManager);
+            productSingleRowAdapter = new ProductSingleRowAdapter(BeanArrayList.get(position-1).getItems());
+            holder1.rl_pro_title.setAdapter(productSingleRowAdapter);
             productSingleRowAdapter.setOnClick(new ProductSingleRowAdapter.OnClick() {
                 @Override
                 public void onclick(int position) {
-                    click_one.click(position);
+                    Intent intent = new Intent(context, BigOnClickActivity.class);
+                    context.startActivity(intent);
                 }
             });
 
@@ -213,44 +208,57 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
         if (holder instanceof TwoImgAverage_One) {
+            TwoImgAverage_One holder1 = (TwoImgAverage_One) holder;
+            holder1.itemView.setTag(BeanArrayList.get(position-1).getItems());
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(holder1.iv_one);
 
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((TwoImgAverage_One) holder).iv_one);
-
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(1).getImgurl()).into(((TwoImgAverage_One) holder).iv_two);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(1).getImgurl()).into(holder1.iv_two);
 
         }
 
         if (holder instanceof OneImg) {
+            OneImg holder1 = (OneImg) holder;
+            holder1.itemView.setTag(BeanArrayList.get(position-1).getItems());
 
-
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((OneImg) holder).iv_five);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(((OneImg) holder).iv_five);
 
         }
         if (holder instanceof ThreeImgLeftOne){
-
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((ThreeImgLeftOne) holder).iv_one_left);
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(1).getImgurl()).into(((ThreeImgLeftOne) holder).iv_two_left);
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(2).getImgurl()).into(((ThreeImgLeftOne) holder).iv_three_left);
+            ThreeImgLeftOne holder1 = (ThreeImgLeftOne) holder;
+            holder1.itemView.setTag(BeanArrayList.get(position-1).getItems());
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(((ThreeImgLeftOne) holder).iv_one_left);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(1).getImgurl()).into(((ThreeImgLeftOne) holder).iv_two_left);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(2).getImgurl()).into(((ThreeImgLeftOne) holder).iv_three_left);
 
         }
         if (holder instanceof ThreeImgAbreast){
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((ThreeImgAbreast) holder).iv_one_three);
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(1).getImgurl()).into(((ThreeImgAbreast) holder).iv_two_three);
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(2).getImgurl()).into(((ThreeImgAbreast) holder).iv_three_three);
+            ThreeImgAbreast holder1 = (ThreeImgAbreast) holder;
+            holder1.itemView.setTag(BeanArrayList.get(position-1).getItems());
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(((ThreeImgAbreast) holder).iv_one_three);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(1).getImgurl()).into(((ThreeImgAbreast) holder).iv_two_three);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(2).getImgurl()).into(((ThreeImgAbreast) holder).iv_three_three);
 
         }
         if (holder instanceof ThreeImgLeftTwo){
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(0).getImgurl()).into(((ThreeImgLeftTwo) holder).iv_left_one);
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(1).getImgurl()).into(((ThreeImgLeftTwo) holder).iv_left_two);
-            Glide.with(context).load(BeanArrayList.get(position).getItems().get(2).getImgurl()).into(((ThreeImgLeftTwo) holder).iv_left_three);
+            ThreeImgLeftTwo holder1 = (ThreeImgLeftTwo) holder;
+            holder1.itemView.setTag(BeanArrayList.get(position-1).getItems());
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(((ThreeImgLeftTwo) holder).iv_left_one);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(1).getImgurl()).into(((ThreeImgLeftTwo) holder).iv_left_two);
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(2).getImgurl()).into(((ThreeImgLeftTwo) holder).iv_left_three);
 
         }
         if (holder instanceof CarouselFigure){
             ArrayList<String> strings = new ArrayList<>();
-            for (int i = 0; i < BeanArrayList.get(position).getItems().size(); i++) {
-                strings.add(BeanArrayList.get(position).getItems().get(i).getImgurl());
+            for (int i = 0; i < BeanArrayList.get(position-1).getItems().size(); i++) {
+                strings.add(BeanArrayList.get(position-1).getItems().get(i).getImgurl());
             }
             ((CarouselFigure) holder).fb.setImagesUrl(strings);
+            ((CarouselFigure) holder).fb.setOnItemClickListener(new FlyBanner.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    click.click(position,200);
+                }
+            });
         }
         if (holder instanceof ProductDoubleViewHolder) {
             ProductDoubleViewHolder productDoubleViewHolder = (ProductDoubleViewHolder) holder;
@@ -271,9 +279,31 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     @Override
     public int getItemViewType(int position) {
+
+        int viewType = 1;
+        if (image.size() != 0 && position == 0) {
+            viewType = 0;
+            return viewType;
+        }
+        if (image.size() != 0 && position != 0) {
+            Integer x = switchType(position - 1);
+            if (x != null)
+                return x;
+
+            }else {
+            Integer x = switchType(position);
+            if (x != null)
+                return x;
+
+
+        }
+        return super.getItemViewType(position);
+    }
+    private Integer switchType(int position){
         int viewType = 1;
         String type = BeanArrayList.get(position).getTemplatetype();
         switch (type) {
+
             case FuncAreaFiveImg:
                 viewType = 1;
                 return viewType;
@@ -315,12 +345,28 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         return viewType;
     }
+
     @Override
     public int getItemCount() {
-        return BeanArrayList.size();
-    }
-    class FuncAreaFiveImg extends RecyclerView.ViewHolder {
+        if (image.size()!=0){
+            return BeanArrayList.size()+1;
 
+        }else {
+            return BeanArrayList.size();
+        }
+    }
+    class Header extends RecyclerView.ViewHolder{
+
+        private  FlyBanner fb_title;
+
+        public Header(View itemView) {
+            super(itemView);
+            fb_title = itemView.findViewById(R.id.fb_title);
+        }
+    }
+    class FuncAreaFiveImg extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private final View itemView;
         private TextView tv_items_one;
         private  TextView tv_items_two;
         private  TextView tv_items_three;
@@ -331,22 +377,56 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private  ImageView iv_items_three;
         private  ImageView iv_items_four;
         private  ImageView iv_items_five;
+        private List<HomeBean.DataBean.TemplatelistBean.ItemsBean> items;
 
 
         public FuncAreaFiveImg(View itemView) {
             super(itemView);
             tv_items_one = itemView.findViewById(R.id.tv_items_one);
+
             tv_items_two = itemView.findViewById(R.id.tv_items_two);
+
             tv_items_three = itemView.findViewById(R.id.tv_items_three);
             tv_items_four = itemView.findViewById(R.id.tv_items_four);
             tv_items_five = itemView.findViewById(R.id.tv_items_five);
             iv_items_one = itemView.findViewById(R.id.iv_items_one);
+            iv_items_one.setOnClickListener(this);
             iv_items_two = itemView.findViewById(R.id.iv_items_two);
+            iv_items_two.setOnClickListener(this);
             iv_items_three = itemView.findViewById(R.id.iv_items_three);
+            iv_items_three.setOnClickListener(this);
             iv_items_four = itemView.findViewById(R.id.iv_items_four);
+            iv_items_four.setOnClickListener(this);
             iv_items_five = itemView.findViewById(R.id.iv_items_five);
+            iv_items_five.setOnClickListener(this);
+            this.itemView = itemView;
 
+        }
 
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()){
+                case R.id.iv_items_one:
+                    items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+                    JumpActivityUtils.jump(context,items.get(0).getJumpurl());
+                    break;
+                case R.id.iv_items_two:
+                    items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+                    JumpActivityUtils.jump(context,items.get(1).getJumpurl());
+                    break;
+                case R.id.iv_items_three:
+                    items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+                    JumpActivityUtils.jump(context,items.get(2).getJumpurl());
+                    break;
+                case R.id.iv_items_four:
+                    items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+                    JumpActivityUtils.jump(context,items.get(3).getJumpurl());
+                    break;
+                case R.id.iv_items_five:
+                    items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+                    JumpActivityUtils.jump(context,items.get(4).getJumpurl());
+                    break;
+            }
         }
     }
     class FloorSpace extends RecyclerView.ViewHolder{
@@ -370,10 +450,21 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     class ProductSingleRow extends RecyclerView.ViewHolder{
 
         private  RecyclerView rl_pro_title;
+        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+        private final View itemView;
 
         public ProductSingleRow(View itemView) {
             super(itemView);
             rl_pro_title = itemView.findViewById(R.id.rl_pro_title);
+            this.itemView = itemView;
+            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+            /*productSingleRowAdapter.setOnClick(new ProductSingleRowAdapter.OnClick() {
+                @Override
+                public void onclick(int position) {
+                    //跳转自己的activity
+                    JumpActivityUtils.jump(context,itemViewTag.get(position).getJumpurl());
+                }
+            });*/
         }
     }
     class FloorFoot extends RecyclerView.ViewHolder{
@@ -386,67 +477,189 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    class TwoImgAverage_One extends RecyclerView.ViewHolder{
+    class TwoImgAverage_One extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private  ImageView iv_one;
         private  ImageView iv_two;
+        private final View itemView;
+        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+        private final Intent intent;
 
         public TwoImgAverage_One(View itemView) {
             super(itemView);
             iv_one = itemView.findViewById(R.id.iv_one);
+            iv_one.setOnClickListener(this);
             iv_two = itemView.findViewById(R.id.iv_two);
+            iv_two.setOnClickListener(this);
+            this.itemView = itemView;
+            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
+            intent = new Intent(context, BigOnClickActivity.class);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.iv_one:
+
+                    context.startActivity(intent);
+                    break;
+                case R.id.iv_two:
+
+                    context.startActivity(intent);
+                    break;
+            }
         }
     }
 
-    class OneImg extends RecyclerView.ViewHolder{
+    class OneImg extends RecyclerView.ViewHolder implements View.OnClickListener {
         private  ImageView iv_five;
+        private final View itemView;
+        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+
         public OneImg(View itemView) {
             super(itemView);
             iv_five = itemView.findViewById(R.id.iv_five);
+            iv_five.setOnClickListener(this);
+           this. itemView = itemView;
+            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
         }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.iv_five:
+                    Intent intent = new Intent(context, BigOnClickActivity.class);
+                    context.startActivity(intent);
+                    break;
+            }
+        }
     }
-    class ThreeImgLeftOne extends RecyclerView.ViewHolder{
+    class ThreeImgLeftOne extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private  ImageView iv_one_left;
         private  ImageView iv_two_left;
         private  ImageView iv_three_left;
+        private final View itemView;
+        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+        private final Intent intent;
 
         public ThreeImgLeftOne(View itemView) {
             super(itemView);
             iv_one_left = itemView.findViewById(R.id.iv_one_left);
+            iv_one_left.setOnClickListener(this);
             iv_two_left = itemView.findViewById(R.id.iv_two_left);
+            iv_two_left.setOnClickListener(this);
             iv_three_left = itemView.findViewById(R.id.iv_three_left);
+            iv_three_left.setOnClickListener(this);
+
+            this.itemView = itemView;
+            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+            intent = new Intent(context, BigOnClickActivity.class);
 
         }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.iv_one_left:
+
+                    context.startActivity(intent);
+                    break;
+                case R.id.iv_two_left:
+
+                    context.startActivity(intent);
+                    break;
+                case R.id.iv_three_left:
+
+                    context.startActivity(intent);
+                    break;
+
+            }
+        }
     }
-    class ThreeImgAbreast extends RecyclerView.ViewHolder{
+    class ThreeImgAbreast extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private  ImageView iv_one_three;
         private  ImageView iv_two_three;
         private  ImageView iv_three_three;
+        private final View itemView;
+        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+        private final Intent intent;
 
         public ThreeImgAbreast(View itemView) {
             super(itemView);
             iv_one_three = itemView.findViewById(R.id.iv_one_three);
+            iv_one_three.setOnClickListener(this);
             iv_two_three = itemView.findViewById(R.id.iv_two_three);
+            iv_two_three.setOnClickListener(this);
             iv_three_three = itemView.findViewById(R.id.iv_three_three);
+            iv_three_three.setOnClickListener(this);
+            this.itemView = itemView;
+            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+            intent = new Intent(context, BigOnClickActivity.class);
+        }
 
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.iv_one_three:
+
+                    context.startActivity(intent);
+                    break;
+                case R.id.iv_two_three:
+
+                    context.startActivity(intent);
+                    break;
+                case R.id.iv_three_three:
+
+                    context.startActivity(intent);
+                    break;
+
+            }
         }
     }
-    class ThreeImgLeftTwo extends RecyclerView.ViewHolder{
+    class ThreeImgLeftTwo extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private  ImageView iv_left_one;
         private  ImageView iv_left_two;
         private  ImageView iv_left_three;
+        private final View itemView;
+        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+        private final Intent intent;
 
         public ThreeImgLeftTwo(View itemView) {
             super(itemView);
             iv_left_one = itemView.findViewById(R.id.iv_left_one);
+            iv_left_one.setOnClickListener(this);
             iv_left_two = itemView.findViewById(R.id.iv_left_two);
+            iv_left_two.setOnClickListener(this);
             iv_left_three = itemView.findViewById(R.id.iv_left_three);
+            iv_left_three.setOnClickListener(this);
 
+            this.itemView = itemView;
+            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+            intent = new Intent(context, BigOnClickActivity.class);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.iv_left_one:
+
+                    context.startActivity(intent);
+                    break;
+                case R.id.iv_left_two:
+
+                    context.startActivity(intent);
+                    break;
+                case R.id.iv_left_three:
+
+                    context.startActivity(intent);
+                    break;
+
+            }
         }
     }
     class CarouselFigure extends RecyclerView.ViewHolder{

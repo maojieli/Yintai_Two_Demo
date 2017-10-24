@@ -1,18 +1,27 @@
 package com.jiyun.asus.yintai_two_demo.Fragments.homepage.searchforgoods;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+
+
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.searchforgoods.adapter.SearchAdapter;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.searchforgoods.bean.SearchBean;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.searchforgoods.fragments.Search_One;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.searchforgoods.fragments.Search_Two;
 import com.jiyun.asus.yintai_two_demo.Http.Presenter.MyPresenter;
 import com.jiyun.asus.yintai_two_demo.Http.View.MyView;
 import com.jiyun.asus.yintai_two_demo.Http.tools.BaseParams;
@@ -28,7 +37,7 @@ import java.util.Map;
 import static android.support.coreui.BuildConfig.DEBUG;
 
 
-public class SearchActivity extends AppCompatActivity implements MyView<SearchBean>,TextWatcher{
+public class SearchActivity extends AppCompatActivity implements MyView<SearchBean>, TextWatcher, View.OnClickListener {
 
     private CharSequence temp;//监听前的文本
     private int editStart;//光标开始位置
@@ -38,10 +47,18 @@ public class SearchActivity extends AppCompatActivity implements MyView<SearchBe
     private RelativeLayout relativeLayout;
     private EditText et_search;
     private TextView tv_quxiao;
-    private RecyclerView rv_search;
+
     private MyPresenter myPresenter;
     private ArrayList<SearchBean.DataBean> dataBeen;
     private SearchAdapter searchAdapter;
+
+    private Button bt_one;
+    private Button bt_two;
+    private LinearLayout tb_tab_search;
+    private FrameLayout fl;
+    private Search_One search_one;
+    private Search_Two search_two;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +67,17 @@ public class SearchActivity extends AppCompatActivity implements MyView<SearchBe
         initView();
         myPresenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(this);
-        BaseParams.getParams(httpParams,this);
+        BaseParams.getParams(httpParams, this);
         httpParams.put("ver", "1.2");
         httpParams.put("method", "products.GetSearchPage");
         httpParams.put("pageid", "104001");
         httpParams.put("pageindex", "1");
         HashMap<String, String> stringStringHashMap = Tools.signBusinessParameter(this, (HashMap<String, String>) httpParams);
-        myPresenter.quest(Concat.NETURL, SearchBean.class, stringStringHashMap);
+        myPresenter.quest(stringStringHashMap);
         dataBeen = new ArrayList<>();
-        StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
-        rv_search.setLayoutManager(staggeredGridLayoutManager);
-        searchAdapter = new SearchAdapter(dataBeen);
-        rv_search.setAdapter(searchAdapter);
+
+
+
 
     }
 
@@ -70,7 +86,14 @@ public class SearchActivity extends AppCompatActivity implements MyView<SearchBe
         relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         et_search = (EditText) findViewById(R.id.et_search);
         tv_quxiao = (TextView) findViewById(R.id.tv_quxiao);
-        rv_search = (RecyclerView) findViewById(R.id.rv_search);
+        fl = (FrameLayout) findViewById(R.id.fl);
+
+        bt_one = (Button) findViewById(R.id.bt_one);
+        bt_one.setOnClickListener(this);
+        bt_two = (Button) findViewById(R.id.bt_two);
+        bt_two.setOnClickListener(this);
+        tb_tab_search = (LinearLayout) findViewById(R.id.tb_tab_search);
+        tb_tab_search.setOnClickListener(this);
     }
 
 
@@ -78,13 +101,19 @@ public class SearchActivity extends AppCompatActivity implements MyView<SearchBe
     public void success(SearchBean searchBean) {
         List<SearchBean.DataBean> data = searchBean.getData();
         dataBeen.addAll(data);
-        searchAdapter.notifyDataSetChanged();
+        bt_one.setText(dataBeen.get(0).getTitle());
+        bt_two.setText(dataBeen.get(1).getTitle());
+
+
+
     }
 
     @Override
-    public void defeat(String s) {
+    public void deteat(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
+
+
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -116,5 +145,28 @@ public class SearchActivity extends AppCompatActivity implements MyView<SearchBe
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+
+
+        switch (v.getId()) {
+            case R.id.bt_one:
+                if (search_one==null){
+                    search_one = new Search_One(SearchActivity.this);
+
+                }
+                transaction.replace(R.id.fl,search_one);
+                break;
+            case R.id.bt_two:
+                if (search_two==null){
+                    search_two = new Search_Two(SearchActivity.this);
+                }
+                transaction.replace(R.id.fl,search_two);
+                break;
+        }
+        transaction.commit();
     }
+}
 

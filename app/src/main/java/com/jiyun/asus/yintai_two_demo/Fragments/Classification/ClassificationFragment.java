@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.jiyun.asus.yintai_two_demo.Beans.ClassLeftBean;
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.Adapters.LvAdapter;
@@ -75,7 +76,7 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
         httpParams.put("pageindex", "1");
         httpParams.put("sign", "caee86bb6fabdcfc7a1da855f9932800");
         Map<String, String> stringStringHashMap = Tools.signBusinessParameter(context, (HashMap<String, String>) httpParams);
-        presenter.quest(Concat.NETURL, ClassLeftBean.class, stringStringHashMap);
+        presenter.quest(stringStringHashMap);
         adapter = new LvAdapter(been, context);
         lv_classification.setAdapter(adapter);
         //设置左侧Listview的点击时间
@@ -107,7 +108,8 @@ public class ClassificationFragment extends Fragment implements MyView<ClassLeft
     }
 
     @Override
-    public void defeat(String s) {
-
+    public void deteat(String s) {
+        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
+
 }

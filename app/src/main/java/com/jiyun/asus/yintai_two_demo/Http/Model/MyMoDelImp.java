@@ -27,7 +27,7 @@ import static android.R.attr.type;
 
 public class MyMoDelImp implements MyModel {
     @Override
-    public void post(String path, final Type type, Map<String, String> map, final CallBack callBack) {
+    public void post( Map<String, String> map, final CallBack callBack) {
 
         Apiservice apiservice = MyRetrofit.getInstance().create(Apiservice.class);
         //创建的这个对象就是RxJava的被观察者
@@ -50,10 +50,12 @@ public class MyMoDelImp implements MyModel {
                     public void onNext(ResponseBody responseBody) {
                         try {
                             String string = responseBody.string();
-
+                            Type[] genericInterfaces = callBack.getClass().getGenericInterfaces();
+                            Type[] actualTypeArguments = ((ParameterizedType) genericInterfaces[0]).getActualTypeArguments();
+                            Type actualTypeArgument = actualTypeArguments[0];
                             Gson gson = new Gson();
 
-                            Object o = gson.fromJson(string, type);
+                            Object o = gson.fromJson(string, actualTypeArgument);
                             callBack.success(o);
                         } catch (IOException e) {
                             e.printStackTrace();
