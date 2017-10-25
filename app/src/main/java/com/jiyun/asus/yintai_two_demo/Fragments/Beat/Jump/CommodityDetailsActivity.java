@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
 //  holer.tv_list_price_after.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
 //商品详情页面+1
 public class CommodityDetailsActivity extends AppCompatActivity implements MyView<CommodityBeam>, View.OnClickListener {
@@ -90,6 +91,7 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
         setContentView(R.layout.activity_commodity_details);
         itemcode = getIntent().getStringExtra("itemcode");
         int tag = getIntent().getIntExtra("tag", 0);
+        final int index = getIntent().getIntExtra("index", 0);
         switch (tag) {
             case 1:
                 LoadData();
@@ -131,10 +133,11 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
         promotion_body.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                 Intent intent=new Intent(CommodityDetailsActivity.this, BigOnClickActivity.class);
-                   intent.putExtra("tag",2);
+                Intent intent = new Intent(CommodityDetailsActivity.this, BigOnClickActivity.class);
+                intent.putExtra("tag", 2);
                 // "data" -> "{"query_string":"P=27006","displaycount":"30","order_type":"5","page_index":"2","keyword":""}"
-
+                // "data" -> "{"query_string":"N=50000111","displaycount":"30","order_type":"5","page_index":"1","keyword":""}"
+                intent.putExtra("index", index);
                 startActivity(intent);
                 return false;
             }
