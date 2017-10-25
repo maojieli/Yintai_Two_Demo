@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<TextView
+    android:id="@+id/tv_one"
+    android:background="#fff"
+
+    android:layout_width="match_parent"
+    android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:gravity="center_vertical"
+        android:text="     全部"
+        android:id="@+id/tv_two"
+        android:background="#fff"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_three"
+        android:background="#fff"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_four"
+        android:background="#fff"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_five"
+        android:background="#fff"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_six"
+        android:background="#fff"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_seven"
+        android:background="#fff"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_eight"
+        android:background="#fff"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_nine"
+        android:background="#fff"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_ten"
+        android:background="#fff"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:background="#ddd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+</LinearLayout>

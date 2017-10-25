@@ -17,5 +17,8 @@
         <item name="mi_indicatorRadius">4dp</item><!--半径-->
         <item name="mi_indicatorColor">#009688</item>  <!--指示点被选中的颜色-->
     </style>
-
+    <style name="pop_main">
+        <item name="android:windowEnterAnimation">@anim/pop_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_out</item>
+    </style>
 </resources>

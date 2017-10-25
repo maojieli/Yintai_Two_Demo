@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context="com.jiyun.asus.yintai_two_demo.Fragments.homepage.XiangQingActivity">
+    tools:context="com.jiyun.asus.yintai_two_demo.Fragments.homepage.detailsshow.XiangQingActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

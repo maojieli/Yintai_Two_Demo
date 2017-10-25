@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -208,11 +210,11 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
         if (holder instanceof TwoImgAverage_One) {
-            TwoImgAverage_One holder1 = (TwoImgAverage_One) holder;
-            holder1.itemView.setTag(BeanArrayList.get(position-1).getItems());
-            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(holder1.iv_one);
 
-            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(1).getImgurl()).into(holder1.iv_two);
+            ((TwoImgAverage_One) holder).itemView.setTag(BeanArrayList.get(position-1).getItems());
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(((TwoImgAverage_One) holder).iv_one);
+
+            Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(1).getImgurl()).into(((TwoImgAverage_One) holder).iv_two);
 
         }
 
@@ -234,6 +236,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (holder instanceof ThreeImgAbreast){
             ThreeImgAbreast holder1 = (ThreeImgAbreast) holder;
             holder1.itemView.setTag(BeanArrayList.get(position-1).getItems());
+
             Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(0).getImgurl()).into(((ThreeImgAbreast) holder).iv_one_three);
             Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(1).getImgurl()).into(((ThreeImgAbreast) holder).iv_two_three);
             Glide.with(context).load(BeanArrayList.get(position-1).getItems().get(2).getImgurl()).into(((ThreeImgAbreast) holder).iv_three_three);
@@ -408,23 +411,38 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             switch(v.getId()){
                 case R.id.iv_items_one:
                     items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
-                    JumpActivityUtils.jump(context,items.get(0).getJumpurl());
+
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(items.get(0).getJumpurl());
+
                     break;
                 case R.id.iv_items_two:
                     items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
-                    JumpActivityUtils.jump(context,items.get(1).getJumpurl());
+
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(items.get(1).getJumpurl());
+
                     break;
                 case R.id.iv_items_three:
                     items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
-                    JumpActivityUtils.jump(context,items.get(2).getJumpurl());
+
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(items.get(2).getJumpurl());
+
                     break;
                 case R.id.iv_items_four:
                     items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
-                    JumpActivityUtils.jump(context,items.get(3).getJumpurl());
+
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(items.get(3).getJumpurl());
+
                     break;
                 case R.id.iv_items_five:
                     items = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
-                    JumpActivityUtils.jump(context,items.get(4).getJumpurl());
+
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(items.get(4).getJumpurl());
+
                     break;
             }
         }
@@ -450,19 +468,21 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     class ProductSingleRow extends RecyclerView.ViewHolder{
 
         private  RecyclerView rl_pro_title;
-        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+        private  List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
         private final View itemView;
 
         public ProductSingleRow(View itemView) {
             super(itemView);
             rl_pro_title = itemView.findViewById(R.id.rl_pro_title);
             this.itemView = itemView;
-            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
-            /*productSingleRowAdapter.setOnClick(new ProductSingleRowAdapter.OnClick() {
+
+          /*  productSingleRowAdapter.setOnClick(new ProductSingleRowAdapter.OnClick() {
                 @Override
                 public void onclick(int position) {
-                    //跳转自己的activity
-                    JumpActivityUtils.jump(context,itemViewTag.get(position).getJumpurl());
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(position).getJumpurl());
+                    JumpActivityUtils.init(context);
                 }
             });*/
         }
@@ -482,8 +502,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private  ImageView iv_one;
         private  ImageView iv_two;
         private final View itemView;
-        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
-        private final Intent intent;
+        private List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+
 
         public TwoImgAverage_One(View itemView) {
             super(itemView);
@@ -492,21 +512,34 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             iv_two = itemView.findViewById(R.id.iv_two);
             iv_two.setOnClickListener(this);
             this.itemView = itemView;
-            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
-            intent = new Intent(context, BigOnClickActivity.class);
+
+
         }
 
         @Override
         public void onClick(View v) {
+
             switch (v.getId()){
                 case R.id.iv_one:
 
-                    context.startActivity(intent);
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) this.itemView.getTag();
+
+                    Log.e("TAG",itemViewTag.toString());
+
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(0).getJumpurl());
+
+
+
                     break;
                 case R.id.iv_two:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) this.itemView.getTag();
 
-                    context.startActivity(intent);
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(this.itemViewTag.get(1).getJumpurl());
+
+
                     break;
             }
         }
@@ -515,14 +548,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     class OneImg extends RecyclerView.ViewHolder implements View.OnClickListener {
         private  ImageView iv_five;
         private final View itemView;
-        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+        private  List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
 
         public OneImg(View itemView) {
             super(itemView);
             iv_five = itemView.findViewById(R.id.iv_five);
             iv_five.setOnClickListener(this);
            this. itemView = itemView;
-            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+
 
         }
 
@@ -530,8 +563,11 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.iv_five:
-                    Intent intent = new Intent(context, BigOnClickActivity.class);
-                    context.startActivity(intent);
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(0).getJumpurl());
+
                     break;
             }
         }
@@ -542,8 +578,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private  ImageView iv_two_left;
         private  ImageView iv_three_left;
         private final View itemView;
-        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
-        private final Intent intent;
+        private  List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
 
         public ThreeImgLeftOne(View itemView) {
             super(itemView);
@@ -555,8 +590,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             iv_three_left.setOnClickListener(this);
 
             this.itemView = itemView;
-            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
-            intent = new Intent(context, BigOnClickActivity.class);
+
+
 
         }
 
@@ -564,16 +599,22 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.iv_one_left:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(0).getJumpurl());
 
-                    context.startActivity(intent);
                     break;
                 case R.id.iv_two_left:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(1).getJumpurl());
 
-                    context.startActivity(intent);
                     break;
                 case R.id.iv_three_left:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(3).getJumpurl());
 
-                    context.startActivity(intent);
                     break;
 
             }
@@ -585,8 +626,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private  ImageView iv_two_three;
         private  ImageView iv_three_three;
         private final View itemView;
-        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
-        private final Intent intent;
+        private  List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+
 
         public ThreeImgAbreast(View itemView) {
             super(itemView);
@@ -597,24 +638,31 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             iv_three_three = itemView.findViewById(R.id.iv_three_three);
             iv_three_three.setOnClickListener(this);
             this.itemView = itemView;
-            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
-            intent = new Intent(context, BigOnClickActivity.class);
         }
 
         @Override
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.iv_one_three:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
-                    context.startActivity(intent);
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(0).getJumpurl());
+
                     break;
                 case R.id.iv_two_three:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
-                    context.startActivity(intent);
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(1).getJumpurl());
+
                     break;
                 case R.id.iv_three_three:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
-                    context.startActivity(intent);
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(2).getJumpurl());
+
                     break;
 
             }
@@ -626,8 +674,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private  ImageView iv_left_two;
         private  ImageView iv_left_three;
         private final View itemView;
-        private final List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
-        private final Intent intent;
+        private  List<HomeBean.DataBean.TemplatelistBean.ItemsBean> itemViewTag;
+
 
         public ThreeImgLeftTwo(View itemView) {
             super(itemView);
@@ -639,24 +687,32 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             iv_left_three.setOnClickListener(this);
 
             this.itemView = itemView;
-            itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
-            intent = new Intent(context, BigOnClickActivity.class);
+
         }
 
         @Override
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.iv_left_one:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
-                    context.startActivity(intent);
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(0).getJumpurl());
+
                     break;
                 case R.id.iv_left_two:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
-                    context.startActivity(intent);
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(1).getJumpurl());
+
                     break;
                 case R.id.iv_left_three:
+                    itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
-                    context.startActivity(intent);
+                    JumpActivityUtils.init(context);
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(3).getJumpurl());
+
                     break;
 
             }

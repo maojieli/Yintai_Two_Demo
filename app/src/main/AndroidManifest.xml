@@ -68,7 +68,6 @@
         <activity android:name=".OverallActivity" />
         <activity android:name=".LogInActivity" />
         <activity android:name=".Fragments.homepage.searchforgoods.SearchActivity" />
-        <activity android:name=".Fragments.homepage.detailsshow.DetailsActivity" />
         <activity android:name=".Fragments.homepage.webview.WebActivity" />
         <activity android:name=".Fragments.homepage.moldbabymore.MoldbabymoreActivity" />
         <activity
@@ -108,7 +107,7 @@
             android:value="59e9f6a5310c936fa1000bf1" />
 
         <activity android:name=".Fragments.homepage.bigonclick.BigOnClickActivity" />
-        <activity android:name=".Fragments.homepage.XiangQingActivity"></activity>
+        <activity android:name=".Fragments.homepage.detailsshow.XiangQingActivity"></activity>
     </application>
 
 </manifest>

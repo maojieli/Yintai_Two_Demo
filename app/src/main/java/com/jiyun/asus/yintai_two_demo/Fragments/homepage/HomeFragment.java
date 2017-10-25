@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -60,8 +61,10 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View inflate = inflater.inflate(R.layout.home, container, false);
         initView(inflate);
+
         myPresenter = new MyPresenter(this);
 
         Map<String, String> httpParams = Tools.getHttpParams(getContext());
@@ -99,10 +102,15 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
 //                Log.e("TAG",BeanArrayList.get(position).getItems().get(num).getJumpurl());
                if (num==100){
                    String jumpurl = list.get(position).getJumpurl();
-                   JumpActivityUtils.jump(getContext(),jumpurl);
+                   Log.e("TAG",jumpurl);
+                   JumpActivityUtils.init(getContext());
+                   JumpActivityUtils.analyzeJump(jumpurl);
+
                }else {
                    String jumpurl = BeanArrayList.get(position).getItems().get(num).getJumpurl();
-                   JumpActivityUtils.jump(getContext(),jumpurl);
+                   JumpActivityUtils.init(getContext());
+                   JumpActivityUtils.analyzeJump(jumpurl);
+
                }
 
             }
@@ -159,7 +167,9 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_scan:
+
                 Intent intent = new Intent(getActivity(), CaptureActivity.class);
+
                 startActivityForResult(intent, 0);
                 break;
             case R.id.rl:

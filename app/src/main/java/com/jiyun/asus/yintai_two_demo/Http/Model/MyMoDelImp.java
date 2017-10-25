@@ -43,6 +43,7 @@ public class MyMoDelImp implements MyModel {
 
                     @Override
                     public void onError(Throwable e) {
+
                         callBack.deteat(e.toString());
                     }
 

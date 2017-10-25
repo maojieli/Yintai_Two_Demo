@@ -1,4 +1,4 @@
-package com.jiyun.asus.yintai_two_demo.Fragments.homepage;
+package com.jiyun.asus.yintai_two_demo.Fragments.homepage.detailsshow;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
