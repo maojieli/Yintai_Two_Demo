@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.jiyun.asus.yintai_two_demo.GRDAO.CarDao;
+import com.jiyun.asus.yintai_two_demo.GRDAO.DaoManager;
 import com.jiyun.asus.yintai_two_demo.LogInActivity;
 import com.jiyun.asus.yintai_two_demo.R;
 import com.umeng.socialize.UMAuthListener;
@@ -29,6 +31,9 @@ public class MyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.myfragment, container, false);
+
+
+
         imageView = inflate.findViewById(R.id.img_dengluzhuce);
         View v= inflate.findViewById(R.id.disanfangdenglu);
         imageView.setOnClickListener(new View.OnClickListener() {

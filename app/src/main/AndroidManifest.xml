@@ -105,7 +105,7 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="59e9f6a5310c936fa1000bf1" />
-
+<activity android:name=".Fragments.Beat.Jump.JumpBeatActivity"></activity>
         <activity android:name=".Fragments.homepage.bigonclick.BigOnClickActivity" />
         <activity android:name=".Fragments.homepage.detailsshow.XiangQingActivity"></activity>
         <activity android:name=".Fragments.Beat.Jump.CommodityDetailsActivity"></activity>

@@ -12,9 +12,10 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import
-        com.jiyun.asus.yintai_two_demo.Adapters.ShoppingCartAdapter;
+import com.jiyun.asus.yintai_two_demo.Adapters.ShoppingCartAdapter;
 import com.jiyun.asus.yintai_two_demo.Beans.ShoppingCartBean;
+import com.jiyun.asus.yintai_two_demo.GRDAO.CarDao;
+import com.jiyun.asus.yintai_two_demo.GRDAO.DaoManager;
 import com.jiyun.asus.yintai_two_demo.R;
 
 import java.util.ArrayList;
@@ -52,11 +53,10 @@ public class CatFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle
                                      savedInstanceState) {
-        View view = inflater.inflate
-                (R.layout.layout_shopping_cart_activity, null);
-
-        list_shopping_cart = view.findViewById
-                (R.id.list_shopping_cart);
+        View view = inflater.inflate(R.layout.layout_shopping_cart_activity, null);
+        CarDao cardao = new CarDao(null,"名称","介绍",60,"tup");
+        DaoManager.getInstance(getContext()).getDao().insert(cardao);
+        list_shopping_cart = view.findViewById(R.id.list_shopping_cart);
 //        list_shopping_cart.setOnItemClickListener(this);
         ck_all = view.findViewById(R.id.ck_all);
         ck_all.setOnClickListener(this);
@@ -69,31 +69,35 @@ public class CatFragment extends Fragment implements
         tv_edit = view.findViewById(R.id.tv_edit);
         tv_edit.setOnClickListener(this);
         kct = view.findViewById(R.id.kcy);
-        shoppingCartAdapter = new ShoppingCartAdapter
-                (getContext());
+
+
+
+        shoppingCartAdapter = new ShoppingCartAdapter(getContext());
         shoppingCartAdapter.setCheckInterface(this);
         shoppingCartAdapter.setModifyCountInterface(this);
         list_shopping_cart.setAdapter(shoppingCartAdapter);
-        shoppingCartAdapter.setShoppingCartBeanList
-                (shoppingCartBeanList);
+        shoppingCartAdapter.setShoppingCartBeanList(shoppingCartBeanList);
         initData();
 
 
         return view;
     }
 
-    protected void initData() {
 
-        for (int i = 0; i < 6; i++) {
+
+    protected void initData() {
+        List<CarDao> list = DaoManager.getInstance(getContext()).getDao().queryBuilder().list();
+        for (int i = 0; i < list.size(); i++) {
             shoppingCartBean = new ShoppingCartBean();
-            shoppingCartBean.setShoppingName("高端大气上档次的 T桖");
-            shoppingCartBean.setFabric("纯棉");
-            shoppingCartBean.setDressSize(48);
-            shoppingCartBean.setPantsSize(65);
-            shoppingCartBean.setPrice(60);
-            shoppingCartBean.setCount(2);
+            shoppingCartBean.setShoppingName(list.get(i).getShopname());
+            shoppingCartBean.setFabric(list.get(i).getShopcontent());
+            shoppingCartBean.setPrice(list.get(i).getShopprice());
+            shoppingCartBean.setCount(1);
             shoppingCartBeanList.add(shoppingCartBean);
         }
+
+
+
     }
     @Override
     public void onClick(View view) {

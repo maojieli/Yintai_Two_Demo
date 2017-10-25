@@ -11,8 +11,6 @@ public class ShoppingCartBean {
     private String imageUrl;
     private String shoppingName;
     private String fabric;
-    private int dressSize;
-    private int pantsSize;
     private double price;
     private int num;
     public boolean isChoosed;
@@ -22,13 +20,11 @@ public class ShoppingCartBean {
     public ShoppingCartBean() {
     }
 
-    public ShoppingCartBean(int id, String shoppingName, String fabric, int dressSize,
-                            int pantsSize, double price, int num, int count) {
+    public ShoppingCartBean(int id, String shoppingName, String fabric, double price, int num, int count) {
         this.id = id;
         this.shoppingName = shoppingName;
         this.fabric = fabric;
-        this.dressSize = dressSize;
-        this.pantsSize = pantsSize;
+
         this.price = price;
         this.num = num;
         this.count = count;
@@ -82,21 +78,6 @@ public class ShoppingCartBean {
         this.fabric = fabric;
     }
 
-    public int getDressSize() {
-        return dressSize;
-    }
-
-    public void setDressSize(int dressSize) {
-        this.dressSize = dressSize;
-    }
-
-    public int getPantsSize() {
-        return pantsSize;
-    }
-
-    public void setPantsSize(int pantsSize) {
-        this.pantsSize = pantsSize;
-    }
 
     public double getPrice() {
         return price;
