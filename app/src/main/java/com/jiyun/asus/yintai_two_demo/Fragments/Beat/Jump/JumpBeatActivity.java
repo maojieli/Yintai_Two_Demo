@@ -38,8 +38,6 @@ public class JumpBeatActivity extends AppCompatActivity implements View.OnClickL
 
     private ImageView iv_jump_back;
     private TextView tv_jump_top_name;
-
-    private FrameLayout cvp_jump_beat;
     private FragmentTransaction fragmentTransaction;
     private SalesVolume salesVolume;
     private PriceFragment priceFragment;
