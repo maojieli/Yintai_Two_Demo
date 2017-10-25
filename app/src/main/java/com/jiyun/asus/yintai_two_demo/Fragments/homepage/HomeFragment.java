@@ -25,6 +25,7 @@ import com.jiyun.asus.yintai_two_demo.Http.Presenter.MyPresenter;
 import com.jiyun.asus.yintai_two_demo.Http.View.MyView;
 import com.jiyun.asus.yintai_two_demo.Http.tools.BaseParams;
 import com.jiyun.asus.yintai_two_demo.Http.tools.Tools;
+import com.jiyun.asus.yintai_two_demo.OverallActivity;
 import com.jiyun.asus.yintai_two_demo.R;
 import com.recker.flybanner.FlyBanner;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
@@ -161,6 +162,7 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
         relativeLayout1.setOnClickListener(this);
         swr = (SwipeRefreshLayout) inflate.findViewById(R.id.swr);
 
+
     }
 
     @Override
@@ -175,6 +177,7 @@ public class HomeFragment extends Fragment implements MyView<HomeBean>, View.OnC
             case R.id.rl:
                 startActivity(new Intent(getActivity(), SearchActivity.class));
                 break;
+
         }
     }
 

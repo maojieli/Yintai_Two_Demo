@@ -711,7 +711,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     itemViewTag = (List<HomeBean.DataBean.TemplatelistBean.ItemsBean>) itemView.getTag();
 
                     JumpActivityUtils.init(context);
-                    JumpActivityUtils.analyzeJump(itemViewTag.get(3).getJumpurl());
+                    JumpActivityUtils.analyzeJump(itemViewTag.get(2).getJumpurl());
 
                     break;
 

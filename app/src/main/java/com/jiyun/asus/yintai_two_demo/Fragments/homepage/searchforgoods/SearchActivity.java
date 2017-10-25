@@ -2,6 +2,7 @@ package com.jiyun.asus.yintai_two_demo.Fragments.homepage.searchforgoods;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -27,6 +28,7 @@ import com.jiyun.asus.yintai_two_demo.Http.View.MyView;
 import com.jiyun.asus.yintai_two_demo.Http.tools.BaseParams;
 import com.jiyun.asus.yintai_two_demo.Http.tools.Concat;
 import com.jiyun.asus.yintai_two_demo.Http.tools.Tools;
+import com.jiyun.asus.yintai_two_demo.OverallActivity;
 import com.jiyun.asus.yintai_two_demo.R;
 
 import java.util.ArrayList;
@@ -86,6 +88,7 @@ public class SearchActivity extends AppCompatActivity implements MyView<SearchBe
         relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         et_search = (EditText) findViewById(R.id.et_search);
         tv_quxiao = (TextView) findViewById(R.id.tv_quxiao);
+        tv_quxiao.setOnClickListener(this);
         fl = (FrameLayout) findViewById(R.id.fl);
 
         bt_one = (Button) findViewById(R.id.bt_one);
@@ -164,6 +167,13 @@ public class SearchActivity extends AppCompatActivity implements MyView<SearchBe
                     search_two = new Search_Two(SearchActivity.this);
                 }
                 transaction.replace(R.id.fl,search_two);
+                break;
+            case R.id.tv_quxiao:
+
+                Intent intent2 = new Intent(SearchActivity.this, OverallActivity.class);
+                intent2.putExtra("num",1);
+                startActivity(intent2);
+
                 break;
         }
         transaction.commit();

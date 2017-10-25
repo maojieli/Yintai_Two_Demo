@@ -22,6 +22,17 @@ public class BigOnClickBean {
     private int statusCode;
     private String userId;
 
+    @Override
+    public String toString() {
+        return "BigOnClickBean{" +
+                "data=" + data +
+                ", description='" + description + '\'' +
+                ", isSuccessful=" + isSuccessful +
+                ", statusCode=" + statusCode +
+                ", userId='" + userId + '\'' +
+                '}';
+    }
+
     public DataBean getData() {
         return data;
     }

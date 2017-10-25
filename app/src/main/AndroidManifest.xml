@@ -108,6 +108,7 @@
 
         <activity android:name=".Fragments.homepage.bigonclick.BigOnClickActivity" />
         <activity android:name=".Fragments.homepage.detailsshow.XiangQingActivity"></activity>
+        <activity android:name=".Fragments.Beat.Jump.CommodityDetailsActivity"></activity>
     </application>
 
 </manifest>
