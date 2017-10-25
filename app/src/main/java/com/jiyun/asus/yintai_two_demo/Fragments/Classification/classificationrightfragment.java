@@ -119,6 +119,8 @@ public class classificationrightfragment extends Fragment implements MyView<Clas
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
 
+
+
     @Override
     public void onDestroy() {
 

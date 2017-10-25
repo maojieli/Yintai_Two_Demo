@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <!-- 商品轮播图相关 -->
+
+    <com.recker.flybanner.FlyBanner
+
+        android:id="@+id/banner_top_body"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        ></com.recker.flybanner.FlyBanner>
+    <!-- 商品标题/收藏布局 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/white">
+
+        <!-- 收藏/取消收藏 -->
+
+        <LinearLayout
+            android:id="@+id/favority_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/favority_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:src="@mipmap/favority_normal_productdetail"/>
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/line_v"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/favority_right"
+            android:background="#d5d5d5"/>
+        <!-- 商品标题/名称 -->
+        <TextView
+            android:id="@+id/tv_name_left_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9sp"
+            android:layout_marginRight="20sp"
+            android:layout_toLeftOf="@+id/line_v"
+            android:ellipsize="end"
+            android:lineSpacingExtra="7dp"
+            android:lines="2"
+            android:paddingBottom="7dp"
+            android:textColor="#333333"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+    <!-- 商品价格布局 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="￥"
+            android:textColor="#e5004f"
+            android:textSize="30sp"/>
+
+        <!-- 银泰价 -->
+
+        <TextView
+            android:id="@+id/tv_price_yintai_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1029.0"
+            android:textColor="#e5004f"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
+            android:text="￥"
+            android:textColor="#999999"
+            android:textSize="15sp"/>
+
+        <!-- 市场价 -->
+
+        <TextView
+            android:id="@+id/tv_price_market_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2229.0"
+            android:textColor="#999999"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+    <!-- 商品品牌/商品编码 布局 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:background="@color/white"
+        android:paddingBottom="12dp"
+        android:paddingTop="15dp">
+
+        <!-- 商品品牌 -->
+
+        <TextView
+            android:id="@+id/tv_brand_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="9dp"
+            android:text="品牌: DG"
+            android:textColor="#999999"
+            android:textSize="18sp"/>
+
+        <!-- 商品编码 -->
+
+        <TextView
+            android:id="@+id/tv_code_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="9dp"
+            android:text="商品编号:20-475-7939"
+            android:textColor="#999999"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <!-- 促销相关布局 -->
+
+    <LinearLayout
+        android:id="@+id/promotion_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:weightSum="1">
+
+        <View
+            android:id="@+id/promotion_top_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:background="#d5d5d5"/>
+
+        <com.jiyun.asus.yintai_two_demo.Utils.ScrollViewExpandableListView
+            android:id="@+id/promotion_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="3.17"
+            android:cacheColorHint="@color/transparent"
+            android:divider="@color/transparent"
+            android:dividerHeight="0dp"/>
+
+        <View
+            android:id="@+id/promotion_bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:background="#d5d5d5"/>
+    </LinearLayout>
+
+    <!-- 选择 颜色 尺寸 容量  布局 -->
+
+    <RelativeLayout
+        android:id="@+id/choise_color_size_quantity_body"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/productdetail_property_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="9dp"
+            android:text="请选择 颜色 尺寸 容量"
+            android:textColor="#666666"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/rignt_arrow_icon_product_detail"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eeeeee"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="继续拖动，查看图文详情\n建议wifi环境中查看"
+        android:textColor="#aaaaaa"
+        android:textSize="16sp"/>
+
+</LinearLayout>

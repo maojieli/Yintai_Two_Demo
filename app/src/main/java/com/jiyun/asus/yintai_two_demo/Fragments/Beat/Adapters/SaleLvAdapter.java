@@ -21,10 +21,11 @@ import java.util.List;
 public class SaleLvAdapter extends BaseAdapter {
     private List<BeatBean.DataBean.ActivityinfoBean.ActivitylistBean> activitylistBeen;
     private Context context;
-
+    private int mScreeWidth;
     public SaleLvAdapter(List<BeatBean.DataBean.ActivityinfoBean.ActivitylistBean> activitylistBeen, Context context) {
         this.activitylistBeen = activitylistBeen;
         this.context = context;
+        mScreeWidth = context.getResources().getDisplayMetrics().widthPixels;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class SaleLvAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Glide.with(context).load(activitylistBeen.get(position).getLogo()).into(holder.iv_commendlvitem);
+        Glide.with(context).load(activitylistBeen.get(position).getLogo()).override(mScreeWidth / 3, mScreeWidth / 3).into(holder.iv_commendlvitem);
         holder.tv_top_commendlv.setText(activitylistBeen.get(position).getTitle());
         holder.tv_center_commendlv.setText(activitylistBeen.get(position).getBrandname());
         return convertView;
