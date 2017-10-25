@@ -16,12 +16,12 @@
 
     <ImageView
         android:id="@+id/iv_show_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/ck_chose"
-        android:background="@mipmap/ic_launcher" />
+         />
 
     <LinearLayout
         android:layout_width="wrap_content"

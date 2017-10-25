@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jiyun.asus.yintai_two_demo.Beans.ShoppingCartBean;
 import com.jiyun.asus.yintai_two_demo.R;
 
@@ -101,6 +102,8 @@ public class ShoppingCartAdapter extends BaseAdapter {
         holder.ck_chose.setChecked(shoppingCartBean.isChoosed());
         holder.tv_show_num.setText(shoppingCartBean.getCount() + "");
         holder.tv_num.setText("X" + shoppingCartBean.getCount());
+
+        Glide.with(context).load(shoppingCartBean.getImageUrl()).into(  holder.iv_show_pic);
 
         //单选框按钮
         holder.ck_chose.setOnClickListener(

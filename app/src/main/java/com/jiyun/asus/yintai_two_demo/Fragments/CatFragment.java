@@ -92,6 +92,7 @@ public class CatFragment extends Fragment implements
             shoppingCartBean.setFabric(list.get(i).getShopcontent());
             shoppingCartBean.setPrice(list.get(i).getShopprice());
             shoppingCartBean.setCount(1);
+            shoppingCartBean.setImageUrl(list.get(i).getShopimg());
             shoppingCartBeanList.add(shoppingCartBean);
         }
 
