@@ -77,8 +77,9 @@ public class SalesVolume extends Fragment implements MyView<MeiZhuangBean>, AbsL
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String itemcode = beanList.get(position).getItemcode();
-                Intent intent=new Intent(context, CommodityDetailsActivity.class);
-                intent.putExtra("itemcode",itemcode);
+                Intent intent = new Intent(context, CommodityDetailsActivity.class);
+                intent.putExtra("itemcode", itemcode);
+                intent.putExtra("tag", 2);
                 context.startActivity(intent);
             }
         });
@@ -126,9 +127,9 @@ public class SalesVolume extends Fragment implements MyView<MeiZhuangBean>, AbsL
 
         if (last_index == total_index && (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE)) {
 
-            if (PAGENUM++<=5){
+            if (PAGENUM++ <= 5) {
                 jiazai(PAGENUM++);
-            }else {
+            } else {
                 Toast.makeText(context, "已经到底了", Toast.LENGTH_SHORT).show();
 
             }

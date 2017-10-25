@@ -80,11 +80,23 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
     private RelativeLayout content_rl;
     private View top_empty_v;
     private RelativeLayout rl_cat_popu;
-    int a=0;
+    int a = 0;
+    private String itemcode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commodity_details);
+        itemcode = getIntent().getStringExtra("itemcode");
+        int tag = getIntent().getIntExtra("tag", 0);
+        switch (tag) {
+            case 1:
+                LoadData();
+                break;
+            case 2:
+                LoadData();
+                break;
+        }
         initView();
         LoadData();
         Map<String, List<CommodityBeam.DataBean.CurrentBean.PromotionsBean>> dataset = new HashMap<>();
@@ -120,7 +132,7 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
     }
 
     private void LoadData() {
-        String itemcode = getIntent().getStringExtra("itemcode");
+
         MyPresenter presenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(CommodityDetailsActivity.this);
         BaseParams.getParams(httpParams, CommodityDetailsActivity.this);
@@ -173,7 +185,7 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
 
 
         }
-         CommodityGvAdapter adapter=new CommodityGvAdapter(colorSet,CommodityDetailsActivity.this);
+        CommodityGvAdapter adapter = new CommodityGvAdapter(colorSet, CommodityDetailsActivity.this);
         pop_color_gv.setAdapter(adapter);
         pop_choice_size_tv.setText("尺码:" + commodityBeam.getData().getCurrent().getSku_property().get(1).getValue());
         pop_choice_color_tv.setText("颜色分类:" + commodityBeam.getData().getCurrent().getSku_property().get(0).getValue());
@@ -304,15 +316,15 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
                 int i = Integer.parseInt(s);
                 int i1 = i--;
 
-                if (i1<=0){
-                    pop_quantity_value_tv.setText(0+"");
-                }else {
-                    pop_quantity_value_tv.setText(i1+"");
+                if (i1 <= 0) {
+                    pop_quantity_value_tv.setText(0 + "");
+                } else {
+                    pop_quantity_value_tv.setText(i1 + "");
                 }
                 break;
             case R.id.pop_quantity_plus_iv:
                 a++;
-                pop_quantity_value_tv.setText(a+"");
+                pop_quantity_value_tv.setText(a + "");
                 break;
         }
     }

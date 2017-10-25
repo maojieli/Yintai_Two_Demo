@@ -88,7 +88,6 @@ public class ReductionFragment extends Fragment implements MyView<MeiZhuangBean>
         List<MeiZhuangBean.DataBean.ProductListBean> product_list = meiZhuangBean.getData().getProduct_list();
 
         beanList.addAll(product_list);
-
         adapter.notifyDataSetChanged();
     }
 
