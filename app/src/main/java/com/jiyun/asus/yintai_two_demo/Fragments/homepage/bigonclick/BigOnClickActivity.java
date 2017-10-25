@@ -109,27 +109,11 @@ public class BigOnClickActivity extends AppCompatActivity implements MyView<BigO
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*
-*       .putExtra("jumpUrl", jumpUrl)
-                            .putExtra("title", title)
-                            .putExtra("searchCondition", searchCondition)
-                            .putExtra("showtype", showtype);
-* */
+
         setContentView(R.layout.big);
         initView();
        getStringStringMap(5);
-/*
 
-
-//修改参数
-        "timereq" -> "20171024083728"
-        "wantype" -> "wifi"
-        "ver" -> "2.1"
-//提交参数
-        "data" -> "{"query_string":"N=10001889","displaycount":"30","order_type":"5","page_index":"1","keyword":""}"
-
-        "method" -> "products.getlist"
- */
 
 
 
