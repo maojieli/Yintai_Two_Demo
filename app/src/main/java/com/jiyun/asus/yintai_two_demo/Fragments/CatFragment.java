@@ -54,8 +54,7 @@ public class CatFragment extends Fragment implements
                              @Nullable ViewGroup container, @Nullable Bundle
                                      savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_shopping_cart_activity, null);
-        CarDao cardao = new CarDao(null,"名称","介绍",60,"tup");
-        DaoManager.getInstance(getContext()).getDao().insert(cardao);
+
         list_shopping_cart = view.findViewById(R.id.list_shopping_cart);
 //        list_shopping_cart.setOnItemClickListener(this);
         ck_all = view.findViewById(R.id.ck_all);
