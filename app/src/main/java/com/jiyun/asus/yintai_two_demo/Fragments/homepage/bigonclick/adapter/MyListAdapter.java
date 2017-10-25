@@ -1,6 +1,7 @@
 package com.jiyun.asus.yintai_two_demo.Fragments.homepage.bigonclick.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.StrikethroughSpan;
@@ -64,10 +65,7 @@ public class MyListAdapter extends BaseAdapter {
 
 
         holer.tv_list_price_after.setText(product_list.get(position).getPrice()+"");
-        Spannable spanStrikethrough = new SpannableString("显示删除线样式");
-        StrikethroughSpan stSpan = new StrikethroughSpan();  //设置删除线样式
-        spanStrikethrough.setSpan(stSpan, 2, 5, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-        holer.tv_list_price_after.setText(spanStrikethrough);
+        holer.tv_list_price_after.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
         holer.tv_price_list_new.setText(product_list.get(position).getPromotion_price()+"");
         return convertView;
     }

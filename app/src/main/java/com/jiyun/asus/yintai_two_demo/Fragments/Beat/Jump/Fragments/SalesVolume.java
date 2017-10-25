@@ -53,6 +53,7 @@ public class SalesVolume extends Fragment implements MyView<MeiZhuangBean>, AbsL
     private ListView lv_jump_fragment;
     private int last_index;
     private int total_index;
+    private int index;
 
     public SalesVolume(JumpBeatActivity jumpBeatActivity) {
         this.context = jumpBeatActivity;
@@ -61,9 +62,9 @@ public class SalesVolume extends Fragment implements MyView<MeiZhuangBean>, AbsL
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
+        index = (int) getArguments().get("id");
         View view = inflater.inflate(R.layout.jumpfragment, container, false);
 
         initView(view);
@@ -80,6 +81,7 @@ public class SalesVolume extends Fragment implements MyView<MeiZhuangBean>, AbsL
                 Intent intent = new Intent(context, CommodityDetailsActivity.class);
                 intent.putExtra("itemcode", itemcode);
                 intent.putExtra("tag", 2);
+                intent.putExtra("index", index);
                 context.startActivity(intent);
             }
         });
@@ -88,7 +90,7 @@ public class SalesVolume extends Fragment implements MyView<MeiZhuangBean>, AbsL
     }
 
     private void jiazai(int pagenum) {
-        int index = (int) getArguments().get("id");
+
         MyPresenter presenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(context);
         BaseParams.getParams(httpParams, context);

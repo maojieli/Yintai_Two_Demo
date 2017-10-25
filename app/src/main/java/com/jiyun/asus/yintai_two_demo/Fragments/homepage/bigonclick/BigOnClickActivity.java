@@ -100,10 +100,23 @@ public class BigOnClickActivity extends AppCompatActivity implements MyView<BigO
         String title = intent.getStringExtra("title");
         searchCondition = intent.getStringExtra("searchCondition");
         String showtype = intent.getStringExtra("showtype");
+        int tag = intent.getIntExtra("tag", 0);
+        switch (tag) {
+            case 1:
+                getStringStringMap("5",searchCondition);
+                break;
+            case 2:
+                getStringStringMap("5",searchCondition);
+                break;
+        }
+
+
+
+
 
         initView();
 
-       getStringStringMap("5");
+       getStringStringMap("5",searchCondition);
         tv_big_name.setText(title);
 
 
@@ -113,12 +126,12 @@ public class BigOnClickActivity extends AppCompatActivity implements MyView<BigO
 
         itemsBeen = new ArrayList<>();
         inflate1 = LayoutInflater.from(BigOnClickActivity.this).inflate(R.layout.pop_item, null);
-        popupWindow1 = new PopupWindow(inflate1, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow1 = new PopupWindow(inflate1, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,true);
         popitem(inflate1);
         }
 
     @NonNull
-    private void getStringStringMap(String order_type) {
+    private void getStringStringMap(String order_type,String searchCondition) {
 
         myPresenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(this);
@@ -231,11 +244,11 @@ public class BigOnClickActivity extends AppCompatActivity implements MyView<BigO
 
 
                 if (num==0){
-                    getStringStringMap(5+"");
+                    getStringStringMap(5+"",searchCondition);
                 }else if (num==2){
-                    getStringStringMap(4+"");
+                    getStringStringMap(4+"",searchCondition);
                 }else if (num==3){
-                    getStringStringMap(3+"");
+                    getStringStringMap(3+"",searchCondition);
                 }
 
 
@@ -254,11 +267,11 @@ public class BigOnClickActivity extends AppCompatActivity implements MyView<BigO
                 iv_price.setImageResource(imagelist[num]);
 
                 if (num==0){
-                    getStringStringMap(5+"");
+                    getStringStringMap(5+"",searchCondition);
                 }else if (num==2){
-                    getStringStringMap(4+"");
+                    getStringStringMap(4+"",searchCondition);
                 }else if (num==3){
-                    getStringStringMap(3+"");
+                    getStringStringMap(3+"",searchCondition);
                 }
                 break;
             case R.id.iv_bianhua:
@@ -288,10 +301,10 @@ public class BigOnClickActivity extends AppCompatActivity implements MyView<BigO
                 popupWindow.dismiss();
                 break;
             case R.id.tv_time:
-                getStringStringMap(1+"");
+                getStringStringMap(1+"",searchCondition);
                 break;
             case R.id.tv_xiaoliang:
-                getStringStringMap(5+"");
+                getStringStringMap(5+"",searchCondition);
                 break;
 
 
@@ -318,7 +331,7 @@ public class BigOnClickActivity extends AppCompatActivity implements MyView<BigO
 
     @Override
     public void success(BigOnClickBean bigOnClickBean) {
-        Toast.makeText(this, "请求成功", Toast.LENGTH_SHORT).show();
+
 
         Log.e("TAG",bigOnClickBean.toString());
         final List<BigOnClickBean.DataBean.FilterGroupBean> filter_group = bigOnClickBean.getData().getFilter_group();
@@ -348,13 +361,11 @@ public class BigOnClickActivity extends AppCompatActivity implements MyView<BigO
                     });
                 }
             });
-        }else {
-            Toast.makeText(this, "filter_group 是空的", Toast.LENGTH_SHORT).show();
         }
 
         final List<BigOnClickBean.DataBean.ProductListBean> product_list = bigOnClickBean.getData().getProduct_list();
         if (product_list!=null){
-            Toast.makeText(this, "product_list 不是空的", Toast.LENGTH_SHORT).show();
+
             StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
             rv_big.setLayoutManager(staggeredGridLayoutManager);
             MyBigRecAdapter myBigRecAdapter = new MyBigRecAdapter(product_list);
@@ -383,8 +394,6 @@ public class BigOnClickActivity extends AppCompatActivity implements MyView<BigO
                 }
             });
 
-        }else {
-            Toast.makeText(this, "product_list 是空的", Toast.LENGTH_SHORT).show();
         }
 
 

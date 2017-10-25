@@ -66,7 +66,8 @@ public class JumpActivityUtils {
                     intent.setClass(context, BigOnClickActivity.class).putExtra("jumpUrl", jumpUrl)
                             .putExtra("title", title)
                             .putExtra("searchCondition", searchCondition)
-                            .putExtra("showtype", showtype);
+                            .putExtra("showtype", showtype)
+                    .putExtra("TAG",1);
                     break;
                 case OutLinkH5:
                     url = parse.getQuery();

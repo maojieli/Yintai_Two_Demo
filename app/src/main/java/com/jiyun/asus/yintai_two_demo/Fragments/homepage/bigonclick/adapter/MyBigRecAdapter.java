@@ -1,6 +1,7 @@
 package com.jiyun.asus.yintai_two_demo.Fragments.homepage.bigonclick.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -51,10 +52,7 @@ public class MyBigRecAdapter extends RecyclerView.Adapter<MyBigRecAdapter.ViewHo
         holder.tv_content_show.setText(product_list.get(position).getName());
         holder.tv_show_price_new.setText(product_list.get(position).getPromotion_price()+"");
         holder.tv_show_price_after.setText(product_list.get(position).getPrice()+"");
-        Spannable spanStrikethrough = new SpannableString("显示删除线样式");
-        StrikethroughSpan stSpan = new StrikethroughSpan();  //设置删除线样式
-        spanStrikethrough.setSpan(stSpan, 2, 5, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-        holder.tv_show_price_after.setText(spanStrikethrough);
+        holder.tv_show_price_after.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG); //中划线
         holder.ll_big.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
