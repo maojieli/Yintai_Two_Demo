@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jiyun.asus.yintai_two_demo.Fragments.Beat.Jump.Adapters.CommodityGvAdapter;
 import com.jiyun.asus.yintai_two_demo.Fragments.Beat.Jump.Adapters.MyExpandableListViewAdapter;
 import com.jiyun.asus.yintai_two_demo.Fragments.Beat.Jump.Beans.CommodityBeam;
 import com.jiyun.asus.yintai_two_demo.Http.Presenter.MyPresenter;
@@ -24,7 +25,6 @@ import com.jiyun.asus.yintai_two_demo.Http.View.MyView;
 import com.jiyun.asus.yintai_two_demo.Http.tools.BaseParams;
 import com.jiyun.asus.yintai_two_demo.Http.tools.Tools;
 import com.jiyun.asus.yintai_two_demo.R;
-import com.jiyun.asus.yintai_two_demo.Utils.LongClickButton;
 import com.jiyun.asus.yintai_two_demo.Utils.ScrollViewExpandableListView;
 import com.jiyun.asus.yintai_two_demo.Utils.ScrollViewGridView;
 import com.recker.flybanner.FlyBanner;
@@ -36,6 +36,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 //商品详情页面+1
 public class CommodityDetailsActivity extends AppCompatActivity implements MyView<CommodityBeam>, View.OnClickListener {
@@ -71,18 +73,30 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
     private ImageView pop_close_iv;
     private ScrollViewGridView pop_color_gv;
     private ScrollViewGridView pop_size_gv;
-    private LongClickButton pop_quantity_reduction_iv;
+    private Button pop_quantity_reduction_iv;
     private TextView pop_quantity_value_tv;
-    private LongClickButton pop_quantity_plus_iv;
+    private Button pop_quantity_plus_iv;
     private LinearLayout bottom_ll;
     private RelativeLayout content_rl;
     private View top_empty_v;
     private RelativeLayout rl_cat_popu;
+    int a = 0;
+    private String itemcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commodity_details);
+        itemcode = getIntent().getStringExtra("itemcode");
+        int tag = getIntent().getIntExtra("tag", 0);
+        switch (tag) {
+            case 1:
+                LoadData();
+                break;
+            case 2:
+                LoadData();
+                break;
+        }
         initView();
         LoadData();
         Map<String, List<CommodityBeam.DataBean.CurrentBean.PromotionsBean>> dataset = new HashMap<>();
@@ -118,7 +132,7 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
     }
 
     private void LoadData() {
-        String itemcode = getIntent().getStringExtra("itemcode");
+
         MyPresenter presenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(CommodityDetailsActivity.this);
         BaseParams.getParams(httpParams, CommodityDetailsActivity.this);
@@ -155,6 +169,27 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
         List<CommodityBeam.DataBean.CurrentBean.PromotionsBean> promotions = commodityBeam.getData().getCurrent().getPromotions();
         stringList.addAll(promotions);
         adapter.notifyDataSetChanged();
+
+        pop_price_tv.setText("￥" + commodityBeam.getData().getCurrent().getYt_price() + "");
+        pop_title_tv.setText(commodityBeam.getData().getCurrent().getName());
+        Set<String> colorSet = new TreeSet<>();
+        Set<String> sizeSet = new TreeSet<>();
+        List<CommodityBeam.DataBean.ProductListBean> product_list = commodityBeam.getData().getProduct_list();
+        for (int x = 0; x < product_list.size(); x++) {
+            List<CommodityBeam.DataBean.ProductListBean.SkuPropertyBeanX> sku_property = product_list.get(x).getSku_property();
+
+            String value = sku_property.get(0).getValue();
+            colorSet.add(value);
+            String value1 = sku_property.get(1).getValue();
+            sizeSet.add(value1);
+
+
+        }
+        CommodityGvAdapter adapter = new CommodityGvAdapter(colorSet, CommodityDetailsActivity.this);
+        pop_color_gv.setAdapter(adapter);
+        pop_choice_size_tv.setText("尺码:" + commodityBeam.getData().getCurrent().getSku_property().get(1).getValue());
+        pop_choice_color_tv.setText("颜色分类:" + commodityBeam.getData().getCurrent().getSku_property().get(0).getValue());
+
     }
 
     @Override
@@ -205,8 +240,6 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
         bu_now_buy_commodity.setOnClickListener(this);
 
 
-
-
     }
 
     @Override
@@ -236,33 +269,35 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
                 break;
             //请选择
             case R.id.choise_color_size_quantity_body:
+                LoadData();
                 //显示POPU
                 View contentView = LayoutInflater.from(CommodityDetailsActivity.this).inflate(R.layout.popuwindow, null);
                 /*加载popu布局控件*/
                 //上左图片
-                pop_iv_image = (ImageView)contentView.findViewById(R.id.pop_iv_image);
+                pop_iv_image = (ImageView) contentView.findViewById(R.id.pop_iv_image);
                 //商品名称
-                pop_title_tv = (TextView)contentView. findViewById(R.id.pop_title_tv);
+                pop_title_tv = (TextView) contentView.findViewById(R.id.pop_title_tv);
+
                 //商品价格
-                pop_price_tv = (TextView)contentView. findViewById(R.id.pop_price_tv);
+                pop_price_tv = (TextView) contentView.findViewById(R.id.pop_price_tv);
                 //商品尺码
-                pop_choice_size_tv = (TextView)contentView. findViewById(R.id.pop_choice_size_tv);
+                pop_choice_size_tv = (TextView) contentView.findViewById(R.id.pop_choice_size_tv);
                 //商品颜色
-                pop_choice_color_tv = (TextView)contentView. findViewById(R.id.pop_choice_color_tv);
+                pop_choice_color_tv = (TextView) contentView.findViewById(R.id.pop_choice_color_tv);
                 //关闭POPU图片
-                pop_close_iv = (ImageView)contentView. findViewById(R.id.pop_close_iv);
+                pop_close_iv = (ImageView) contentView.findViewById(R.id.pop_close_iv);
                 pop_close_iv.setOnClickListener(this);
                 //颜色布局
-                pop_color_gv = (ScrollViewGridView)contentView. findViewById(R.id.pop_color_gv);
+                pop_color_gv = (ScrollViewGridView) contentView.findViewById(R.id.pop_color_gv);
                 //尺码布局
-                pop_size_gv = (ScrollViewGridView)contentView. findViewById(R.id.pop_size_gv);
+                pop_size_gv = (ScrollViewGridView) contentView.findViewById(R.id.pop_size_gv);
                 //减少数量
-                pop_quantity_reduction_iv = (LongClickButton)contentView. findViewById(R.id.pop_quantity_reduction_iv);
+                pop_quantity_reduction_iv = (Button) contentView.findViewById(R.id.pop_quantity_reduction_iv);
                 pop_quantity_reduction_iv.setOnClickListener(this);
                 //数量
-                pop_quantity_value_tv = (TextView)contentView. findViewById(R.id.pop_quantity_value_tv);
+                pop_quantity_value_tv = (TextView) contentView.findViewById(R.id.pop_quantity_value_tv);
                 //添加数量
-                pop_quantity_plus_iv = (LongClickButton) contentView.findViewById(R.id.pop_quantity_plus_iv);
+                pop_quantity_plus_iv = (Button) contentView.findViewById(R.id.pop_quantity_plus_iv);
                 pop_quantity_plus_iv.setOnClickListener(this);
 
                 PopupWindow mPopupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -274,9 +309,22 @@ public class CommodityDetailsActivity extends AppCompatActivity implements MyVie
                 View view = LayoutInflater.from(CommodityDetailsActivity.this).inflate(R.layout.activity_commodity_details, null);
                 mPopupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
                 break;
+
             case R.id.pop_quantity_reduction_iv:
+                String s = pop_quantity_value_tv.getText().toString();
+
+                int i = Integer.parseInt(s);
+                int i1 = i--;
+
+                if (i1 <= 0) {
+                    pop_quantity_value_tv.setText(0 + "");
+                } else {
+                    pop_quantity_value_tv.setText(i1 + "");
+                }
                 break;
             case R.id.pop_quantity_plus_iv:
+                a++;
+                pop_quantity_value_tv.setText(a + "");
                 break;
         }
     }

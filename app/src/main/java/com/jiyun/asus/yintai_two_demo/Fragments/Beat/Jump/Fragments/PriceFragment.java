@@ -68,6 +68,7 @@ public class PriceFragment extends Fragment implements MyView<MeiZhuangBean>, Ab
     }
 
     private void jiazai(int page) {
+        String STRING = getArguments().getString("order_type");
         int index = (int) getArguments().get("id");
         MyPresenter presenter = new MyPresenter(this);
         Map<String, String> httpParams = Tools.getHttpParams(context);
@@ -76,7 +77,7 @@ public class PriceFragment extends Fragment implements MyView<MeiZhuangBean>, Ab
         httpParams.put("method", "products.getlimitlist");
         httpParams.put("displaycount", "12");
         httpParams.put("page_index", PAGENUM + "");
-        httpParams.put("order_type", "5");
+        httpParams.put("order_type", STRING);
         httpParams.put("query_string", "");
 
         httpParams.put("bargainid", index + "");
@@ -89,24 +90,6 @@ public class PriceFragment extends Fragment implements MyView<MeiZhuangBean>, Ab
         List<MeiZhuangBean.DataBean.ProductListBean> product_list = meiZhuangBean.getData().getProduct_list();
 
         beanList.addAll(product_list);
-
-        Comparator c = new Comparator<MeiZhuangBean.DataBean.ProductListBean>() {
-
-            @Override
-            public int compare(MeiZhuangBean.DataBean.ProductListBean o1, MeiZhuangBean.DataBean.ProductListBean o2) {
-                if (o1.getYt_price() > o2.getYt_price()) {
-                    return 1;
-                }
-                if (o1.getYt_price() == o2.getYt_price()) {
-                    return 0;
-                }
-
-                return -1;
-
-
-            }
-        };
-        Collections.sort(beanList, c);
         adapter.notifyDataSetChanged();
     }
 
