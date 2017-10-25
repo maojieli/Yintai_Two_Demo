@@ -64,11 +64,10 @@ public class CommendFragment extends BaseFragment implements MyView<BeatBean> {
 
                 Intent intent = new Intent(activity, JumpBeatActivity.class);
                 int id1 = activitylistBeen.get(position).getId();
-                EventBus.getDefault().post(new JumpEventBean(id1));
                 String name = activitylistBeen.get(position).getName();
                 intent.putExtra("name", name);
                 intent.putExtra("index", id1);
-
+                intent.putExtra("endtime", activitylistBeen.get(position).getEndtime());
                 context.startActivity(intent);
             }
         });
