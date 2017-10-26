@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jiyun.asus.yintai_two_demo.Beans.ShoppingCartBean;
+import com.jiyun.asus.yintai_two_demo.GRDAO.DaoManager;
 import com.jiyun.asus.yintai_two_demo.R;
 
 import java.util.List;
@@ -97,7 +98,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
         }
         final ShoppingCartBean shoppingCartBean = shoppingCartBeanList.get(position);
         holder.tv_commodity_name.setText(shoppingCartBean.getShoppingName());
-        holder.tv_fabric.setText("面料:" + shoppingCartBean.getFabric());
+        holder.tv_fabric.setText("" + shoppingCartBean.getFabric());
         holder.tv_price.setText("￥:" + shoppingCartBean.getPrice());
         holder.ck_chose.setChecked(shoppingCartBean.isChoosed());
         holder.tv_show_num.setText(shoppingCartBean.getCount() + "");
@@ -151,6 +152,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+
                                 modifyCountInterface.childDelete(position);//删除 目前只是从item中移除
 
                             }

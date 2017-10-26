@@ -3,6 +3,7 @@ package com.jiyun.asus.yintai_two_demo.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jauker.widget.BadgeView;
 import com.jiyun.asus.yintai_two_demo.Adapters.ShoppingCartAdapter;
 import com.jiyun.asus.yintai_two_demo.Beans.ShoppingCartBean;
 import com.jiyun.asus.yintai_two_demo.GRDAO.CarDao;
@@ -47,6 +49,7 @@ public class CatFragment extends Fragment implements
     private RelativeLayout rl;
     private ShoppingCartBean shoppingCartBean;
     private ImageView kct;
+    private List<CarDao> list;
 
     @Nullable
     @Override
@@ -85,7 +88,9 @@ public class CatFragment extends Fragment implements
 
 
     protected void initData() {
-        List<CarDao> list = DaoManager.getInstance(getContext()).getDao().queryBuilder().list();
+
+
+        list = DaoManager.getInstance(getContext()).getDao().queryBuilder().list();
         for (int i = 0; i < list.size(); i++) {
             shoppingCartBean = new ShoppingCartBean();
             shoppingCartBean.setShoppingName(list.get(i).getShopname());
@@ -98,7 +103,10 @@ public class CatFragment extends Fragment implements
 
 
 
+
+
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -180,6 +188,15 @@ public class CatFragment extends Fragment implements
             sfby.setText("价格大于199,邮费不用");
         }
 
+        BadgeView badgeView = new BadgeView(getContext());
+        badgeView.setTargetView(tv_settlement);
+        badgeView.setBadgeGravity(Gravity.TOP | Gravity.RIGHT);
+        badgeView.setBadgeCount(totalCount);
+        badgeView.setVisibility(View.VISIBLE);
+        if(badgeView.getBadgeCount()==0){
+            badgeView.setVisibility(View.GONE);
+        }
+
     }
     @Override
     public void doIncrease(int position, View showCountView,
@@ -203,7 +220,9 @@ public class CatFragment extends Fragment implements
         if (currentCount == 1) {
             return;
         }
+
         currentCount--;
+
         shoppingCartBean.setCount(currentCount);
         ((TextView) showCountView).setText(currentCount + "");
         shoppingCartAdapter.notifyDataSetChanged();

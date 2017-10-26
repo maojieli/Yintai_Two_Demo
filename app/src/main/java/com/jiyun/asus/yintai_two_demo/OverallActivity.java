@@ -1,19 +1,23 @@
 package com.jiyun.asus.yintai_two_demo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jauker.widget.BadgeView;
 import com.jiyun.asus.yintai_two_demo.Adapters.OverallAdapter;
 import com.jiyun.asus.yintai_two_demo.Fragments.Beat.BeatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.CatFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.Classification.ClassificationFragment;
-import com.jiyun.asus.yintai_two_demo.Fragments.homepage.HomeFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.MyFragment;
+import com.jiyun.asus.yintai_two_demo.Fragments.homepage.HomeFragment;
 import com.jiyun.asus.yintai_two_demo.Fragments.homepage.SysApplication;
 import com.jiyun.asus.yintai_two_demo.Utils.CustomViewPager;
 
@@ -29,7 +33,7 @@ public class OverallActivity extends AppCompatActivity {
     TabLayout tbOverall;
     @Bind(R.id.cvp_overall)
     CustomViewPager cvpOverall;
-
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
